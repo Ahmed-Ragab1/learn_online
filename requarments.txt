@@ -7,3 +7,4 @@ python manage.py createsuperuser     # iti pass 123  db name:learn
 pip install django-bootstrap-form
 
 
+abdalla
