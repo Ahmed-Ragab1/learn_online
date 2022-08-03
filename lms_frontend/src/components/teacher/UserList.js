@@ -1,29 +1,30 @@
 import {NavLink} from 'react-router-dom';
-import Sidebar from './Sidebar';
+import TeacherSidebar from './TeacherSidebar';
 
-function MyCourses(){
+function UserList(){
     return (
         <div className='container mt-4'>
         <div className='row'>
             <aside className='col-md-3'>
-                <Sidebar />
+            <TeacherSidebar />
             </aside>
             <section className='col-md-9'>
             <div className='card'>
-        <h5 className='card-header'>My Courses</h5>
+        <h5 className='card-header'>User List</h5>
         <div className='card-body'>
             <table className='table table-bordered'>
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Created By</th>
+                        <th>Enrolled Courses</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <td>python development</td>
+                   <tr> <td>python development</td>
                     <td><NavLink to='/'>Ahmed</NavLink></td>
                     <td><button className='btn btn-danger btn-sm active'>Delete</button></td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -35,4 +36,4 @@ function MyCourses(){
 
     )
 }
-export default MyCourses;
+export default UserList;

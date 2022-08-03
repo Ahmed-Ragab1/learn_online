@@ -10,5 +10,22 @@
         </value>
       </option>
     </inspection_tool>
+<<<<<<< HEAD
+    <inspection_tool class="PyPep8Inspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="E302" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="olx.suoq.urls.suoq" />
+        </list>
+      </option>
+    </inspection_tool>
+=======
+>>>>>>> f0bbbb732b25f6451ef357114eedefc4ab44617d
   </profile>
 </component>
