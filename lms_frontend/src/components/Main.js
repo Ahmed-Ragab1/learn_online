@@ -6,6 +6,7 @@ import CourseDetail from './CourseDetail';
 import Login from "./user/Login";
 import Register from "./user/Register";
 import Dashboard from "./user/Dashboard";
+// import Popularcourses from "./popularcourses";
 
 import {Routes as Switch,Route} from 'react-router-dom';
 function Main() {
@@ -19,6 +20,7 @@ function Main() {
             <Route path="/user-login" element={<Login/>} />
             <Route path="/user-register" element={<Register/>} />
             <Route path="/user-dashboard" element={<Dashboard/>} />
+            {/* <Route path="/popular-cources" element={<Popularcourses/>} /> */}
 
 
 
