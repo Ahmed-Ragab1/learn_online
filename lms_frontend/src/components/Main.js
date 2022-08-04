@@ -7,6 +7,8 @@ import Login from "./user/Login";
 import Register from "./user/Register";
 import Dashboard from "./user/Dashboard";
 import {Routes as Switch,Route} from 'react-router-dom';
+import TeacherDetail from "./teacher/TeacherDetail";
+import AllCourses from './AllCourses'
 import MyCourses from './user/MyCourses';
 import FavouriteCourses from "./user/FavouriteCourses";
 import RecommendedCourses from './user/RecommendedCourses';
@@ -24,7 +26,6 @@ import TeacherProfileSetting from './teacher/TeacherProfileSetting';
 import TeacherChangePassword from './teacher/TeacherChangePassword';
 import AddCourse from './teacher/AddCourse';
 import UserList from './teacher/UserList';
-import TeacherDetail from "./teacher/TeacherDetail";
 
 
 
@@ -40,6 +41,8 @@ function Main() {
             <Route path="/user-login" element={<Login/>} />
             <Route path="/user-register" element={<Register/>} />
             <Route path="/user-dashboard" element={<Dashboard/>} />
+            <Route path="/teacher-detail/:teacher_id" element={<TeacherDetail/>} />
+            <Route path="/all-courses" element={<AllCourses/>} />
             <Route path="/my-courses" element={<MyCourses/>} />
             <Route path="/favorite-courses" element={<FavouriteCourses/>} />
             <Route path="/recommended-courses" element={<RecommendedCourses/>} />
@@ -52,8 +55,6 @@ function Main() {
             <Route path="/teacher-profile-setting" element={<TeacherProfileSetting/>} />
             <Route path="/teacher-change-password" element={<TeacherChangePassword/>} />
             <Route path="/teacher-change-password" element={<TeacherChangePassword/>} />
-            <Route path="/teacher-detail/:teacher_id" element={<TeacherDetail/>} />
-
             <Route path="/add-course" element={<AddCourse/>} />
             <Route path="/my-users" element={<UserList  />} />
 
