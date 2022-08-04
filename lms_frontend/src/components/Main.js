@@ -24,6 +24,7 @@ import TeacherProfileSetting from './teacher/TeacherProfileSetting';
 import TeacherChangePassword from './teacher/TeacherChangePassword';
 import AddCourse from './teacher/AddCourse';
 import UserList from './teacher/UserList';
+import TeacherDetail from "./teacher/TeacherDetail";
 
 
 
@@ -51,6 +52,8 @@ function Main() {
             <Route path="/teacher-profile-setting" element={<TeacherProfileSetting/>} />
             <Route path="/teacher-change-password" element={<TeacherChangePassword/>} />
             <Route path="/teacher-change-password" element={<TeacherChangePassword/>} />
+            <Route path="/teacher-detail/:teacher_id" element={<TeacherDetail/>} />
+
             <Route path="/add-course" element={<AddCourse/>} />
             <Route path="/my-users" element={<UserList  />} />
 

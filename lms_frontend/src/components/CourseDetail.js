@@ -1,5 +1,4 @@
-import {useParams} from 'react-router-dom';
-import {NavLink} from 'react-router-dom';
+import { useParams, NavLink } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 
 
@@ -18,7 +17,7 @@ function CourseDetail(){
                         “image caps” at either end of a card, overlaying images with card content, 
                         or simply embedding the image in a card.
                     </p>
-                    <p className='fw-bold'>course by: <a href='#'>teacher 1</a></p>
+                    <p className='fw-bold'>course by: <NavLink to='/teacher-detail/1'>teacher 1</NavLink></p>
                     <p className='fw-bold'>duration: 30 minutes</p>
                     <p className='fw-bold'>total enroled: 304 student</p>
                     <p className='fw-bold'>rating: 3/5</p>
