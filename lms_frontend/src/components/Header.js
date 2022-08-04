@@ -2,7 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import {NavLink} from 'react-router-dom';
+import {NavLink,Link} from 'react-router-dom';
 
 
 function Header() {
@@ -14,7 +14,7 @@ function Header() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="#link">Courses</Nav.Link>
+            <Nav.Link href="/all-courses">Courses</Nav.Link>
             <NavDropdown title="Teacher" id="basic-nav-dropdown">
               <NavDropdown.Item href="/teacher-login">Login</NavDropdown.Item>
               <NavDropdown.Item href="/teacher-register">Register</NavDropdown.Item>

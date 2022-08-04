@@ -7,4 +7,5 @@ from rest_framework import serializers
 class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Teacher
-        fields = ['id', 'full_name', 'eamil', 'password', 'qualification', 'address', 'mobile_no', 'created_at', 'updated_at']
+        fields = "__all__"
+        # fields = ['id', 'full_name', 'eamil', 'password', 'qualification', 'address', 'mobile_no', 'created_at', 'updated_at']

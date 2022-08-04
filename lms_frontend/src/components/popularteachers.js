@@ -1,7 +1,22 @@
 import Card from 'react-bootstrap/Card';
 import {NavLink} from 'react-router-dom';
+import {useEffect,useState} from 'react';
+import axios from 'axios'
 
+
+const baseurl = 'http://localhost:8000/api/'
 function PopularTeachers(){
+    const [teacher,setteacher] = useState();
+
+    useEffect(()=>{
+      axios.get(baseurl+'teacher/').then((response)=>{
+        setteacher(response.data);
+      })
+    },[])
+
+    console.log(teacher);
+
+
     return(
 <div className='container mt-3'>
         {/* latest course */}

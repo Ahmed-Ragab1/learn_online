@@ -10,6 +10,8 @@ import PopularCourses from "./popularcourses";
 
 
 import {Routes as Switch,Route} from 'react-router-dom';
+import TeacherDetail from "./teacher/TeacherDetail";
+import AllCourses from './AllCourses'
 import MyCourses from './user/MyCourses';
 import FavouriteCourses from "./user/FavouriteCourses";
 import RecommendedCourses from './user/RecommendedCourses';
@@ -30,6 +32,9 @@ import UserList from './teacher/UserList';
 import PopularTeachers from "./popularteachers";
 
 
+import CategoryCourses from "./CategoryCourses";
+
+
 
 
 function Main() {
@@ -43,9 +48,13 @@ function Main() {
             <Route path="/user-login" element={<Login/>} />
             <Route path="/user-register" element={<Register/>} />
             <Route path="/user-dashboard" element={<Dashboard/>} />
+
             <Route path="/popular-cources" element={<PopularCourses/>} />
             <Route path="/popular-teachers" element={<PopularTeachers/>} />
+            <Route path="/category/:category_slug" element={<CategoryCourses/>} />
 
+            <Route path="/teacher-detail/:teacher_id" element={<TeacherDetail/>} />
+            <Route path="/all-courses" element={<AllCourses/>} />
             <Route path="/my-courses" element={<MyCourses/>} />
             <Route path="/favorite-courses" element={<FavouriteCourses/>} />
             <Route path="/recommended-courses" element={<RecommendedCourses/>} />

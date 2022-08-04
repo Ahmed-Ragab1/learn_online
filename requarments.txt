@@ -32,3 +32,8 @@ npm install react-router-dom@6
 
 =======
 
+
+
+python -m pip install django-cors-headers
+
+npm install axios
