@@ -6,7 +6,7 @@ const baseUrl='http://127.0.0.1:8000/api/teacher/';
 function TeacherRegister(){
     const [teacherData,setteacherData]=useState({
         'full_name':'',
-        'eamil':'',
+        'email':'',
         'password':'',
         'mobile_no':'',
         'qualification':'',
@@ -25,7 +25,7 @@ function TeacherRegister(){
     const submitForm=()=>{
         const teacherFormData=new FormData();
         teacherFormData.append('full_name',teacherData.full_name)
-        teacherFormData.append('eamil',teacherData.eamil)
+        teacherFormData.append('email',teacherData.email)
         teacherFormData.append('password',teacherData.password)
         teacherFormData.append('mobile_no',teacherData.mobile_no)
         teacherFormData.append('qualification',teacherData.qualification)
@@ -38,7 +38,7 @@ function TeacherRegister(){
                 console.log(response.data);
                 setteacherData({
                     'full_name':'',
-                    'eamil':'',
+                    'email':'',
                     'password':'',
                     'mobile_no':'',
                     'qualification':'',
@@ -67,7 +67,7 @@ function TeacherRegister(){
 
                                 <div className='mb-3'>
                                     <label for='exampleInputEmail' className='form-label'>Email</label>
-                                    <input onChange={handleChange} value={teacherData.eamil} name='eamil' type='email' className='form-control'/>
+                                    <input onChange={handleChange} value={teacherData.email} name='email' type='email' className='form-control'/>
                                 </div>
 
                                 <div className='mb-3'>
