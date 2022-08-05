@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 from django.db import models
 
 # Create your models here.
@@ -46,10 +47,13 @@ class CourseCategory(models.Model) :
 
 
 class Course(models.Model) :
-    title       = models.CharField(max_length=100)
-    describtion = models.TextField()
-    category    =  models.ForeignKey(CourseCategory,on_delete=models.CASCADE)
-    teacher     =  models.ForeignKey(Teacher,on_delete=models.CASCADE)
+    title        = models.CharField(max_length=100)
+    describtion  = models.TextField()
+    category     =  models.ForeignKey(CourseCategory,on_delete=models.CASCADE)
+    teacher      =  models.ForeignKey(Teacher,on_delete=models.CASCADE)
+    featured_img =  models.ImageField(upload_to='course_imgs/',null=True)
+    techs        = models.TextField(null=True)
+
     created_at  = models.DateTimeField(auto_now_add=True)
     updated_at  = models.DateTimeField(auto_now=True)
 

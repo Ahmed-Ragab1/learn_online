@@ -1,8 +1,8 @@
 import imp
 from django.shortcuts import render
 from main import models
-from main.models import Teacher,CourseCategory
-from main.serializers import  TeacherSerializer
+from main.models import Teacher,CourseCategory,Course
+from main.serializers import  TeacherSerializer,CategorySerializer,CourseSerializer
 from rest_framework import generics
 from rest_framework import permissions
 from django.views.decorators.csrf import csrf_exempt
@@ -32,6 +32,11 @@ def teacher_login(request):
 
 
 
-# class CategoryList(generics.ListCreateAPIView):
-#     queryset = CourseCategory.objects.all()
-#     serializer_class = CategorySerializer
+class CategoryList(generics.ListCreateAPIView):
+    queryset = CourseCategory.objects.all()
+    serializer_class = CategorySerializer
+
+
+class CourseList(generics.ListCreateAPIView):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
