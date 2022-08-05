@@ -1,5 +1,5 @@
-import {NavLink} from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
+// import {NavLink} from 'react-router-dom';
+import React, { useState } from 'react';
 import axios from 'axios';
 const baseUrl='http://127.0.0.1:8000/api/teacher/';
 
@@ -60,8 +60,8 @@ function TeacherRegister(){
         <div className='container mt-4'>
             <div className='row'>
                 <div className='col-6 offset-3'>
-                    {teacherData.status == 'success' && <p className='text-success'>Thanks for Your Registration</p>}
-                    {teacherData.status == 'error' && <p className='text-danger'>Somthing Wrong Happened!</p>}
+                    {teacherData.status === 'success' && <p className='text-success'>Thanks for Your Registration</p>}
+                    {teacherData.status === 'error' && <p className='text-danger'>Somthing Wrong Happened!</p>}
                     <div className='card'>
                         <h5 className='card-header'>Teacher Register</h5>
                         <div className='card-body'>

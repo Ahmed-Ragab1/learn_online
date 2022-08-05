@@ -1,14 +1,13 @@
 
-import { Card } from 'react-bootstrap/Card';
+// import { Card } from 'react-bootstrap/Card';
 import TeacherSidebar from './TeacherSidebar';
 import {useState,useEffect} from 'react';
 import axios from 'axios';
 
 const baseUrl='http://localhost:8000/api';
-// comment
+
 function AddCourse(){
     const [cats,setCats]=useState([]);
-
     const [courseData,setcourseData] = useState({
         category    :'',
         title       :'',
@@ -26,7 +25,11 @@ function AddCourse(){
         }catch(error)
         {
             console.log(error)
-    
+        }
+    },[]);
+
+
+
     const handelChange=(event)=>{
         setcourseData({
             ...courseData,
@@ -62,7 +65,7 @@ function AddCourse(){
                 }
             })
             .then((res)=>{
-                console.log(res.data);
+                window.location.href='/add-course'
             })
         } catch (error) {
             console.log(error);
