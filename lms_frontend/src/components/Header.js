@@ -6,6 +6,7 @@ import {NavLink,Link} from 'react-router-dom';
 
 
 function Header() {
+  const teacherLoginStatus=localStorage.getItem('teacherLoginStatus')
     return (
       <Navbar bg="dark" expand="lg" className="navbar-dark">
       <Container>
@@ -16,11 +17,14 @@ function Header() {
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/all-courses">Courses</Nav.Link>
             <NavDropdown title="Teacher" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/teacher-login">Login</NavDropdown.Item>
-              <NavDropdown.Item href="/teacher-register">Register</NavDropdown.Item>
+              {teacherLoginStatus !='true' &&
+              <>
+                    <NavDropdown.Item href="/teacher-login">Login</NavDropdown.Item>
+                    <NavDropdown.Item href="/teacher-register">Register</NavDropdown.Item>
+                    </>
+              }
+              <NavDropdown.Item href="/teacher-logout">Logout</NavDropdown.Item>
               <NavDropdown.Item href="/teacher-dashboard">Dashboard</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="/user-register">Logout</NavDropdown.Item>
             </NavDropdown>
             {/* <Nav.Link href="/about">About Us</Nav.Link> */}
             <NavDropdown title="User" id="basic-nav-dropdown">
@@ -28,7 +32,7 @@ function Header() {
               <NavDropdown.Item href="/user-register">Register</NavDropdown.Item>
               <NavDropdown.Item href="/user-dashboard">Dashboard</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/user-register">Logout</NavDropdown.Item>
+              <NavDropdown.Item href="/user-logout">Logout</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
