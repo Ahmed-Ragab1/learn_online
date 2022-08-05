@@ -74,7 +74,7 @@ function Home() {
       {/*end latest course */}    
 
         {/* popular course */}
-        <h3 className='pb-1 mb-4 mt-5'>popular Courses <Link to='/popular-cources' className='float-end'>see all</Link></h3>
+        <h3 className='pb-1 mb-4 mt-5'>popular Courses <NavLink to='/popular-cources' className='float-end'>see all</NavLink></h3>
         <div className="row mb-4">
           <div className="col-md-3">
             <Card >
@@ -136,7 +136,7 @@ function Home() {
         {/*end popular course */}     
 
          {/* popular Teachers */}
-         <h3 className='pb-1 mb-4 mt-5'>popular Teachers<Link to='/popular-teachers' className='float-end'>see all</Link></h3>
+         <h3 className='pb-1 mb-4 mt-5'>popular Teachers<NavLink to='/popular-teachers' className='float-end'>see all</NavLink></h3>
         <div className="row mb-4">
           <div className="col-md-3">
             <Card >

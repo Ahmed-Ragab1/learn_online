@@ -1,7 +1,7 @@
 
 import { Card } from 'react-bootstrap/Card';
 import TeacherSidebar from './TeacherSidebar';
-function AddCourse(){
+function AddChapter(){
     return(
         <div className='container mt-4'>
             <div className='row'>
@@ -10,7 +10,7 @@ function AddCourse(){
                 </aside>
                 <section className='col-md-9'>
                     <div className='card'>
-                        <h5 className='card-header'>Add Course</h5>
+                        <h5 className='card-header'>Add Chapter</h5>
                         <div className='card-body'>
                             <form>
                         <div class="mb-3 row">
@@ -26,15 +26,15 @@ function AddCourse(){
                         </div>
                         </div>
                         <div class="mb-3 row">
-                        <label for="course_video" class="col-sm-2 col-form-label">Featured Image</label>
+                        <label for="course_video" class="col-sm-2 col-form-label">Video</label>
                         <div class="col-sm-10">
                             <input type="file" class="form-control" id="course_video" />
                         </div>
                         </div>
                         <div class="mb-3 row">
-                        <label for="techs" class="col-sm-2 col-form-label">Technologies</label>
+                        <label for="technologies" class="col-sm-2 col-form-label">Remarks</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" id="techs" placeholder='django,css'/>
+                            <textarea class="form-control" id="technologies" placeholder='This video focuses on specific topic'/>
                         </div>
                         </div>
                        <button type='submit'className='btn btn-primary'>Submit</button>
@@ -49,4 +49,4 @@ function AddCourse(){
     )
 }
 
-export default AddCourse;
+export default AddChapter;

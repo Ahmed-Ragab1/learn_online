@@ -26,10 +26,13 @@ import TeacherLogout from "./teacher/TeacherLogout";
 
 import TeacherSidebar from "./teacher/TeacherSidebar";
 import TeacherCourses from "./teacher/TeacherCourses";
+import AddCourse from "./teacher/AddCourse";
+import AddChapter from "./teacher/AddChapter";
+
+
 import TeacherDashboard from './teacher/TeacherDashboard';
 import TeacherProfileSetting from './teacher/TeacherProfileSetting';
 import TeacherChangePassword from './teacher/TeacherChangePassword';
-import AddCourse from './teacher/AddCourse';
 import UserList from './teacher/UserList';
 import PopularTeachers from "./popularteachers";
 
@@ -72,6 +75,8 @@ function Main() {
             <Route path="/teacher-change-password" element={<TeacherChangePassword/>} />
             <Route path="/teacher-change-password" element={<TeacherChangePassword/>} />
             <Route path="/add-course" element={<AddCourse/>} />
+            <Route path="/add-chapter/:course_id" element={<AddChapter/>} />
+
             <Route path="/my-users" element={<UserList  />} />
 
             

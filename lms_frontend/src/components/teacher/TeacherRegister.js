@@ -50,6 +50,11 @@ function TeacherRegister(){
             setteacherData({'status':'error'})
         }
     };
+    const teacherLoginStatus=localStorage.getItem('teacherLoginStatus')
+    if(teacherLoginStatus=='true')
+    {
+      window.location.href='/teacher-dashboard'
+    }
   
     return(
         <div className='container mt-4'>

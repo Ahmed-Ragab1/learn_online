@@ -23,7 +23,13 @@ function TeacherCourses(){
                 <tbody>
                     <td>python development</td>
                     <td><NavLink to='/'>Ahmed</NavLink></td>
-                    <td><button className='btn btn-danger btn-sm active'>Delete</button></td>
+                    <td><button className='btn btn-danger btn-sm active'>Delete</button>
+                    <NavLink className='btn btn-success btn-sm active ms-2' to='/add-chapter/2'>
+                        Add Chapter
+
+                    </NavLink>
+                    
+                    </td>
                 </tbody>
             </table>
         </div>

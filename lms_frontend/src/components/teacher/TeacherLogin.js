@@ -11,12 +11,12 @@ function TeacherLogin() {
   const handleChange = (event) => {
     setteacherLoginData({
       ...teacherLoginData,
-      [event.target.name]: event.target.value,
+      [event.target.name]:event.target.value,
     });
   };
   const submitForm = () => {
     console.log(teacherLoginData)
-    const teacherFormData=new FormData()
+    const teacherFormData=new FormData;
     teacherFormData.append('email',teacherLoginData.email)
     teacherFormData.append('password',teacherLoginData.password)
     try{

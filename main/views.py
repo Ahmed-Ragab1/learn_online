@@ -1,7 +1,8 @@
 import imp
 from django.shortcuts import render
-from main.models import Teacher
-from main.serializers import TeacherSerializer
+from main import models
+from main.models import Teacher,CourseCategory
+from main.serializers import  TeacherSerializer
 from rest_framework import generics
 from rest_framework import permissions
 from django.views.decorators.csrf import csrf_exempt
@@ -23,8 +24,14 @@ class TeacherDetail(generics.RetrieveUpdateDestroyAPIView):
 def teacher_login(request):
     email=request.POST['email']
     password=request.POST['password']
-    teacherData=Teacher.objects.get(email=email,password=password)
+    teacherData=models.Teacher.objects.get(email=email,password=password)
     if teacherData:
         return JsonResponse({'bool':True})
     else:
         return JsonResponse({'bool':False})
+
+
+
+# class CategoryList(generics.ListCreateAPIView):
+#     queryset = CourseCategory.objects.all()
+#     serializer_class = CategorySerializer
