@@ -5,7 +5,7 @@ import {useState,useEffect} from 'react';
 import axios from 'axios';
 
 const baseUrl='http://localhost:8000/api';
-
+// comment
 function AddCourse(){
     const [cats,setCats]=useState([]);
 
@@ -26,11 +26,7 @@ function AddCourse(){
         }catch(error)
         {
             console.log(error)
-        }
-    },[]);
-
-
-
+    
     const handelChange=(event)=>{
         setcourseData({
             ...courseData,
