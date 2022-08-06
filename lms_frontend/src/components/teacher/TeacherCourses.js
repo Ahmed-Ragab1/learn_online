@@ -1,4 +1,4 @@
-import {NavLink} from 'react-router-dom';
+import { Link, NavLink} from 'react-router-dom';
 import TeacherSidebar from './TeacherSidebar';
 import {useEffect,useState} from 'react'
 import axios from 'axios';
@@ -7,7 +7,6 @@ const baseUrl='http://127.0.0.1:8000/api';
 function TeacherCourses(){
    const[courseData,setCourseData]=useState([]);
    const teacherId=localStorage.getItem('teacherId');
-   //Fetch course when page load
    useEffect(()=>{
     try{
         axios.get(baseUrl+'/teacher-courses/'+teacherId).then((res)=>{
@@ -40,7 +39,7 @@ function TeacherCourses(){
                 <tbody>
                     {courseData.map((course,index)=>
                     <tr>
-                    <td>{course.title}</td>
+                    <td><Link to={'/all-chapters/'+course.id} >{course.title}</Link></td>
                     <td><img src={course.featured_img} width="80" className='rounded' alt={course.title}/></td>
                     <td><NavLink to='/'>{course.teacher}</NavLink></td>
                     <td><button className='btn btn-danger btn-sm active'>Delete</button>

@@ -1,5 +1,5 @@
 
-import { Card } from 'react-bootstrap/Card';
+// import { Card } from 'react-bootstrap/Card';
 import TeacherSidebar from './TeacherSidebar';
 import axios from 'axios';
 import {useState} from 'react'
@@ -25,6 +25,7 @@ function AddChapter(){
             [event.target.name]:event.target.files[0]
         });
     }
+    // get id
     const {course_id}=useParams();
     const formsubmit=()=>{
         const _formData=new FormData();

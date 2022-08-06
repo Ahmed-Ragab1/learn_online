@@ -28,6 +28,8 @@ import TeacherSidebar from "./teacher/TeacherSidebar";
 import TeacherCourses from "./teacher/TeacherCourses";
 import AddCourse from "./teacher/AddCourse";
 import AddChapter from "./teacher/AddChapter";
+import AllChapters from "./teacher/CourseChapters";
+import EditChapter from "./teacher/EditChapter";
 
 
 import TeacherDashboard from './teacher/TeacherDashboard';
@@ -57,9 +59,11 @@ function Main() {
             <Route path="/popular-cources" element={<PopularCourses/>} />
             <Route path="/popular-teachers" element={<PopularTeachers/>} />
             <Route path="/category/:category_slug" element={<CategoryCourses/>} />
+            <Route path="/edit-chapter/:chapter_id" element={<EditChapter/>} />
 
             <Route path="/teacher-detail/:teacher_id" element={<TeacherDetail/>} />
             <Route path="/all-courses" element={<AllCourses/>} />
+            <Route path="/all-chapters/:course_id" element={<AllChapters/>} />
             <Route path="/my-courses" element={<MyCourses/>} />
             <Route path="/favorite-courses" element={<FavouriteCourses/>} />
             <Route path="/recommended-courses" element={<RecommendedCourses/>} />
