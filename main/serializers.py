@@ -7,7 +7,8 @@ from rest_framework import serializers
 class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Teacher
-        fields = "__all__"
+        fields = ['id','full_name','detail','email','password','qualification','mobile_no','skills', 'teacher_courses']
+        depth = 1
 
 
 
@@ -29,7 +30,9 @@ class CategorySerializer(serializers.ModelSerializer):
 class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Course
-        fields = "__all__"
+        # fields = "__all__"
+        fields = ['id','title','describtion','category','featured_img','techs','created_at','updated_at','teacher','course_chapters','related_videos']
+        depth=1
         
 
 class ChapterSerializer(serializers.ModelSerializer):

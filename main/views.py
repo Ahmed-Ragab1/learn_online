@@ -40,6 +40,14 @@ def teacher_login(request):
 
 
 
+class CourseDetailView(generics.RetrieveAPIView):
+    queryset = models.Course.objects.all()
+
+    serializer_class=CourseSerializer
+
+
+
+
 # class CategoryList(generics.ListCreateAPIView):
 #     queryset = CourseCategory.objects.all()
 #     serializer_class = CategorySerializer
@@ -104,6 +112,7 @@ class CourseChapterList(generics.ListAPIView):
         course_id=self.kwargs['course_id']
         course= models.Course.objects.get(pk=course_id)
         return models.Chapter.objects.filter(course=course)  
+
 
 
 

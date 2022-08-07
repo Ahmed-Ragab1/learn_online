@@ -37,9 +37,10 @@ function Home() {
           
           <div className="col-md-3 mb-4">
             <Card >
-              < NavLink to={'/detail/${course.id}'}><Card.Img variant="top" src={course.featured_img} /></NavLink>
+              < NavLink to={`/detail/${course.id}`}><Card.Img variant="top" src={course.featured_img} /></NavLink>
               <Card.Body>
-                <Card.Title><NavLink to={'/detail/${course.id}'}>{course.title}</NavLink></Card.Title>
+                <p></p>
+                <Card.Title><NavLink to={`/detail/${course.id}`}>{course.title}</NavLink></Card.Title>
               </Card.Body>
             </Card>
           </div>
