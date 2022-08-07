@@ -15,7 +15,7 @@ class TeacherSerializer(serializers.ModelSerializer):
 
 
         
-# class CategorySerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = models.CourseCategory
-#         fields = ['id','title','describtion']
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.CourseCategory
+        fields = ['id','title','describtion']

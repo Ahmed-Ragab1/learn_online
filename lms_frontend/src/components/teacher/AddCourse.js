@@ -1,7 +1,26 @@
 
 import { Card } from 'react-bootstrap/Card';
 import TeacherSidebar from './TeacherSidebar';
+import {useState,useEffect} from 'react'
+import axios from "axios";
+const baseUrl = "http://127.0.0.1:8000/api";
 function AddCourse(){
+    const [cats,setCats]=useState([])
+    useEffect=(()=>{
+        try{
+            axios.get(baseUrl+'category/')
+            .then((res)=>{
+                console.log(res.data)
+                if(res.data.bool==true){
+          console.log(res.data)
+                }
+            })
+    
+        }catch(error)
+        {
+            console.log(error)
+        }
+    },[])
     return(
         <div className='container mt-4'>
             <div className='row'>
@@ -13,6 +32,13 @@ function AddCourse(){
                         <h5 className='card-header'>Add Course</h5>
                         <div className='card-body'>
                             <form>
+                            <div class="mb-3 row">
+                        <label for="title" class="col-sm-2 col-form-label">Category</label>
+                        <select name='category' className='form-control'>
+
+                        </select>
+                        </div>
+
                         <div class="mb-3 row">
                         <label for="title" class="col-sm-2 col-form-label">Title</label>
                         <div class="col-sm-10">
