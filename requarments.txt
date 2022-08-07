@@ -30,7 +30,7 @@ npm install react-bootstrap bootstrap
 npm install react-router-dom@6
 =======
 
-=======
+========
 
 
 
@@ -41,3 +41,7 @@ npm install axios
 
 
  pip install pillow
+
+ npm i bootstrap-icons
+
+ npm install sweetalert2

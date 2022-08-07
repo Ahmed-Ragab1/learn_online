@@ -1,7 +1,22 @@
-import {NavLink} from 'react-router-dom';
+import { Link, NavLink} from 'react-router-dom';
 import TeacherSidebar from './TeacherSidebar';
+import {useEffect,useState} from 'react'
+import axios from 'axios';
+const baseUrl='http://127.0.0.1:8000/api';
 
 function TeacherCourses(){
+   const[courseData,setCourseData]=useState([]);
+   const teacherId=localStorage.getItem('teacherId');
+   useEffect(()=>{
+    try{
+        axios.get(baseUrl+'/teacher-courses/'+teacherId).then((res)=>{
+            setCourseData(res.data);
+        })
+    }
+    catch(error){
+        console.log(error)
+    }
+   },[]);
     return (
         <div className='container mt-4'>
         <div className='row'>
@@ -16,20 +31,29 @@ function TeacherCourses(){
                 <thead>
                     <tr>
                         <th>Name</th>
+                        <th>Image</th>
                         <th>Created By</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <td>python development</td>
-                    <td><NavLink to='/'>Ahmed</NavLink></td>
-                    <td><button className='btn btn-danger btn-sm active'>Delete</button>
-                    <NavLink className='btn btn-success btn-sm active ms-2' to='/add-chapter/2'>
-                        Add Chapter
-
-                    </NavLink>
-                    
+                    {courseData.map((course,index)=>
+                    <tr>
+                    <td><Link to={'/all-chapters/'+course.id} >{course.title}</Link></td>
+                    <td><img src={course.featured_img} width="80" className='rounded' alt={course.title}/></td>
+                    <td><NavLink to='/'>{course.teacher}</NavLink></td>
+                    <td>
+                        <NavLink className='btn btn-info btn-sm' to={'/edit-course/'+course.id} >
+                            Edit
+                        </NavLink>
+                        <NavLink className='btn btn-success btn-sm active ms-2' to={'/add-chapter/'+course.id} >
+                            Add Chapter
+                        </NavLink>
+                        <button className='btn btn-danger btn-sm ms-2 active'>Delete</button>
+                       
                     </td>
+                    </tr>
+                    )}
                 </tbody>
             </table>
         </div>

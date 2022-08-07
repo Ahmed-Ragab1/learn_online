@@ -9,7 +9,7 @@ export default function TeacherDetail() {
           <img
             src="/logo512.png"
             className="img-thumbnail"
-            alt="Teacher image"
+            alt="Teacher"
           />
         </div>
         <div className="col-8">

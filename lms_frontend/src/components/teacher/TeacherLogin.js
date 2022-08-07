@@ -8,6 +8,8 @@ function TeacherLogin() {
     email: "",
     password: "",
   });
+  const [errorMsg,setErrorMsg]=useState('');
+
   const handleChange = (event) => {
     setteacherLoginData({
       ...teacherLoginData,
@@ -25,8 +27,12 @@ function TeacherLogin() {
             console.log(res.data)
             if(res.data.bool==true){
                 localStorage.setItem('teacherLoginStatus',true)
+                localStorage.setItem('teacherId',res.data.teacher_id)
                 window.location.href='/teacher-dashboard'
-
+            }
+            else{
+              setErrorMsg('inavalid Email or Password !!');
+             
             }
         })
 
@@ -36,7 +42,7 @@ function TeacherLogin() {
     }
 
   };
-  const teacherLoginStatus=localStorage.getItem('teacherLoginStatus')
+  const teacherLoginStatus=localStorage.getItem('teacherLoginStatus');
   if(teacherLoginStatus=='true')
   {
     window.location.href='/teacher-dashboard'
@@ -51,6 +57,7 @@ function TeacherLogin() {
           <div className="card">
             <h5 className="card-header">Teacher Login</h5>
             <div className="card-body">
+              {errorMsg && <p className="text-danger">{errorMsg}</p>}
               <div className="mb-3">
                 <label for="exampleInputEmail" className="form-label">
                   Email
