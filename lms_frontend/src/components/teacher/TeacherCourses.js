@@ -42,10 +42,15 @@ function TeacherCourses(){
                     <td><Link to={'/all-chapters/'+course.id} >{course.title}</Link></td>
                     <td><img src={course.featured_img} width="80" className='rounded' alt={course.title}/></td>
                     <td><NavLink to='/'>{course.teacher}</NavLink></td>
-                    <td><button className='btn btn-danger btn-sm active'>Delete</button>
-                    <NavLink className='btn btn-success btn-sm active ms-2' to={'/add-chapter/'+course.id} >
-                        Add Chapter
-                    </NavLink>
+                    <td>
+                        <NavLink className='btn btn-info btn-sm' to={'/edit-course/'+course.id} >
+                            Edit
+                        </NavLink>
+                        <NavLink className='btn btn-success btn-sm active ms-2' to={'/add-chapter/'+course.id} >
+                            Add Chapter
+                        </NavLink>
+                        <button className='btn btn-danger btn-sm ms-2 active'>Delete</button>
+                       
                     </td>
                     </tr>
                     )}

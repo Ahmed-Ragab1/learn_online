@@ -25,13 +25,35 @@ function CourseChapters(){
     },[]);
 
     const Swal = require('sweetalert2')
-    const handelDeleteClick = ()=>{
+    const handelDeleteClick = (chapter_id)=>{
         Swal.fire({
             title: 'Confirm',
             text: 'Do you want to delete this data ?',
             icon: 'info',
             confirmButtonText: 'continue',
             showCancelButton : true
+          }).then((result)=>{
+            if(result.isConfirmed){
+                try{
+                    axios.delete(baseUrl+'/chapter/'+chapter_id)
+                    .then((res)=>{
+                        Swal.fire('success','data has been deleted');
+                        try{
+                            axios.get(baseUrl+'/course-chapters/'+course_id).then((res)=>{
+                               setChapterData(res.data);
+                               settotalResult(res.data.length);
+                            })
+                        }
+                        catch(error){
+                            console.log(error);
+                        }
+                    });
+                }catch(error){
+                    Swal.fire('error','data has not been deleted');
+                }
+            }else{
+                Swal.fire('error','data has not been deleted')
+            }
           })
     }
 
@@ -44,7 +66,7 @@ function CourseChapters(){
             </aside>
             <section className='col-md-9'>
             <div className='card'>
-        <h5 className='card-header'>All Chapters ({totalResult})</h5>
+        <h5 className='card-header'>All Chapters ({totalResult}) <NavLink className='btn btn-success btn-sm float-end' to={'/add-chapter/'+course_id}>Add Chapter</NavLink></h5>
         <div className='card-body'>
             <table className='table table-bordered'>
                 <thead>
@@ -68,7 +90,7 @@ function CourseChapters(){
                     </td>
                     <td><NavLink to='/'>{chapter.remarks}</NavLink></td>
                     <td><Link to={ '/edit-chapter/' + chapter.id } className='btn btn-sm btn-info'><i class="bi bi-pencil-square"></i></Link>
-                        <button  onClick={handelDeleteClick} className='btn btn-sm btn-danger ms-2'><i class="bi bi-trash"></i></button>
+                        <button  onClick={()=>handelDeleteClick(chapter.id)} className='btn btn-sm btn-danger ms-2'><i class="bi bi-trash"></i></button>
                         
                     </td>
                     </tr>

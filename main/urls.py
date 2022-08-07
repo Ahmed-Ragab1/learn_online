@@ -19,6 +19,7 @@ urlpatterns = [
 
     path('course/', views.CourseList.as_view()),
 
+
     path('chapter/', views.ChapterList.as_view()),
 
     path('chapter/<int:pk>/', views.ChapterDetailView.as_view()),
@@ -26,6 +27,8 @@ urlpatterns = [
     path('teacher-courses/<int:teacher_id>',views.TeacherCourseList.as_view()),
 
     path('course-chapters/<int:course_id>',views.CourseChapterList.as_view()),
+
+    path('teacher-course-detail/<int:pk>',views.TeacherCourseDetail.as_view()),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
