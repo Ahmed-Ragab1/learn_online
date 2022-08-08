@@ -40,11 +40,6 @@ def teacher_login(request):
 
 
 
-class CourseDetailView(generics.RetrieveAPIView):
-    queryset = models.Course.objects.all()
-
-    serializer_class=CourseSerializer
-
 
 
 
@@ -115,4 +110,16 @@ class CourseChapterList(generics.ListAPIView):
 
 
 
+
+class CourseDetailView(generics.RetrieveAPIView):
+    queryset = models.Course.objects.all()
+
+    serializer_class=CourseSerializer
+
+
+
+class CourseDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = models.Course.objects.all()
+
+    serializer_class=CourseSerializer
 

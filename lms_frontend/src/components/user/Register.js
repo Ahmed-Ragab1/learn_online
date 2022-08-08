@@ -11,15 +11,11 @@ function Register(){
                             <form>
                                 <div className='mb-3'>
                                     <label for='exampleInputEmail' className='form-label'>Full Name</label>
-                                    <input type='email' className='form-control'/>
+                                    <input type='text' className='form-control'/>
                                 </div>
 
                                 <div className='mb-3'>
                                     <label for='exampleInputEmail' className='form-label'>Email</label>
-                                    <input type='email' className='form-control'/>
-                                </div>
-                                <div className='mb-3'>
-                                    <label for='exampleInputEmail' className='form-label'>user name</label>
                                     <input type='email' className='form-control'/>
                                 </div>
 

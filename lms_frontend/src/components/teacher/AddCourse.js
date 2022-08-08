@@ -48,6 +48,7 @@ function AddCourse(){
     }
 
 
+    console.log(courseData.category);
 
     const formsubmit=()=>{
         const _formData=new FormData();

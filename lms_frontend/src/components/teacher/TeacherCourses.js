@@ -17,6 +17,10 @@ function TeacherCourses(){
         console.log(error)
     }
    },[]);
+
+   console.log(teacherId);
+
+
     return (
         <div className='container mt-4'>
         <div className='row'>
