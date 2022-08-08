@@ -91,10 +91,13 @@ class CourseList(generics.ListCreateAPIView):
     serializer_class = CourseSerializer
 
     def get_queryset(self):
-        qs=super().get_queryset
-        # if 'result' in self.request.GET:
-        # limit=int(self.request.GET['result'])
-        qs=models.Course.objects.all().order_by('-id')[:4]
+        qs=super().get_queryset()
+        if 'result' in self.request.GET:
+            limit=int(self.request.GET['result'])
+            qs=models.Course.objects.all().order_by('-id')[:limit]
+        if 'category' in self.request.GET:
+            category=self.request.GET['category']
+            qs=models.Course.objects.filter(techs__icontains=category) 
         return qs
 
 class ChapterList(generics.ListCreateAPIView):
