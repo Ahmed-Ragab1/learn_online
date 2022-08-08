@@ -8,6 +8,7 @@ function TeacherLogin() {
     email: "",
     password: "",
   });
+
   const [errorMsg,setErrorMsg]=useState('');
 
   const handleChange = (event) => {
@@ -16,6 +17,7 @@ function TeacherLogin() {
       [event.target.name]:event.target.value,
     });
   };
+
   const submitForm = () => {
     console.log(teacherLoginData)
     const teacherFormData=new FormData;
@@ -42,6 +44,7 @@ function TeacherLogin() {
     }
 
   };
+  
   const teacherLoginStatus=localStorage.getItem('teacherLoginStatus');
   if(teacherLoginStatus=='true')
   {

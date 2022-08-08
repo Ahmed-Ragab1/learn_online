@@ -1,19 +1,17 @@
 import imp
+from multiprocessing import context
 from unittest import result
 from django.shortcuts import render
 from main import models
-from main.models import Teacher,CourseCategory
-from main.serializers import  CategorySerializer, TeacherSerializer
-from main.models import Teacher,CourseCategory,Course
-from main.serializers import  TeacherSerializer,CategorySerializer,CourseSerializer
 from main.models import Chapter, Teacher,CourseCategory,Course
-from main.serializers import  TeacherSerializer,CategorySerializer,CourseSerializer,ChapterSerializer
+from main.serializers import  TeacherSerializer,CategorySerializer,CourseSerializer,ChapterSerializer,StudentSerializer
 from rest_framework import generics
 from rest_framework import permissions
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse,HttpResponse
 
 
+# teacher Data
 class TeacherList(generics.ListCreateAPIView):
     queryset = Teacher.objects.all()
     serializer_class = TeacherSerializer
@@ -56,6 +54,10 @@ class TeacherCourseList(generics.ListCreateAPIView):
         teacher= models.Teacher.objects.get(pk=teacher_id)
         return models.Course.objects.filter(teacher=teacher)  
 
+
+
+
+# category Data
 class CategoryList(generics.ListCreateAPIView):
     queryset = CourseCategory.objects.all()
     serializer_class = CategorySerializer
@@ -63,11 +65,14 @@ class CategoryList(generics.ListCreateAPIView):
     # permission_classes = [permissions.IsAuthenticated]
 
 
-# spicific Teacher Course 
+
+
+
+
+
 
 class TeacherCourseDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Course.objects.all()
-
     serializer_class=CourseSerializer
     
 
@@ -81,24 +86,49 @@ class TeacherCourseDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 
+
+# courses Data
 class CourseList(generics.ListCreateAPIView):
     queryset = models.Course.objects.all()
     serializer_class = CourseSerializer
 
     def get_queryset(self):
-        qs=super().get_queryset
-        # if 'result' in self.request.GET:
-        # limit=int(self.request.GET['result'])
-        qs=models.Course.objects.all().order_by('-id')[:4]
+        qs=super().get_queryset()
+        if 'result' in self.request.GET:
+            limit=int(self.request.GET['result'])
+            qs=models.Course.objects.all().order_by('-id')[:limit]
+        if 'category' in self.request.GET:
+            category=self.request.GET['category']
+            qs=models.Course.objects.filter(techs__icontains=category) 
+        if 'skill_name' in self.request.GET and 'teacher' in self.request.GET:
+            skill_name=self.request.GET['skill_name']
+            teacher=self.request.GET['teacher']
+            teacher=models.Teacher.objects.filter(id=teacher).first()
+            qs=models.Course.objects.filter(techs__icontains=skill_name,teacher=teacher) 
         return qs
 
+
+
+
+# chapter Data
 class ChapterList(generics.ListCreateAPIView):
     queryset = Chapter.objects.all()
     serializer_class = ChapterSerializer
     
+
+
+
+
 class ChapterDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Chapter.objects.all()
     serializer_class = ChapterSerializer
+
+
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context["chapter_duration"]=self.chapter_duration
+        print(context)
+        return context
 
 
 class CourseChapterList(generics.ListAPIView):
@@ -118,8 +148,31 @@ class CourseDetailView(generics.RetrieveAPIView):
 
 
 
-class CourseDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = models.Course.objects.all()
 
-    serializer_class=CourseSerializer
+
+
+# student Data
+class StudentList(generics.ListCreateAPIView):
+    queryset = models.Student.objects.all()
+    serializer_class = StudentSerializer
+    # permission_classes = [permissions.IsAuthenticated]
+
+
+
+
+
+@csrf_exempt
+def student_login(request):
+    email=request.POST['email']
+    password=request.POST['password']
+    try:
+        studentData=models.Student.objects.get(email=email,password=password)
+    except models.Student.DoesNotExist:
+        studentData =None
+    if studentData:
+        return JsonResponse({'bool':True,'student_id':studentData.id})
+    else:
+        return JsonResponse({'bool':False})
+
+
 

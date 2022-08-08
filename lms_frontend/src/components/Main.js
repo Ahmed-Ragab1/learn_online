@@ -3,7 +3,10 @@ import Header from "./Header";
 import Footer from "./Footer";
 import About from "./About";
 import CourseDetail from './CourseDetail';
+
+// user
 import Login from "./user/Login";
+import Logout from "./user/StudentLogout";
 import Register from "./user/Register";
 import Dashboard from "./user/Dashboard";
 import PopularCourses from "./popularcourses";
@@ -41,6 +44,9 @@ import PopularTeachers from "./popularteachers";
 
 
 import CategoryCourses from "./CategoryCourses";
+import TeacherSkillCourses from "./teacher/TeacherSkillCourses";
+
+
 
 
 
@@ -54,6 +60,7 @@ function Main() {
             <Route path="/about" element={<About/>} />
             <Route path="/detail/:course_id" element={<CourseDetail/>} />
             <Route path="/user-login" element={<Login/>} />
+            <Route path="/user-logout" element={<Logout/>} />
             <Route path="/user-register" element={<Register/>} />
             <Route path="/user-dashboard" element={<Dashboard/>} />
 
@@ -85,6 +92,10 @@ function Main() {
             <Route path="/add-chapter/:course_id" element={<AddChapter/>} />
 
             <Route path="/my-users" element={<UserList  />} />
+
+
+            <Route path="/teacher-skill-courses/:skill_name/:teacher_id" element={<TeacherSkillCourses/>} />
+
 
             
 

@@ -14,6 +14,8 @@ function TeacherRegister(){
         'status':'',
     });
 
+
+    //   when the element has value and put it in teacherData
     const handleChange=(event)=>{
         setteacherData({
             ...teacherData,
@@ -21,7 +23,7 @@ function TeacherRegister(){
         });
     }
 
-
+    
     const submitForm=()=>{
         const teacherFormData=new FormData();
         teacherFormData.append('full_name',teacherData.full_name)
@@ -50,6 +52,10 @@ function TeacherRegister(){
             setteacherData({'status':'error'})
         }
     };
+
+
+
+
     const teacherLoginStatus=localStorage.getItem('teacherLoginStatus')
     if(teacherLoginStatus=='true')
     {

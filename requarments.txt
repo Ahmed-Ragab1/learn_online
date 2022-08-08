@@ -45,3 +45,6 @@ npm install axios
  npm i bootstrap-icons
 
  npm install sweetalert2
+
+
+ pip install opencv-contrib-python

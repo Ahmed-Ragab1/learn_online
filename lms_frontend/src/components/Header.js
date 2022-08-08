@@ -7,6 +7,8 @@ import {NavLink,Link} from 'react-router-dom';
 
 function Header() {
   const teacherLoginStatus=localStorage.getItem('teacherLoginStatus')
+  const studentLoginStatus=localStorage.getItem('studentLoginStatus')
+
     return (
       <Navbar bg="dark" expand="lg" className="navbar-dark">
       <Container>
@@ -26,13 +28,24 @@ function Header() {
               <NavDropdown.Item href="/teacher-logout">Logout</NavDropdown.Item>
               <NavDropdown.Item href="/teacher-dashboard">Dashboard</NavDropdown.Item>
             </NavDropdown>
+
+
+
             {/* <Nav.Link href="/about">About Us</Nav.Link> */}
             <NavDropdown title="User" id="basic-nav-dropdown">
+            {studentLoginStatus !='true' &&
+            <>
               <NavDropdown.Item href="/user-login">Login</NavDropdown.Item>
               <NavDropdown.Item href="/user-register">Register</NavDropdown.Item>
+            </>
+            }
+            {studentLoginStatus =='true' &&
+            <>
               <NavDropdown.Item href="/user-dashboard">Dashboard</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="/user-logout">Logout</NavDropdown.Item>
+            </>
+          }
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

@@ -1,4 +1,4 @@
-import {Link, useParams} from 'react-router-dom';
+import {Link, NavLink, useParams} from 'react-router-dom';
 import {useEffect,useState} from 'react'
 import axios from 'axios';
 const siteUrl='http://127.0.0.1:8000/';
@@ -9,7 +9,10 @@ function CourseDetail(){
     const[courseData,setcourseData]=useState([]);
     const[chapterData,setChapterData]=useState([]);
     const[teacherData,setteacherData]=useState([]);
-    const[realtedcourseData,setrealtedcourseData]=useState();
+    const[realtedcourseData,setrealtedcourseData]=useState([]);
+    const[techListData,settechListData]=useState([]);
+
+
     let {course_id}=useParams();
 
 
@@ -22,6 +25,7 @@ function CourseDetail(){
                 setChapterData(res.data.course_chapters);
                 setteacherData(res.data.teacher);
                 setrealtedcourseData(JSON.parse(res.data.related_videos));
+                settechListData(res.data.tech_list);
             })
         }
         catch(error){
@@ -50,7 +54,13 @@ function CourseDetail(){
                     <h3>{courseData.title}</h3>
                     <p>{courseData.describtion}</p>
                     <p className='fw-bold'>course by: <Link to={`/teacher-detail/${teacherData.id}`}>{teacherData.full_name}</Link></p>
-                    <p className='fw-bold'>Techs: {courseData.techs}</p>
+                    <p className='fw-bold'>Techs:&nbsp;
+                    {techListData.map((tech,index)=>
+                    <>
+<NavLink to={`/category/${tech.trim()}`} className='badge badge-pill bg-warning text-dark'> {tech.trim()}</NavLink>&nbsp;
+</>
+                    )}
+                    </p>
                     <p className='fw-bold'>duration: 30 minutes</p>
                     <p className='fw-bold'>total enroled: 304 student</p>
                     <p className='fw-bold'>rating: 3/5</p>
