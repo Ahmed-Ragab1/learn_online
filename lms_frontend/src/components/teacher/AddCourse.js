@@ -1,26 +1,78 @@
 
-import { Card } from 'react-bootstrap/Card';
+// import { Card } from 'react-bootstrap/Card';
 import TeacherSidebar from './TeacherSidebar';
-import {useState,useEffect} from 'react'
-import axios from "axios";
-const baseUrl = "http://127.0.0.1:8000/api";
+import {useState,useEffect} from 'react';
+import axios from 'axios';
+
+const baseUrl='http://localhost:8000/api';
+
 function AddCourse(){
-    const [cats,setCats]=useState([])
-    useEffect=(()=>{
+    const [cats,setCats]=useState([]);
+    const [courseData,setcourseData] = useState({
+        category    :'',
+        title       :'',
+        describtion :'',
+        f_img       :'',
+        techs       :'',
+    });
+
+    useEffect(()=>{
         try{
-            axios.get(baseUrl+'category/')
+            axios.get(baseUrl+'/category')
             .then((res)=>{
-                console.log(res.data)
-                if(res.data.bool==true){
-          console.log(res.data)
-                }
+                setCats(res.data)
             })
-    
         }catch(error)
         {
             console.log(error)
         }
-    },[])
+    },[]);
+
+
+
+    const handelChange=(event)=>{
+        setcourseData({
+            ...courseData,
+            [event.target.name]:event.target.value
+        });
+    }
+
+
+
+
+    const handelFiledChange=(event)=>{
+        setcourseData({
+            ...courseData,
+            [event.target.name]:event.target.files[0]
+        });
+    }
+
+
+
+    const formsubmit=()=>{
+        const _formData=new FormData();
+        _formData.append('category',courseData.category)
+        _formData.append('teacher',6)
+        _formData.append('title',courseData.title)
+        _formData.append('describtion',courseData.describtion)
+        _formData.append('featured_img',courseData.f_img,courseData.f_img.name)
+        _formData.append('techs',courseData.techs)
+
+        try {
+            axios.post(baseUrl+'/course/',_formData,{
+                headers: {
+                    'content-type':'multipart/form-data'
+                }
+            })
+            .then((res)=>{
+                window.location.href='/add-course'
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
     return(
         <div className='container mt-4'>
             <div className='row'>
@@ -31,39 +83,41 @@ function AddCourse(){
                     <div className='card'>
                         <h5 className='card-header'>Add Course</h5>
                         <div className='card-body'>
-                            <form>
-                            <div class="mb-3 row">
+                        <form>
+                        <div class="mb-3 row">
                         <label for="title" class="col-sm-2 col-form-label">Category</label>
-                        <select name='category' className='form-control'>
-
-                        </select>
+                        <div class="col-sm-10">
+                            <select name='category' onChange={handelChange} class='formcontrol'>
+                                {cats.map((category,index)=>{return <option key={index} value={category.id}>{category.title}</option>})}
+                            </select>
+                        </div>
                         </div>
 
                         <div class="mb-3 row">
                         <label for="title" class="col-sm-2 col-form-label">Title</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="title"  />
+                            <input type="text" onChange={handelChange} name='title' class="form-control" id="title"  />
                         </div>
                         </div>
                         <div class="mb-3 row">
-                        <label for="description" class="col-sm-2 col-form-label">Description</label>
+                        <label for="describtion" class="col-sm-2 col-form-label">Description</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" id="description"/>
+                            <textarea class="form-control" onChange={handelChange} name='describtion' id="describtion"/>
                         </div>
                         </div>
                         <div class="mb-3 row">
                         <label for="course_video" class="col-sm-2 col-form-label">Featured Image</label>
                         <div class="col-sm-10">
-                            <input type="file" class="form-control" id="course_video" />
+                            <input type="file" onChange={handelFiledChange} name="f_img" class="form-control" id="course_video" />
                         </div>
                         </div>
                         <div class="mb-3 row">
                         <label for="techs" class="col-sm-2 col-form-label">Technologies</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" id="techs" placeholder='django,css'/>
+                            <textarea class="form-control" onChange={handelChange} name="techs" id="techs" placeholder='django,css'/>
                         </div>
                         </div>
-                       <button type='submit'className='btn btn-primary'>Submit</button>
+                       <button type='button' onClick={formsubmit} className='btn btn-primary'>Submit</button>
                        </form>
                         </div>
                     </div>

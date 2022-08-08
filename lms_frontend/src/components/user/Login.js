@@ -12,7 +12,7 @@ function Login(){
                             <form>
                                 <div className='mb-3'>
                                     <label for='exampleInputEmail' className='form-label'>User Name</label>
-                                    <input type='email' className='form-control'/>
+                                    <input type='text' className='form-control'/>
                                 </div>
 
                                 <div className='mb-3'>
