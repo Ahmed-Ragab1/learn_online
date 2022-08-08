@@ -3,7 +3,6 @@ import TeacherSidebar from './TeacherSidebar';
 import {useEffect,useState} from 'react'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import Swal from 'sweetalert2';
 
 const baseUrl='http://127.0.0.1:8000/api';
 
@@ -66,6 +65,7 @@ function CourseChapters(){
             </aside>
             <section className='col-md-9'>
             <div className='card'>
+        <h5 className='card-header'>All Chapters ({totalResult})</h5>
         <h5 className='card-header'>All Chapters ({totalResult}) <NavLink className='btn btn-success btn-sm float-end' to={'/add-chapter/'+course_id}>Add Chapter</NavLink></h5>
         <div className='card-body'>
             <table className='table table-bordered'>
@@ -90,6 +90,7 @@ function CourseChapters(){
                     </td>
                     <td><NavLink to='/'>{chapter.remarks}</NavLink></td>
                     <td><Link to={ '/edit-chapter/' + chapter.id } className='btn btn-sm btn-info'><i class="bi bi-pencil-square"></i></Link>
+                        <button  onClick={handelDeleteClick} className='btn btn-sm btn-danger ms-2'><i class="bi bi-trash"></i></button>
                         <button  onClick={()=>handelDeleteClick(chapter.id)} className='btn btn-sm btn-danger ms-2'><i class="bi bi-trash"></i></button>
                         
                     </td>

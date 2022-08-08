@@ -24,14 +24,14 @@ function Login(){
 
 
     const submitForm = () => {
-        const studentFormData=new FormData;
+        const studentFormData=new FormData();
         studentFormData.append('email',studentLoginData.email)
         studentFormData.append('password',studentLoginData.password)
         try{
             axios.post(baseUrl+'/student-login',studentFormData)
             .then((res)=>{
                 console.log(res.data)
-                if(res.data.bool==true){
+                if(res.data.bool===true){
                     localStorage.setItem('studentLoginStatus',true)
                     localStorage.setItem('studentId',res.data.student_id)
                     window.location.href='/student-dashboard'

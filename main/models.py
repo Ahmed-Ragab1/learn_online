@@ -36,6 +36,8 @@ class Student(models.Model):
 
 
 
+
+
 class CourseCategory(models.Model) :
     title       = models.CharField(max_length=100)
     describtion = models.TextField()
@@ -101,3 +103,19 @@ class Chapter(models.Model) :
             minutes = int(duration/60)
             second  = duration%60
             print('duration (M:S) = ' + str(minutes) + ':' + str(seconds))
+
+
+
+
+
+
+class StudentCourseEnrollment(models.Model):
+    course  =  models.ForeignKey(Course,on_delete=models.CASCADE,related_name='enrolled_courses')
+    student =  models.ForeignKey(Student,on_delete=models.CASCADE,related_name='enrolled_student')
+    enrolled_time = models.DateTimeField(auto_now_add=True)
+        
+    class Meta:
+        verbose_name_plural= "Enrolled Courses"
+    
+    def __str__(self) -> str:
+        return f"{self.student}-{self.course}"

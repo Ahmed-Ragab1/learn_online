@@ -20,10 +20,14 @@ urlpatterns = [
 
     # chapter
     path('course-chapters/<int:course_id>',views.CourseChapterList.as_view()),
+
     path('chapter/', views.ChapterList.as_view()),
 
     path('chapter/<int:pk>/', views.ChapterDetailView.as_view()),
 
+    path('teacher-courses/<int:teacher_id>',views.TeacherCourseList.as_view()),
+
+    path('course-chapters/<int:course_id>',views.CourseChapterList.as_view()),
 
     # teacher courses
     path('teacher-courses/<int:teacher_id>',views.TeacherCourseList.as_view()),
@@ -32,8 +36,13 @@ urlpatterns = [
 
     #student
     path('student/', views.StudentList.as_view()),
+
     path('student-login',views.student_login),
 
+
+    path('student-enroll-course/',views.StudentEnrollCourse.as_view()),
+
+    path('fetch-enroll-status/<int:student_id>/<int:course_id>',views.fetch_enroll_status),
 
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

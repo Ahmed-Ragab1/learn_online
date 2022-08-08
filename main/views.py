@@ -3,8 +3,8 @@ from multiprocessing import context
 from unittest import result
 from django.shortcuts import render
 from main import models
-from main.models import Chapter, Teacher,CourseCategory,Course
-from main.serializers import  TeacherSerializer,CategorySerializer,CourseSerializer,ChapterSerializer,StudentSerializer
+from main.models import Chapter, StudentCourseEnrollment, Teacher,CourseCategory,Course
+from main.serializers import  StudentCourseEnrollSerializer, TeacherSerializer,CategorySerializer,CourseSerializer,ChapterSerializer,StudentSerializer
 from rest_framework import generics
 from rest_framework import permissions
 from django.views.decorators.csrf import csrf_exempt
@@ -137,6 +137,7 @@ class CourseChapterList(generics.ListAPIView):
         course_id=self.kwargs['course_id']
         course= models.Course.objects.get(pk=course_id)
         return models.Chapter.objects.filter(course=course)  
+        return models.Chapter.objects.filter(course=course)  
 
 
 
@@ -176,3 +177,18 @@ def student_login(request):
 
 
 
+
+class StudentEnrollCourse(generics.ListCreateAPIView):
+    queryset = StudentCourseEnrollment.objects.all()
+    serializer_class = StudentCourseEnrollSerializer
+
+
+def fetch_enroll_status(request,student_id,course_id):
+    student=models.Student.objects.filter(id=student_id).first()
+    course=models.Course.objects.filter(id=course_id).first()
+    enrollStatus=models.StudentCourseEnrollment.objects.filter(course=course,student=student).count()
+    if enrollStatus:
+        return JsonResponse({'bool':True})
+    else:
+        return JsonResponse({'bool':False})
+    

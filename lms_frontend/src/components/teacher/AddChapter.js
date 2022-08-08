@@ -3,6 +3,8 @@
 import TeacherSidebar from './TeacherSidebar';
 import axios from 'axios';
 import {useState} from 'react'
+import Swal from 'sweetalert2'
+
 import { useParams } from 'react-router-dom';
 const baseUrl='http://localhost:8000/api';
 function AddChapter(){
@@ -10,7 +12,7 @@ function AddChapter(){
         title       :'',
         describtion :'',
         video       :'',
-        remarks       :'',
+        remarks     :'',
     });
     
     const handelChange=(event)=>{
@@ -42,7 +44,18 @@ function AddChapter(){
                 }
             })
             .then((res)=>{
-                window.location.href='/add-chapter/1'
+                if(res.status==200||res.status==201){
+                    Swal.fire({
+                        title: 'Data has been added',
+                        icon: 'success',
+                        toast: true,
+                        timer: 3000,
+                        position: 'top-right',
+                        timerProgressBar:true,
+                        showCancelButton : false,
+                    });
+                }
+                window.location.reload()
             })
         } catch (error) {
             console.log(error);
