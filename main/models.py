@@ -1,6 +1,6 @@
 from distutils.command.upload import upload
 from email.policy import default
-from django.db import models
+from django.db import models 
 from django.core import serializers
 
 # Create your models here.
@@ -17,6 +17,9 @@ class Teacher(models.Model):
 
     def __str__(self) -> str:
         return self.full_name
+    def skill_list(self):
+        skill_list=self.skills.split(',')
+        return skill_list
 
 
 class Student(models.Model):

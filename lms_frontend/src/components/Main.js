@@ -41,6 +41,9 @@ import PopularTeachers from "./popularteachers";
 
 
 import CategoryCourses from "./CategoryCourses";
+import TeacherSkillCourses from "./teacher/TeacherSkillCourses";
+
+
 
 
 
@@ -85,6 +88,10 @@ function Main() {
             <Route path="/add-chapter/:course_id" element={<AddChapter/>} />
 
             <Route path="/my-users" element={<UserList  />} />
+
+
+            <Route path="/teacher-skill-courses/:skill_name/:teacher_id" element={<TeacherSkillCourses/>} />
+
 
             
 

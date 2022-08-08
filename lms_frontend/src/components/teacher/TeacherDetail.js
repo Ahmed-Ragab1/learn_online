@@ -8,6 +8,8 @@ const baseUrl='http://127.0.0.1:8000/api';
 export default function TeacherDetail() {
   const[courseData,setcourseData] =useState([]);
   const[teacherData,setteacherData] =useState([]);
+  const[skilllist,setskilllist]=useState([]);
+
   let {teacher_id}=useParams();
 
 
@@ -16,6 +18,8 @@ export default function TeacherDetail() {
         axios.get(baseUrl+'/teacher/'+teacher_id).then((res)=>{
           setteacherData(res.data);
           setcourseData(res.data.teacher_courses);
+          setskilllist(res.data.skill_list);
+
         })
     }
     catch(error){
@@ -40,9 +44,13 @@ export default function TeacherDetail() {
           {teacherData.detail}
           </p>
           <p className="fw-bold">
-            Skills<NavLink to="/category/php"> Php</NavLink>,
-            <NavLink to="/category/php"> python</NavLink>,
-            <NavLink to="/category/php"> java script</NavLink>
+            Skills:&nbsp;
+             {skilllist.map((skill,index)=>
+                    <>
+<NavLink to={`/teacher-skill-courses/${skill.trim()}/${teacherData.id}`} className='badge badge-pill bg-warning text-dark'> {skill.trim()}</NavLink>&nbsp;
+</>
+                    )}
+   
           </p>
           <p className="fw-bold">Recent Courses: <NavLink to="/category/php"> node js</NavLink></p>
           <p className="fw-bold">rating: 3/5</p>

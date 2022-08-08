@@ -72,7 +72,6 @@ class CategoryList(generics.ListCreateAPIView):
 
 class TeacherCourseDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Course.objects.all()
-
     serializer_class=CourseSerializer
     
 
@@ -98,6 +97,11 @@ class CourseList(generics.ListCreateAPIView):
         if 'category' in self.request.GET:
             category=self.request.GET['category']
             qs=models.Course.objects.filter(techs__icontains=category) 
+        if 'skill_name' in self.request.GET and 'teacher' in self.request.GET:
+            skill_name=self.request.GET['skill_name']
+            teacher=self.request.GET['teacher']
+            teacher=models.Teacher.objects.filter(id=teacher).first()
+            qs=models.Course.objects.filter(techs__icontains=skill_name,teacher=teacher) 
         return qs
 
 class ChapterList(generics.ListCreateAPIView):
