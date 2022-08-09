@@ -45,7 +45,7 @@ function TeacherCourses(){
                     <tr>
                     <td><Link to={'/all-chapters/'+course.id} >{course.title}</Link></td>
                     <td><img src={course.featured_img} width="80" className='rounded' alt={course.title}/></td>
-                    <td><NavLink to='/'>{course.teacher}</NavLink></td>
+                    <td><NavLink to='/'>{course.teacher.full_name}</NavLink></td>
                     <td>
                         <NavLink className='btn btn-info btn-sm' to={'/edit-course/'+course.id} >
                             Edit

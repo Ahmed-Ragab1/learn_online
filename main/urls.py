@@ -2,6 +2,15 @@ from django.urls import path
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework.routers import DefaultRouter
+
+from .views import CourseList
+from rest_framework.routers import DefaultRouter
+router = DefaultRouter()
+router.register(r"course", CourseList)
+
+
+
 urlpatterns = [
     # teacher
     path('teacher/', views.TeacherList.as_view()),
@@ -14,9 +23,7 @@ urlpatterns = [
     path('category/', views.CategoryList.as_view()),
 
     #course
-    path('course/', views.CourseList.as_view()),
-
-    path('course/<int:pk>/', views.CourseDetailView.as_view()),
+   
 
     # chapter
     path('course-chapters/<int:course_id>',views.CourseChapterList.as_view()),
@@ -46,4 +53,7 @@ urlpatterns = [
 
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += router.urls
+
 
