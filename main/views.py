@@ -4,11 +4,12 @@ from unittest import result
 from django.shortcuts import render
 from main import models
 from main.models import Chapter, StudentCourseEnrollment, Teacher,CourseCategory,Course
-from main.serializers import  StudentCourseEnrollSerializer, TeacherSerializer,CategorySerializer,CourseSerializer,ChapterSerializer,StudentSerializer
+from main.serializers import  StudentCourseEnrollSerializer, TeacherSerializer,CategorySerializer,CourseSerializer,ChapterSerializer,StudentSerializer,CreateCourseSerializer
 from rest_framework import generics
 from rest_framework import permissions
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse,HttpResponse
+from rest_framework import viewsets
 
 
 # teacher Data
@@ -88,10 +89,11 @@ class TeacherCourseDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 # courses Data
-class CourseList(generics.ListCreateAPIView):
+
+class CourseList(viewsets.ModelViewSet):
     queryset = models.Course.objects.all()
     serializer_class = CourseSerializer
-
+    
     def get_queryset(self):
         qs=super().get_queryset()
         if 'result' in self.request.GET:

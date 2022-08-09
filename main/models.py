@@ -1,5 +1,6 @@
 from distutils.command.upload import upload
 from email.policy import default
+from tabnanny import verbose
 from django.db import models 
 from django.core import serializers
 
@@ -60,6 +61,9 @@ class Course(models.Model) :
     created_at  = models.DateTimeField(auto_now_add=True)
     updated_at  = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        verbose_name_plural="3. courses"
+
     def __str__(self) -> str:
         return self.title
 
@@ -73,7 +77,9 @@ class Course(models.Model) :
         tech_list=self.techs.split(',')
         return tech_list
         
-
+    def total_enrolled_students(self):
+        total_enrolled_students=StudentCourseEnrollment.objects.filter(course=self).count()
+        return total_enrolled_students
 
 
 class Chapter(models.Model) :

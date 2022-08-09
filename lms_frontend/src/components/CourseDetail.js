@@ -115,7 +115,7 @@ function CourseDetail(){
                     )}
                     </p>
                     <p className='fw-bold'>duration: 30 minutes</p>
-                    <p className='fw-bold'>total enroled: 304 student</p>
+                    <p className='fw-bold'>total enroled: {courseData.total_enrolled_students} student</p>
                     <p className='fw-bold'>rating: 3/5</p>
 
                     { enrollStatus === 'success' && userLoginStatus === 'success' &&
