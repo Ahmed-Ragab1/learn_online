@@ -23,7 +23,7 @@ urlpatterns = [
     path('category/', views.CategoryList.as_view()),
 
     #course
-   
+    
 
     # chapter
     path('course-chapters/<int:course_id>',views.CourseChapterList.as_view()),
