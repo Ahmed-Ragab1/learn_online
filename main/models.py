@@ -1,5 +1,6 @@
 from distutils.command.upload import upload
 from email.policy import default
+from itertools import count
 from tabnanny import verbose
 from django.db import models 
 from django.core import serializers
@@ -80,6 +81,9 @@ class Course(models.Model) :
     def total_enrolled_students(self):
         total_enrolled_students=StudentCourseEnrollment.objects.filter(course=self).count()
         return total_enrolled_students
+    def course_rating(self):
+        course_rating=CourseRating.objects.filter(course=self).aggregate(avg_rating=models.Avg('rating'))
+        return course_rating['avg_rating']
 
 
 class Chapter(models.Model) :
@@ -125,3 +129,13 @@ class StudentCourseEnrollment(models.Model):
     
     def __str__(self) -> str:
         return f"{self.student}-{self.course}"
+
+
+class CourseRating(models.Model):
+    course  =  models.ForeignKey(Course,on_delete=models.CASCADE)
+    student =  models.ForeignKey(Student,on_delete=models.CASCADE)
+    rating=   models.PositiveBigIntegerField(default=0)
+    review=   models.TextField(null=True)
+    review_time = models.DateTimeField(auto_now_add=True)
+    def __str__(self) -> str:
+        return f"{self.student}-{self.course} {self.rating}"

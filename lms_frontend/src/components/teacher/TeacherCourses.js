@@ -36,16 +36,22 @@ function TeacherCourses(){
                     <tr>
                         <th>Name</th>
                         <th>Image</th>
-                        <th>Created By</th>
+                        <th>Total Enrolled</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     {courseData.map((course,index)=>
                     <tr>
-                    <td><Link to={'/all-chapters/'+course.id} >{course.title}</Link></td>
+                    <td>
+                        <Link to={'/all-chapters/'+course.id} >{course.title}</Link>
+                        <hr/>
+                        {course.course_rating && <span>Rating:{course.course_rating}/5</span>}
+                        {!course.course_rating && <span>Rating:0/5</span>}
+                    </td>
+
                     <td><img src={course.featured_img} width="80" className='rounded' alt={course.title}/></td>
-                    <td><NavLink to='/'>{course.teacher.full_name}</NavLink></td>
+                    <td><NavLink to={'/enrolled-students/'+course.id}>{course.total_enrolled_students}</NavLink></td>
                     <td>
                         <NavLink className='btn btn-info btn-sm' to={'/edit-course/'+course.id} >
                             Edit
