@@ -49,12 +49,12 @@ function AddCourse(){
 
 
     console.log(courseData.category);
-
+    const teacherId=localStorage.getItem('teacherId');
+    console.log("teacherId"+teacherId);
     const formsubmit=()=>{
         const _formData=new FormData();
-        const teacherId=localStorage.getItem('teacherId');
         _formData.append('category',courseData.category)
-        _formData.append('teacher',teacherId)
+        _formData.append('teacher',3)
         _formData.append('title',courseData.title)
         _formData.append('describtion',courseData.describtion)
         _formData.append('featured_img',courseData.f_img,courseData.f_img.name)
@@ -89,7 +89,7 @@ function AddCourse(){
                         <div class="mb-3 row">
                         <label for="title" class="col-sm-2 col-form-label">Category</label>
                         <div class="col-sm-10">
-                            <select name='category' onChange={handelChange} class='formcontrol'>
+                            <select name='category' onChange={handelChange} class='form-control'>
                                 {cats.map((category,index)=>{return <option key={index} value={category.id}>{category.title}</option>})}
                             </select>
                         </div>
