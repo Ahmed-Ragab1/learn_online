@@ -48,3 +48,16 @@ npm install axios
 
 
  pip install opencv-contrib-python
+
+
+
+
+ # path('course/', views.CourseList.as_view()),
+
+    # path('course/<int:pk>/', views.CourseDetailView.as_view()),
+
+
+
+
+    python3 -m venv venv
+  source venv/bin/activate

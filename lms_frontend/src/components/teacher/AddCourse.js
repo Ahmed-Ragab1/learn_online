@@ -48,12 +48,14 @@ function AddCourse(){
     }
 
 
-    console.log(courseData.category);
+    
 
     const formsubmit=()=>{
+        
         const _formData=new FormData();
+        const teacherId=localStorage.getItem('teacherId');
         _formData.append('category',courseData.category)
-        _formData.append('teacher',6)
+        _formData.append('teacher',teacherId)
         _formData.append('title',courseData.title)
         _formData.append('describtion',courseData.describtion)
         _formData.append('featured_img',courseData.f_img,courseData.f_img.name)
@@ -131,3 +133,6 @@ function AddCourse(){
 }
 
 export default AddCourse;
+
+
+// jjjjjjjjjjjjj

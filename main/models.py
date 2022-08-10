@@ -1,5 +1,8 @@
 from distutils.command.upload import upload
 from email.policy import default
+from itertools import count
+import profile
+from tabnanny import verbose
 from django.db import models 
 from django.core import serializers
 
@@ -8,11 +11,11 @@ from django.core import serializers
 
 class Teacher(models.Model):
     full_name     = models.CharField(max_length=100)
-    detail        = models.TextField(null=True)
     email         = models.CharField(max_length=100)
-    password      = models.CharField(max_length=100)
+    password      = models.CharField(max_length=100,blank=True,null=True)
     qualification = models.CharField(max_length=200)
     mobile_no     = models.CharField(max_length=20)
+    profile_img=models.ImageField(upload_to='teacher_profile_imgs/',null=True)
     skills        = models.TextField(null=True)
 
     def __str__(self) -> str:
@@ -33,6 +36,8 @@ class Student(models.Model):
 
     def __str__(self) -> str:
         return self.full_name
+
+
 
 
 
@@ -58,6 +63,9 @@ class Course(models.Model) :
     created_at  = models.DateTimeField(auto_now_add=True)
     updated_at  = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        verbose_name_plural="3. courses"
+
     def __str__(self) -> str:
         return self.title
 
@@ -71,7 +79,12 @@ class Course(models.Model) :
         tech_list=self.techs.split(',')
         return tech_list
         
-
+    def total_enrolled_students(self):
+        total_enrolled_students=StudentCourseEnrollment.objects.filter(course=self).count()
+        return total_enrolled_students
+    def course_rating(self):
+        course_rating=CourseRating.objects.filter(course=self).aggregate(avg_rating=models.Avg('rating'))
+        return course_rating['avg_rating']
 
 
 class Chapter(models.Model) :
@@ -103,3 +116,41 @@ class Chapter(models.Model) :
             print('duration (M:S) = ' + str(minutes) + ':' + str(seconds))
 
 
+
+
+
+class StudentCourseEnrollment(models.Model):
+    course  =  models.ForeignKey(Course,on_delete=models.CASCADE,related_name='enrolled_courses')
+    student =  models.ForeignKey(Student,on_delete=models.CASCADE,related_name='enrolled_student')
+    enrolled_time = models.DateTimeField(auto_now_add=True)
+        
+    class Meta:
+        verbose_name_plural= "Enrolled Courses"
+    
+    def __str__(self) -> str:
+        return f"{self.student}-{self.course}"
+
+
+class CourseRating(models.Model):
+    course  =  models.ForeignKey(Course,on_delete=models.CASCADE)
+    student =  models.ForeignKey(Student,on_delete=models.CASCADE)
+    rating=   models.PositiveBigIntegerField(default=0)
+    review=   models.TextField(null=True)
+    review_time = models.DateTimeField(auto_now_add=True)
+    def __str__(self) -> str:
+        return f"{self.student}-{self.course} {self.rating}"
+
+
+
+
+
+class StudentFavoriteCourse(models.Model):
+    course  =  models.ForeignKey(Course,on_delete=models.CASCADE)
+    student =  models.ForeignKey(Student,on_delete=models.CASCADE)
+    status = models.BooleanField(default=False)
+        
+    class Meta:
+        verbose_name_plural= "student favourate Courses"
+    
+    def __str__(self) -> str:
+        return f"{self.student}-{self.course}"
