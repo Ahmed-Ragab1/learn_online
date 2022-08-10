@@ -11,6 +11,9 @@ function TeacherCourses(){
     try{
         axios.get(baseUrl+'/teacher-courses/'+teacherId).then((res)=>{
             setCourseData(res.data);
+            // {res.data.map((course,index)=>
+            //     setCourseData(course)
+            //     )}
         })
     }
     catch(error){
@@ -18,7 +21,6 @@ function TeacherCourses(){
     }
    },[]);
 
-   console.log(teacherId);
 
 
     return (
@@ -41,11 +43,17 @@ function TeacherCourses(){
                     </tr>
                 </thead>
                 <tbody>
+                    
+                {/* {courseData.map((course,index)=>
+                               <h1>{course.teacher.full_name}</h1> 
+                             )} */}
+
+
                     {courseData.map((course,index)=>
                     <tr>
                     <td><Link to={'/all-chapters/'+course.id} >{course.title}</Link></td>
                     <td><img src={course.featured_img} width="80" className='rounded' alt={course.title}/></td>
-                    <td><NavLink to='/'>{course.teacher}</NavLink></td>
+                    <td><NavLink to='/'>{course.teacher.full_name}</NavLink></td>
                     <td>
                         <NavLink className='btn btn-info btn-sm' to={'/edit-course/'+course.id} >
                             Edit
@@ -58,6 +66,7 @@ function TeacherCourses(){
                     </td>
                     </tr>
                     )}
+
                 </tbody>
             </table>
         </div>

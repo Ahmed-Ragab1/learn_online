@@ -101,3 +101,5 @@ class Chapter(models.Model) :
             minutes = int(duration/60)
             second  = duration%60
             print('duration (M:S) = ' + str(minutes) + ':' + str(seconds))
+
+

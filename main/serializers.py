@@ -25,6 +25,22 @@ class CourseSerializer(serializers.ModelSerializer):
         model = models.Course
         fields = ['id','title','describtion','category','featured_img','techs','created_at','updated_at','teacher','course_chapters','related_videos','tech_list']
         depth=1
+
+    def __init__(self, *args, **kwargs):
+        super(CourseSerializer, self).__init__(*args, **kwargs)
+        request = self.context.get('request')
+        if request and request.method=='POST':
+            self.Meta.depth = 0
+        else:
+            self.Meta.depth = 1
+
+
+
+
+class CreateCourseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Course
+        fields = ['id','title','describtion','category','featured_img','techs','created_at','updated_at','teacher','course_chapters','related_videos','tech_list']
         
 
 class ChapterSerializer(serializers.ModelSerializer):
