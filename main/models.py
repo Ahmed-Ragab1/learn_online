@@ -20,11 +20,18 @@ class Teacher(models.Model):
 
     def __str__(self) -> str:
         return self.full_name
-
-    
     def skill_list(self):
         skill_list=self.skills.split(',')
         return skill_list
+    def total_teacher_courses(self):
+        total_courses=Course.objects.filter(teacher=self).count()
+        return total_courses
+    def total_teacher_chapters(self):
+        total_chapters=Chapter.objects.filter(course__teacher=self).count()
+        return total_chapters
+    def total_teacher_students(self):
+        total_students=StudentCourseEnrollment.objects.filter(course__teacher=self).count()
+        return total_students
 
 
 class Student(models.Model):
@@ -92,9 +99,9 @@ class Chapter(models.Model) :
     title        = models.CharField(max_length=100)
     describtion  = models.TextField()
     video        =  models.FileField(upload_to='chapter_videos/',null=True)
-    remarks        = models.TextField(null=True)
-    created_at  = models.DateTimeField(auto_now_add=True)
-    updated_at  = models.DateTimeField(auto_now=True)
+    remarks      = models.TextField(null=True)
+    created_at   = models.DateTimeField(auto_now_add=True)
+    updated_at   = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
         return self.title
@@ -154,3 +161,17 @@ class StudentFavoriteCourse(models.Model):
     
     def __str__(self) -> str:
         return f"{self.student}-{self.course}"
+
+
+
+
+class StudentAssignment(models.Model):
+    teacher  =  models.ForeignKey(Teacher,on_delete=models.CASCADE)
+    student  =  models.ForeignKey(Student,on_delete=models.CASCADE)
+    title    =   models.CharField(max_length=100)
+    detail   =   models.TextField(null=True)
+    add_time = models.DateTimeField(auto_now_add=True)
+
+
+    def __str__(self) -> str:
+        return f"{self.title}"

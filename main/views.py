@@ -4,21 +4,30 @@ from unittest import result
 from django.shortcuts import render
 from main import models
 
-from main.models import Chapter, CourseRating, StudentCourseEnrollment, Teacher,CourseCategory,Course
-from main.serializers import  StudentCourseEnrollSerializer, TeacherSerializer,CategorySerializer,CourseSerializer,ChapterSerializer,StudentSerializer,CreateCourseSerializer,CourseRatinSerializer,StudentFavoriteCourseSerializer
+from main.models import Chapter, CourseRating, StudentCourseEnrollment, Teacher,CourseCategory,Course,StudentAssignment
+
+
+
+from main.serializers import  StudentCourseEnrollSerializer, TeacherSerializer,CategorySerializer,CourseSerializer,ChapterSerializer,StudentSerializer,CreateCourseSerializer,CourseRatinSerializer, TeacherDashboardSerializer,StudentFavoriteCourseSerializer,StudentAssignmentSerializer
+
 
 from rest_framework import generics
 from rest_framework import permissions
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse,HttpResponse
 from rest_framework import viewsets
-
+from django.db.models import Q
 
 # teacher Data
 class TeacherList(generics.ListCreateAPIView):
     queryset = Teacher.objects.all()
     serializer_class = TeacherSerializer
     # permission_classes = [permissions.IsAuthenticated]
+class TeacherDashboard(generics.RetrieveAPIView):
+    queryset=Teacher.objects.all()
+    serializer_class =  TeacherDashboardSerializer
+    # permission_classes = [permissions.IsAuthenticated]
+        
 
 
 class TeacherDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -110,6 +119,15 @@ class CourseList(viewsets.ModelViewSet):
             teacher=self.request.GET['teacher']
             teacher=models.Teacher.objects.filter(id=teacher).first()
             qs=models.Course.objects.filter(techs__icontains=skill_name,teacher=teacher) 
+        elif 'studentId' in self.kwargs:
+            student_id=self.kwargs['studentId']
+            student= models.Student.objects.get(pk=student_id)
+            queries=[Q(techs__iendswith=value) for value in student.interesed_categories]
+            query=queries.pop()
+            for item in queries:
+                query |= item
+            qs=models.Course.objects.filter(query)
+            return qs        
         return qs
 
 
@@ -129,15 +147,16 @@ class ChapterDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ChapterSerializer
 
 
-    def get_serializer_context(self):
-        context = super().get_serializer_context()
-        context["chapter_duration"]=self.chapter_duration
-        print(context)
-        return context
+    # def get_serializer_context(self):
+    #     context = super().get_serializer_context()
+    #     context["chapter_duration"]=self.chapter_duration
+    #     print(context)
+    #     return context
 
 
 class CourseChapterList(generics.ListAPIView):
     serializer_class = ChapterSerializer
+
     def get_queryset(self):
         course_id=self.kwargs['course_id']
         course= models.Course.objects.get(pk=course_id)
@@ -187,6 +206,8 @@ class StudentEnrollCourse(generics.ListCreateAPIView):
     serializer_class = StudentCourseEnrollSerializer
 
 
+
+
 def fetch_enroll_status(request,student_id,course_id):
     student=models.Student.objects.filter(id=student_id).first()
     course=models.Course.objects.filter(id=course_id).first()
@@ -196,11 +217,12 @@ def fetch_enroll_status(request,student_id,course_id):
     else:
         return JsonResponse({'bool':False})
 
+        
+
 class EnrolledStudentList(generics.ListAPIView):
     queryset = StudentCourseEnrollment.objects.all()
     serializer_class = StudentCourseEnrollSerializer
     def get_queryset(self):
-
         if 'course_id' in self.kwargs:
             course_id=self.kwargs['course_id']
             course= models.Course.objects.get(pk=course_id)
@@ -209,6 +231,11 @@ class EnrolledStudentList(generics.ListAPIView):
             teacher_id=self.kwargs['teacher_id']
             teacher= models.Teacher.objects.get(pk=teacher_id)
             return models.CourseRating.objects.filter(course__teacher=teacher).distinct('id')
+        elif 'student_id' in self.kwargs:
+            student_id=self.kwargs['student_id']
+            student= models.Student.objects.get(pk=student_id)
+            return models.StudentCourseEnrollment.objects.filter(student=student).distinct()
+   
 
 
 
@@ -248,15 +275,27 @@ def teacher_change_password(request,teacher_id):
 
 
 
+
+
+# course favorate
 class StudentFavoriteCourseList(generics.ListCreateAPIView):
     queryset = models.StudentFavoriteCourse.objects.all()
     serializer_class = StudentFavoriteCourseSerializer
+
+    def get_queryset(self):
+        if 'student_id' in self.kwargs:
+            student_id=self.kwargs['student_id']
+            student= models.Student.objects.get(pk=student_id)
+            return models.StudentFavoriteCourse.objects.filter(student=student).distinct()
 
 
 
 # class StudentFavoriteCourseDetail(generics.RetrieveUpdateDestroyAPIView):
 #     queryset = models.StudentFavoriteCourse.objects.all()
 #     serializer_class = StudentFavoriteCourseSerializer
+
+
+
 
 
 
@@ -280,3 +319,24 @@ def remove_favorite_course(request,student_id,course_id):
         return JsonResponse({'bool':True})
     else:
         return JsonResponse({'bool':False})
+
+
+                                         # elif 'studentId' in self.kwargs:
+        #     student_id=self.kwargs['studentId']
+        #     student= models.Student.objects.get(pk=student_id)
+        #     qs=models.Course.objects.filter(techs__in=student.interesed_categories) 
+        #     return qs
+
+
+
+
+class AssignmentList(generics.ListCreateAPIView):
+    queryset = StudentAssignment.objects.all()
+    serializer_class = StudentAssignmentSerializer
+
+    def get_queryset(self):
+        student_id=self.kwargs['student_id']
+        teacher_id=self.kwargs['teacher_id']
+        student= models.Student.objects.get(pk=student_id)
+        teacher= models.Teacher.objects.get(pk=teacher_id)
+        return models.StudentAssignment.objects.filter(student=student,teacher=teacher) 

@@ -14,6 +14,8 @@ function AddChapter(){
         video       :'',
         remarks     :'',
     });
+
+    const [videoDuration,setvideoDuration] = useState();
     
     const handelChange=(event)=>{
         setChaptereData({
@@ -22,6 +24,16 @@ function AddChapter(){
         });
     }
     const handelFiledChange=(event)=>{
+        window.URL = window.URL || window.webkitURL;
+        var video = document.createElement('video');
+        video.preload = 'metadata';
+        video.onloadedmetadata = function(){
+            window.URL.revokeObjectURL(video.src);
+            setvideoDuration(video.duration);
+        }
+        video.src = URL.createObjectURL(event.target.files[0])
+
+
         setChaptereData({
             ...chapterData,
             [event.target.name]:event.target.files[0]

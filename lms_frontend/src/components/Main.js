@@ -41,6 +41,8 @@ import TeacherDashboard from './teacher/TeacherDashboard';
 import TeacherProfileSetting from './teacher/TeacherProfileSetting';
 import TeacherChangePassword from './teacher/TeacherChangePassword';
 import UserList from './teacher/UserList';
+import AddAssignment from './teacher/AddAssignment';
+import ShowAssignment from './teacher/ShowAssignment';
 import PopularTeachers from "./popularteachers";
 
 
@@ -92,8 +94,11 @@ function Main() {
             <Route path="/edit-course/:course_id" element={<EditCourse/>} />
 
             <Route path="/add-chapter/:course_id" element={<AddChapter/>} />
+            
+            <Route path="/add-assignment/:teacher_id/:student_id" element={<AddAssignment/>} />
+            <Route path="/show-assignment/:teacher_id/:student_id" element={<ShowAssignment/>} />
 
-            <Route path="/my-users" element={<UserList  />} />
+            <Route path="/teacher-users" element={<UserList  />} />
 
 
             <Route path="/teacher-skill-courses/:skill_name/:teacher_id" element={<TeacherSkillCourses/>} />

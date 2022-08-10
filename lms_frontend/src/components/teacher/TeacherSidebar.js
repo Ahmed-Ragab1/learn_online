@@ -9,7 +9,7 @@ import {NavLink} from 'react-router-dom';
                             <NavLink to='/teacher-dashboard' className='list-group-item list-group-item-action'>Dashboard</NavLink>           
                             <NavLink to='/teacher-courses' className='list-group-item list-group-item-action'>My Courses</NavLink>
                             <NavLink to='/add-course' className='list-group-item list-group-item-action'>Add Course</NavLink>
-                            <NavLink to='/my-users' className='list-group-item list-group-item-action'>My Users</NavLink>
+                            <NavLink to='/teacher-users' className='list-group-item list-group-item-action'>My Users</NavLink>
                             <NavLink to='/teacher-profile-setting' className='list-group-item list-group-item-action'> Profile Setting</NavLink>
                             <NavLink to='/teacher-change-password' className='list-group-item list-group-item-action'>Change Password</NavLink>
                             <NavLink to='/teacher-logout' className='list-group-item list-group-item-action text-danger'>Logout</NavLink>

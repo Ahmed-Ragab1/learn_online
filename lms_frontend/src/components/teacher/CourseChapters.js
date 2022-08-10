@@ -82,14 +82,13 @@ function CourseChapters(){
                     <td><Link to={ '/edit-chapter/' + chapter.id } >{chapter.title}</Link></td>
                     <td>
                         <video width="250" controls>
-                        <source src={chapter.video.url} type="video/mp4" />
-                        <source src={chapter.video.url} type="video/ogg" />
+                        <source src={chapter.video} type="video/mp4" />
+                        <source src={chapter.video} type="video/ogg" />
                         Your browser does not support the video tag.
                         </video>
                     </td>
                     <td><NavLink to='/'>{chapter.remarks}</NavLink></td>
                     <td><Link to={ '/edit-chapter/' + chapter.id } className='btn btn-sm btn-info'><i class="bi bi-pencil-square"></i></Link>
-                        <button  onClick={handelDeleteClick} className='btn btn-sm btn-danger ms-2'><i class="bi bi-trash"></i></button>
                         <button  onClick={()=>handelDeleteClick(chapter.id)} className='btn btn-sm btn-danger ms-2'><i class="bi bi-trash"></i></button>
                         
                     </td>
