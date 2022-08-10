@@ -3,6 +3,8 @@ from multiprocessing import context
 from unittest import result
 from django.shortcuts import render
 from main import models
+from main.models import Chapter, StudentCourseEnrollment, Teacher,CourseCategory,Course
+from main.serializers import  StudentCourseEnrollSerializer, TeacherSerializer,CategorySerializer,CourseSerializer,ChapterSerializer,StudentSerializer
 
 from main.models import Chapter, CourseRating, StudentCourseEnrollment, Teacher,CourseCategory,Course,StudentAssignment
 
@@ -161,6 +163,7 @@ class CourseChapterList(generics.ListAPIView):
         course_id=self.kwargs['course_id']
         course= models.Course.objects.get(pk=course_id)
         return models.Chapter.objects.filter(course=course)  
+        return models.Chapter.objects.filter(course=course)  
 
 
 
@@ -204,7 +207,6 @@ def student_login(request):
 class StudentEnrollCourse(generics.ListCreateAPIView):
     queryset = StudentCourseEnrollment.objects.all()
     serializer_class = StudentCourseEnrollSerializer
-
 
 
 
@@ -340,3 +342,20 @@ class AssignmentList(generics.ListCreateAPIView):
         student= models.Student.objects.get(pk=student_id)
         teacher= models.Teacher.objects.get(pk=teacher_id)
         return models.StudentAssignment.objects.filter(student=student,teacher=teacher) 
+
+
+
+
+class MyAssignmentList(generics.ListCreateAPIView):
+    queryset = StudentAssignment.objects.all()
+    serializer_class = StudentAssignmentSerializer
+
+    def get_queryset(self):
+        student_id=self.kwargs['student_id']
+        student= models.Student.objects.get(pk=student_id)
+        return models.StudentAssignment.objects.filter(student=student) 
+
+
+class UpdateAssignment(generics.RetrieveUpdateDestroyAPIView):
+    queryset = StudentAssignment.objects.all()
+    serializer_class = StudentAssignmentSerializer

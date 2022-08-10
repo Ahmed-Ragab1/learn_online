@@ -43,6 +43,7 @@ import TeacherChangePassword from './teacher/TeacherChangePassword';
 import UserList from './teacher/UserList';
 import AddAssignment from './teacher/AddAssignment';
 import ShowAssignment from './teacher/ShowAssignment';
+import StudentAssignments from './user/StudentAssignments';
 import PopularTeachers from "./popularteachers";
 
 
@@ -96,6 +97,11 @@ function Main() {
             <Route path="/add-chapter/:course_id" element={<AddChapter/>} />
             
             <Route path="/add-assignment/:teacher_id/:student_id" element={<AddAssignment/>} />
+
+            
+            <Route path="/my-assignments/" element={<StudentAssignments/>} />
+
+
             <Route path="/show-assignment/:teacher_id/:student_id" element={<ShowAssignment/>} />
 
             <Route path="/teacher-users" element={<UserList  />} />

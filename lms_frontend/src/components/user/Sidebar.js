@@ -10,6 +10,7 @@ import {NavLink} from 'react-router-dom';
                             <NavLink to='/my-courses' className='list-group-item list-group-item-action'>My Courses</NavLink>
                             <NavLink to='/favorite-courses' className='list-group-item list-group-item-action'>Favorite Courses</NavLink>
                             <NavLink to='/recommended-courses' className='list-group-item list-group-item-action'>Recommended Courses</NavLink>
+                            <NavLink to='/my-assignments' className='list-group-item list-group-item-action'>Assignments</NavLink>
                             <NavLink to='/profile-setting' className='list-group-item list-group-item-action'> Profile Setting</NavLink>
                             <NavLink to='/change-password' className='list-group-item list-group-item-action'>Change Password</NavLink>
                             <NavLink to='/logout' className='list-group-item list-group-item-action text-danger'>Logout</NavLink>

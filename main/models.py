@@ -126,6 +126,7 @@ class Chapter(models.Model) :
 
 
 
+
 class StudentCourseEnrollment(models.Model):
     course  =  models.ForeignKey(Course,on_delete=models.CASCADE,related_name='enrolled_courses')
     student =  models.ForeignKey(Student,on_delete=models.CASCADE,related_name='enrolled_student')
@@ -135,6 +136,7 @@ class StudentCourseEnrollment(models.Model):
         verbose_name_plural= "Enrolled Courses"
     
     def __str__(self) -> str:
+        return f"{self.student}-{self.course}"
         return f"{self.student}-{self.course}"
 
 
@@ -170,6 +172,7 @@ class StudentAssignment(models.Model):
     student  =  models.ForeignKey(Student,on_delete=models.CASCADE)
     title    =   models.CharField(max_length=100)
     detail   =   models.TextField(null=True)
+    student_status = models.BooleanField(default=False,null=True)
     add_time = models.DateTimeField(auto_now_add=True)
 
 

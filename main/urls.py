@@ -48,6 +48,7 @@ urlpatterns = [
     path('student-enroll-course/',views.StudentEnrollCourse.as_view()),
 
     path('fetch-enroll-status/<int:student_id>/<int:course_id>',views.fetch_enroll_status),
+
     path('fetch-all-enrolled-students/<int:teacher_id>',views.EnrolledStudentList.as_view()),
     path('fetch-enrolled-students/<int:course_id>',views.EnrolledStudentList.as_view()),
 
@@ -66,6 +67,10 @@ urlpatterns = [
 
 
     path('student-assignment/<int:teacher_id>/<int:student_id>', views.AssignmentList.as_view()),
+
+    path('my-assignments/<int:student_id>', views.MyAssignmentList.as_view()),
+
+    path('update-assignment/<int:pk>', views.UpdateAssignment.as_view()),
 
 
 
