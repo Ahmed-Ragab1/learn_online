@@ -17,6 +17,8 @@ urlpatterns = [
     path('teacher/<int:pk>/', views.TeacherDetail.as_view()),
     path('teacher/change-password/<int:teacher_id>/', views.teacher_change_password),
     path('teacher-login',views.teacher_login),
+    path('teacher/dashboard/<int:pk>/',views.TeacherDashboard.as_view())
+    ,
 
 
 
@@ -56,6 +58,13 @@ urlpatterns = [
 
     path('course-rating/<int:course_id>', views.CourseRatingList.as_view()),
     path('fetch-rating-status/<int:student_id>/<int:course_id>',views.fetch_rating_status),
+    path('fetch-recommened-courses/<int:studentId>',views.CourseList.as_view({'get': 'list'})),
+    
+    
+    path('fetch-enrolled-courses/<int:student_id>',views.EnrolledStudentList.as_view()),
+    # {"get": "retrieve", "post": "create", "put": "update", "patch": "partial_update", "delete": "destroy"}
+
+
 
 
 

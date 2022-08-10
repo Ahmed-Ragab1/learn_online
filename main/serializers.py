@@ -1,3 +1,4 @@
+from dataclasses import field, fields
 from urllib import request
 from . import models
 from rest_framework import serializers
@@ -15,8 +16,11 @@ class TeacherSerializer(serializers.ModelSerializer):
             self.Meta.depth=0
             if request and request.method == 'GET':
                 self.Meta.depth=1
-
-
+                
+class TeacherDashboardSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=models.Teacher
+        fields=['total_teacher_courses','total_teacher_chapters','total_teacher_students']
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -76,7 +80,7 @@ class StudentCourseEnrollSerializer(serializers.ModelSerializer):
         request = self.context.get('request')
         self.Meta.depth=0
         if request and request.method == 'GET':
-            self.Meta.depth=1
+            self.Meta.depth=2
 
 class CourseRatinSerializer(serializers.ModelSerializer):
     class Meta:

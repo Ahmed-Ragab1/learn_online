@@ -1,7 +1,24 @@
 import {NavLink} from 'react-router-dom';
 import Sidebar from './Sidebar';
+import {useEffect,useState} from 'react'
+import axios from 'axios';
+const baseUrl='http://127.0.0.1:8000/api';
 
 function MyCourses(){
+    const[courseData,setcourseData]=useState([]);
+    const studentId=localStorage.getItem('studentId');
+    useEffect(()=>{
+        try{
+            axios.get(baseUrl+'/fetch-enrolled-courses/'+studentId).then((res)=>{
+                setcourseData(res.data);
+            })
+        }
+        catch(error){
+            console.log(error)
+        }
+       },[]);
+
+
     return (
         <div className='container mt-4'>
         <div className='row'>
@@ -17,13 +34,19 @@ function MyCourses(){
                     <tr>
                         <th>Name</th>
                         <th>Created By</th>
-                        <th>Action</th>
+                        {/* <th>Action</th> */}
                     </tr>
                 </thead>
                 <tbody>
-                    <td>python development</td>
-                    <td><NavLink to='/'>Ahmed</NavLink></td>
-                    <td><button className='btn btn-danger btn-sm active'>Delete</button></td>
+                {courseData.map((row,index)=>
+
+                    <tr>
+
+                    <td><NavLink to={`/detail/`+row.course.id}>{row.course.title}</NavLink></td>
+                    <td><NavLink to={`/teacher-detail//`+row.course.teacher.id}>{row.course.teacher.full_name}</NavLink></td>
+                    {/* <td><button className='btn btn-danger btn-sm active'>Remove Enrollment</button></td> */}
+                    </tr>)}
+
                 </tbody>
             </table>
         </div>
