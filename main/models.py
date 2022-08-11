@@ -37,15 +37,26 @@ class Teacher(models.Model):
 class Student(models.Model):
     full_name            = models.CharField(max_length=100)
     email                = models.CharField(max_length=100)
-    password             = models.CharField(max_length=100)
+    password             = models.CharField(max_length=100,blank=True,null=True)
     username             = models.CharField(max_length=200)
     interesed_categories = models.TextField()
+    profile_img=models.ImageField(upload_to='student_profile_imgs/',null=True)
+
 
     def __str__(self) -> str:
         return self.full_name
-
-
-
+    def enrolled_courses(self):
+        enrolled_courses=StudentCourseEnrollment.objects.filter(student=self).count()
+        return enrolled_courses
+    def favourite_courses(self):
+        favourite_courses=StudentFavoriteCourse.objects.filter(student=self).count()
+        return favourite_courses
+    def complete_assignments(self):
+        complete_assignments=StudentAssignment.objects.filter(student=self,student_status=True).count()
+        return complete_assignments
+    def pending_assignments(self):
+        pending_assignments=StudentAssignment.objects.filter(student=self,student_status=False).count()
+        return pending_assignments
 
 
 class CourseCategory(models.Model) :

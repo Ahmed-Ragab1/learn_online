@@ -13,7 +13,7 @@ import {NavLink} from 'react-router-dom';
                             <NavLink to='/my-assignments' className='list-group-item list-group-item-action'>Assignments</NavLink>
                             <NavLink to='/profile-setting' className='list-group-item list-group-item-action'> Profile Setting</NavLink>
                             <NavLink to='/change-password' className='list-group-item list-group-item-action'>Change Password</NavLink>
-                            <NavLink to='/logout' className='list-group-item list-group-item-action text-danger'>Logout</NavLink>
+                            <NavLink to='/user-logout' className='list-group-item list-group-item-action text-danger'>Logout</NavLink>
                         </div>
                     </div>
     )

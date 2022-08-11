@@ -3,14 +3,14 @@ from multiprocessing import context
 from unittest import result
 from django.shortcuts import render
 from main import models
-from main.models import Chapter, StudentCourseEnrollment, Teacher,CourseCategory,Course
+from main.models import Chapter, Student, StudentCourseEnrollment, Teacher,CourseCategory,Course
 from main.serializers import  StudentCourseEnrollSerializer, TeacherSerializer,CategorySerializer,CourseSerializer,ChapterSerializer,StudentSerializer
 
 from main.models import Chapter, CourseRating, StudentCourseEnrollment, Teacher,CourseCategory,Course,StudentAssignment
 
 
 
-from main.serializers import  StudentCourseEnrollSerializer, TeacherSerializer,CategorySerializer,CourseSerializer,ChapterSerializer,StudentSerializer,CreateCourseSerializer,CourseRatinSerializer, TeacherDashboardSerializer,StudentFavoriteCourseSerializer,StudentAssignmentSerializer
+from main.serializers import  StudentCourseEnrollSerializer, TeacherSerializer,CategorySerializer,CourseSerializer,ChapterSerializer,StudentSerializer,CreateCourseSerializer,CourseRatinSerializer, TeacherDashboardSerializer,StudentFavoriteCourseSerializer,StudentAssignmentSerializer,StudentDashboardSerializer
 
 
 from rest_framework import generics
@@ -183,6 +183,15 @@ class StudentList(generics.ListCreateAPIView):
     queryset = models.Student.objects.all()
     serializer_class = StudentSerializer
     # permission_classes = [permissions.IsAuthenticated]
+
+class StudentDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+    # permission_classes = [permissions.IsAuthenticated]
+
+class StudentDashboard(generics.RetrieveAPIView):
+    queryset=models.Student.objects.all()
+    serializer_class =  StudentDashboardSerializer
 
 
 
@@ -359,3 +368,16 @@ class MyAssignmentList(generics.ListCreateAPIView):
 class UpdateAssignment(generics.RetrieveUpdateDestroyAPIView):
     queryset = StudentAssignment.objects.all()
     serializer_class = StudentAssignmentSerializer
+
+@csrf_exempt
+def student_change_password(request,student_id):
+    password=request.POST['password']
+    try:
+        studentData=models.Student.objects.get(id=student_id)
+    except models.Student.DoesNotExist:
+        studentData =None
+    if studentData:
+        models.Student.objects.filter(id=student_id).update(password=password)
+        return JsonResponse({'bool':True})
+    else:
+        return JsonResponse({'bool':False})

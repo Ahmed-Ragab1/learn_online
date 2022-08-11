@@ -34,7 +34,7 @@ function Login(){
                 if(res.data.bool===true){
                     localStorage.setItem('studentLoginStatus',true)
                     localStorage.setItem('studentId',res.data.student_id)
-                    window.location.href='/student-dashboard'
+                    window.location.href='/user-dashboard'
                 }
                 else{
                   setErrorMsg('inavalid Email or Password !!');
@@ -54,7 +54,7 @@ function Login(){
       const studentLoginStatus=localStorage.getItem('studentLoginStatus');
       if(studentLoginStatus==='true')
       {
-        window.location.href='/student-dashboard'
+        window.location.href='/user-dashboard'
       }
 
 
@@ -73,7 +73,7 @@ function Login(){
                         <div className='card-body'>
                             {errorMsg && <p className="text-danger">{errorMsg}</p>}
                             <div className='mb-3'>
-                                <label for='exampleInputEmail' className='form-label'>User Name</label>
+                                <label for='exampleInputEmail' className='form-label'>Email</label>
                                 <input onChange={handleChange} name="email" value={studentLoginData.email} type='email' className='form-control'/>
                             </div>
 

@@ -41,12 +41,11 @@ urlpatterns = [
 
     #student
     path('student/', views.StudentList.as_view()),
-
+    path('student/<int:pk>/', views.StudentDetail.as_view()),
     path('student-login',views.student_login),
-
-
+    path('student/dashboard/<int:pk>/',views.StudentDashboard.as_view()),
     path('student-enroll-course/',views.StudentEnrollCourse.as_view()),
-
+    path('student/change-password/<int:student_id>/', views.student_change_password),
     path('fetch-enroll-status/<int:student_id>/<int:course_id>',views.fetch_enroll_status),
 
     path('fetch-all-enrolled-students/<int:teacher_id>',views.EnrolledStudentList.as_view()),
