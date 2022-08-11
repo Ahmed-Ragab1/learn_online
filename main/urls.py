@@ -71,6 +71,9 @@ urlpatterns = [
 
     path('update-assignment/<int:pk>', views.UpdateAssignment.as_view()),
 
+    path('student/fetch-all-notifications/<int:student_id>/',views.NotificationList.as_view()),
+    path('save-notification/',views.NotificationList.as_view()),
+
 
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

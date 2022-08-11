@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from main.models import Course, CourseCategory, Student, StudentCourseEnrollment, Teacher,Chapter
+from main.models import Course, CourseCategory, CourseQuiz, Notification, Quiz, QuizQuestions, Student, StudentCourseEnrollment, Teacher,Chapter
 from main.models import Course, CourseCategory, Student, StudentCourseEnrollment, Teacher,Chapter,CourseRating,StudentFavoriteCourse,StudentAssignment
 
 
@@ -18,3 +18,12 @@ admin.site.register(StudentCourseEnrollment)
 admin.site.register(CourseRating)
 admin.site.register(StudentFavoriteCourse)
 admin.site.register(StudentAssignment)
+
+class NotificationAdmin(admin.ModelAdmin):
+    list_display=['id','notif_subject','notif_for','notifiread_status']
+admin.site.register(Notification)
+
+
+admin.site.register(Quiz)
+admin.site.register(QuizQuestions)
+admin.site.register(CourseQuiz)

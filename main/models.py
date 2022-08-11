@@ -3,6 +3,7 @@ from email.policy import default
 from itertools import count
 import profile
 from tabnanny import verbose
+from turtle import title
 from django.db import models 
 from django.core import serializers
 
@@ -189,3 +190,36 @@ class StudentAssignment(models.Model):
 
     def __str__(self) -> str:
         return f"{self.title}"
+
+
+# notification maodel
+class Notification(models.Model):
+    teacher=models.ForeignKey(Teacher,on_delete=models.CASCADE,null=True)
+    student=models.ForeignKey(Student,on_delete=models.CASCADE,null=True)
+    notif_subject=models.CharField(max_length=200,null=True)
+    notif_for=models.CharField(max_length=200)
+    notif_created_time=models.DateTimeField(auto_now_add=True)
+    notifiread_status=models.BooleanField(default=False)
+
+
+class Quiz(models.Model):
+    teacher=models.ForeignKey(Teacher,on_delete=models.CASCADE,null=True)
+    title=models.CharField(max_length=200)
+    detail=models.TextField()
+    add_time=models.DateTimeField(auto_now_add=True)
+
+class QuizQuestions(models.Model):
+    quiz=models.ForeignKey(Quiz,on_delete=models.CASCADE,null=True)
+    questions=models.CharField(max_length=200)
+    ans1=models.CharField(max_length=200)
+    ans2=models.CharField(max_length=200)
+    ans3=models.CharField(max_length=200)
+    ans4=models.CharField(max_length=200)
+    right_ans=models.CharField(max_length=200)
+    add_time=models.DateTimeField(auto_now_add=True)
+
+
+class CourseQuiz(models.Model):
+    course=models.ForeignKey(Course,on_delete=models.CASCADE,null=True)
+    quiz=models.ForeignKey(Quiz,on_delete=models.CASCADE,null=True)
+    add_time=models.DateTimeField(auto_now_add=True)

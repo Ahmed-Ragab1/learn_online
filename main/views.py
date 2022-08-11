@@ -4,9 +4,9 @@ from unittest import result
 from django.shortcuts import render
 from main import models
 from main.models import Chapter, Student, StudentCourseEnrollment, Teacher,CourseCategory,Course
-from main.serializers import  StudentCourseEnrollSerializer, TeacherSerializer,CategorySerializer,CourseSerializer,ChapterSerializer,StudentSerializer
+from main.serializers import  StudentCourseEnrollSerializer, TeacherSerializer,CategorySerializer,CourseSerializer,ChapterSerializer,StudentSerializer,NotificationSerializer
 
-from main.models import Chapter, CourseRating, StudentCourseEnrollment, Teacher,CourseCategory,Course,StudentAssignment
+from main.models import Chapter, CourseRating, StudentCourseEnrollment, Teacher,CourseCategory,Course,StudentAssignment,Notification
 
 
 
@@ -362,6 +362,7 @@ class MyAssignmentList(generics.ListCreateAPIView):
     def get_queryset(self):
         student_id=self.kwargs['student_id']
         student= models.Student.objects.get(pk=student_id)
+        models.Notification.objects.filter(student=student,notif_for='student',notif_subject='assignment').update(notifiread_status=True)
         return models.StudentAssignment.objects.filter(student=student) 
 
 
@@ -381,3 +382,13 @@ def student_change_password(request,student_id):
         return JsonResponse({'bool':True})
     else:
         return JsonResponse({'bool':False})
+
+
+class NotificationList(generics.ListCreateAPIView):
+    queryset=models.Notification.objects.all()
+    serializer_class=NotificationSerializer
+
+    def get_queryset(self):
+        student_id=self.kwargs['student_id']
+        student=models.Student.objects.get(pk=student_id)
+        return models.Notification.objects.filter(student=student,notif_for='student',notif_subject='assignment',notifiread_status=False)
