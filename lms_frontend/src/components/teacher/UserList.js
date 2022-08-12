@@ -40,6 +40,7 @@ function UserList(){
                         <th>Email</th>
                         <th>User Name</th>
                         <th>Interesed Categories</th>
+
                         <th>courses</th>
                         <th>Course Name</th>
                         <th className='ms-3 ps-5'>Assignment</th>

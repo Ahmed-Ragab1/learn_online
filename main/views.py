@@ -3,6 +3,8 @@ from multiprocessing import context
 from unittest import result
 from django.shortcuts import render
 from main import models
+from main.models import Chapter, StudentCourseEnrollment, Teacher,CourseCategory,Course
+from main.serializers import  AttempQuizSerializer, StudentCourseEnrollSerializer, TeacherSerializer,CategorySerializer,CourseSerializer,ChapterSerializer,StudentSerializer
 from main.models import Chapter, Student, StudentCourseEnrollment, Teacher,CourseCategory,Course
 from main.serializers import  StudentCourseEnrollSerializer, TeacherSerializer,CategorySerializer,CourseSerializer,ChapterSerializer,StudentSerializer,NotificationSerializer,QuizSerializer,QuestionSerializer,CourseQuizSerializer
 
@@ -416,13 +418,19 @@ class QuizDetailView(generics.RetrieveUpdateDestroyAPIView):
 
 
 
-class QuizQuestionList(generics.ListAPIView):
+class QuizQuestionList(generics.ListCreateAPIView):
     serializer_class = QuestionSerializer
 
     def get_queryset(self):
         quiz_id=self.kwargs['quiz_id']
         quiz= models.Quiz.objects.get(pk=quiz_id)
-        return models.QuizQuestions.objects.filter(quiz=quiz)  
+        if 'limit' in self.kwargs:
+            return models.QuizQuestions.objects.filter(quiz=quiz).order_by('id')[:1]
+        elif 'question_id' in self.kwargs:
+            current_question = self.kwargs['question_id']
+            return models.QuizQuestions.objects.filter(quiz=quiz,id__gt=current_question).order_by('id')[:1] 
+        else:
+            return models.QuizQuestions.objects.filter(quiz=quiz)  
 
 
 
@@ -430,6 +438,12 @@ class QuizQuestionList(generics.ListAPIView):
 class CourseQuizList(generics.ListCreateAPIView):
     queryset = models.CourseQuiz.objects.all()
     serializer_class = CourseQuizSerializer
+
+    def get_queryset(self):
+        if 'course_id' in self.kwargs:
+            course_id=self.kwargs['course_id']
+            course= models.Course.objects.get(pk=course_id)
+            return models.CourseQuiz.objects.filter(course=course)
 
 
 
@@ -444,3 +458,9 @@ def fetch_quiz_assign_status(request,quiz_id,course_id):
         return JsonResponse({'bool':True})
     else:
         return JsonResponse({'bool':False})
+
+
+
+class AttempQuizList(generics.ListCreateAPIView):
+    queryset = models.AttempQuiz.objects.all()
+    serializer_class = AttempQuizSerializer

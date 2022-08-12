@@ -79,7 +79,7 @@ function AddQuizeQustion(){
                         <div class="mb-3 row">
                             <label for="title" class="col-sm-2 col-form-label">Title</label>
                             <div class="col-sm-10">
-                                <input type="text" onChange={handelChange} name='title' class="form-control" id="title"  />
+                                <input type="text" onChange={handelChange} name='questions' class="form-control" id="title"  />
                             </div>
                         </div>
                         <div class="mb-3 row">
