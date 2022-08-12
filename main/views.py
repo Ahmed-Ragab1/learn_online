@@ -4,9 +4,9 @@ from unittest import result
 from django.shortcuts import render
 from main import models
 from main.models import Chapter, Student, StudentCourseEnrollment, Teacher,CourseCategory,Course
-from main.serializers import  StudentCourseEnrollSerializer, TeacherSerializer,CategorySerializer,CourseSerializer,ChapterSerializer,StudentSerializer,NotificationSerializer
+from main.serializers import  StudentCourseEnrollSerializer, TeacherSerializer,CategorySerializer,CourseSerializer,ChapterSerializer,StudentSerializer,NotificationSerializer,QuizSerializer
 
-from main.models import Chapter, CourseRating, StudentCourseEnrollment, Teacher,CourseCategory,Course,StudentAssignment,Notification
+from main.models import Chapter, CourseRating, StudentCourseEnrollment, Teacher,CourseCategory,Course,StudentAssignment,Notification,Quiz
 
 
 
@@ -392,3 +392,23 @@ class NotificationList(generics.ListCreateAPIView):
         student_id=self.kwargs['student_id']
         student=models.Student.objects.get(pk=student_id)
         return models.Notification.objects.filter(student=student,notif_for='student',notif_subject='assignment',notifiread_status=False)
+class QuizList(generics.ListCreateAPIView):
+    queryset = models.Quiz.objects.all()
+    serializer_class=QuizSerializer
+    
+    
+class TeacherQuizList(generics.ListCreateAPIView):
+    serializer_class=QuizSerializer
+    def get_queryset(self):
+        teacher_id=self.kwargs['teacher_id']
+        teacher= models.Teacher.objects.get(pk=teacher_id)
+        return models.Quiz.objects.filter(teacher=teacher)      
+
+class TeacherQuizDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Quiz.objects.all()
+    serializer_class=QuizSerializer
+    
+    
+class QuizDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = models.Quiz.objects.all()
+    serializer_class = QuizSerializer

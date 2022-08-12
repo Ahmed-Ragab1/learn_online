@@ -50,6 +50,9 @@ import PopularTeachers from "./popularteachers";
 import CategoryCourses from "./CategoryCourses";
 import TeacherSkillCourses from "./teacher/TeacherSkillCourses";
 
+import AddQuiz from "./teacher/AddQuiz";
+import AllQuiz from "./teacher/AllQuiz";
+import EditQuiz from './teacher/EditQuiz';
 
 
 
@@ -108,6 +111,10 @@ function Main() {
 
 
             <Route path="/teacher-skill-courses/:skill_name/:teacher_id" element={<TeacherSkillCourses/>} />
+
+            <Route path="/quiz" element={<AllQuiz  />} />
+            <Route path="/add-quiz" element={<AddQuiz  />} />
+            <Route path="/edit-quiz/:quiz_id" element={<EditQuiz  />} />
 
 
             
