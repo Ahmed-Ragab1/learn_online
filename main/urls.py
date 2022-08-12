@@ -41,13 +41,13 @@ urlpatterns = [
 
     #student
     path('student/', views.StudentList.as_view()),
-
+    path('student/<int:pk>/', views.StudentDetail.as_view()),
     path('student-login',views.student_login),
-
-
+    path('student/dashboard/<int:pk>/',views.StudentDashboard.as_view()),
     path('student-enroll-course/',views.StudentEnrollCourse.as_view()),
-
+    path('student/change-password/<int:student_id>/', views.student_change_password),
     path('fetch-enroll-status/<int:student_id>/<int:course_id>',views.fetch_enroll_status),
+
     path('fetch-all-enrolled-students/<int:teacher_id>',views.EnrolledStudentList.as_view()),
     path('fetch-enrolled-students/<int:course_id>',views.EnrolledStudentList.as_view()),
 
@@ -66,6 +66,29 @@ urlpatterns = [
 
 
     path('student-assignment/<int:teacher_id>/<int:student_id>', views.AssignmentList.as_view()),
+
+    path('my-assignments/<int:student_id>', views.MyAssignmentList.as_view()),
+
+    path('update-assignment/<int:pk>', views.UpdateAssignment.as_view()),
+
+    path('student/fetch-all-notifications/<int:student_id>/',views.NotificationList.as_view()),
+    path('save-notification/',views.NotificationList.as_view()),
+    
+    path('quiz/', views.QuizList.as_view()),
+    path('teacher-quiz/<int:teacher_id>',views.TeacherQuizList.as_view()),
+
+    path('teacher-quiz-detail/<int:pk>',views.TeacherQuizDetail.as_view()),
+    path('quiz/<int:pk>/', views.QuizDetailView.as_view()),
+
+
+    path('quiz-questions/<int:quiz_id>',views.QuizQuestionList.as_view()),
+
+    path('quiz-assign-course/',views.CourseQuizList.as_view()),
+
+     path('fetch-quiz-assign-status/<int:quiz_id>/<int:course_id>',views.fetch_quiz_assign_status),
+
+    
+
 
 
 

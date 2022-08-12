@@ -6,15 +6,15 @@ import axios from 'axios';
 
 const baseUrl='http://127.0.0.1:8000/api';
 
-function CourseChapters(){
-    const[chapterData,setChapterData]=useState([]);
+function QuizQustions(){
+    const[questionData,setquestionData]=useState([]);
     const[totalResult,settotalResult]=useState([0]);
-    const {course_id}=useParams();
+    const {quiz_id}=useParams();
 
     useEffect(()=>{
      try{
-         axios.get(baseUrl+'/course-chapters/'+course_id).then((res)=>{
-            setChapterData(res.data);
+         axios.get(baseUrl+'/quiz-questions/'+quiz_id).then((res)=>{
+            setquestionData(res.data);
             settotalResult(res.data.length);
          })
      }
@@ -24,7 +24,7 @@ function CourseChapters(){
     },[]);
 
     const Swal = require('sweetalert2')
-    const handelDeleteClick = (chapter_id)=>{
+    const handelDeleteClick = (question_id)=>{
         Swal.fire({
             title: 'Confirm',
             text: 'Do you want to delete this data ?',
@@ -34,12 +34,12 @@ function CourseChapters(){
           }).then((result)=>{
             if(result.isConfirmed){
                 try{
-                    axios.delete(baseUrl+'/chapter/'+chapter_id)
+                    axios.delete(baseUrl+'/question/'+question_id)
                     .then((res)=>{
                         Swal.fire('success','data has been deleted');
                         try{
-                            axios.get(baseUrl+'/course-chapters/'+course_id).then((res)=>{
-                               setChapterData(res.data);
+                            axios.get(baseUrl+'/quiz-questions/'+quiz_id).then((res)=>{
+                                setquestionData(res.data);
                                settotalResult(res.data.length);
                             })
                         }
@@ -65,33 +65,22 @@ function CourseChapters(){
             </aside>
             <section className='col-md-9'>
             <div className='card'>
-        <h5 className='card-header'>All Chapters ({totalResult})</h5>
-        <h5 className='card-header'>All Chapters ({totalResult}) <NavLink className='btn btn-success btn-sm float-end' to={'/add-chapter/'+course_id}>Add Chapter</NavLink></h5>
+        <h5 className='card-header'>All Questions ({totalResult}) <NavLink className='btn btn-success btn-sm float-end' to={'/add-quiz-question/'+quiz_id}>Add Question</NavLink></h5>
         <div className='card-body'>
             <table className='table table-bordered'>
                 <thead>
                     <tr>
-                        <th>Title</th>
-                        <th>Video</th>
-                        <th>Remarks</th>
+                        <th>Question</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {chapterData.map((chapter,index)=>
+                    {questionData.map((row,index)=>
                     <tr>
-                    <td><Link to={ '/edit-chapter/' + chapter.id } >{chapter.title}</Link></td>
+                    <td><Link to={ '/edit-question/' + row.id } >{row.questions}</Link></td>
                     <td>
-                        <video width="250" controls>
-                        <source src={chapter.video} type="video/mp4" />
-                        <source src={chapter.video} type="video/ogg" />
-                        Your browser does not support the video tag.
-                        </video>
-                    </td>
-                    <td><NavLink to='/'>{chapter.remarks}</NavLink></td>
-                    <td><Link to={ '/edit-chapter/' + chapter.id } className='btn btn-sm btn-info'><i class="bi bi-pencil-square"></i></Link>
-                        <button  onClick={handelDeleteClick} className='btn btn-sm btn-danger ms-2'><i class="bi bi-trash"></i></button>
-                        <button  onClick={()=>handelDeleteClick(chapter.id)} className='btn btn-sm btn-danger ms-2'><i class="bi bi-trash"></i></button>
+                        <Link to={ '/edit-question/' + row.id } className='btn btn-sm btn-info'><i class="bi bi-pencil-square"></i></Link>
+                        <button  onClick={()=>handelDeleteClick(row.id)} className='btn btn-sm btn-danger ms-2'><i class="bi bi-trash"></i></button>
                         
                     </td>
                     </tr>
@@ -108,4 +97,4 @@ function CourseChapters(){
 
     )
 }
-export default CourseChapters;
+export default QuizQustions;

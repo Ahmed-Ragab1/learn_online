@@ -71,6 +71,10 @@ function TeacherCourses(){
                         <NavLink className='btn btn-success btn-sm active ms-2' to={'/add-chapter/'+course.id} >
                             Add Chapter
                         </NavLink>
+
+                        <NavLink className='btn btn-success btn-sm active ms-2' to={'/assign-quiz/'+course.id} >
+                           assgin quiz
+                        </NavLink>
                         <button className='btn btn-danger btn-sm ms-2 active'>Delete</button>
                        
                     </td>

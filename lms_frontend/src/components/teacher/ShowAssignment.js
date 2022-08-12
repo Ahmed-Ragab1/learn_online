@@ -33,7 +33,7 @@ function ShowAssignment(){
             </aside>
             <section className='col-md-9'>
             <div className='card'>
-        <h5 className='card-header'>All Assignments ({totalResult}) <NavLink className='btn btn-success btn-sm float-end' to={`/add-assignment/${teacher_id}/${student_id}`}>Add Assignment</NavLink></h5>
+        <h5 className='card-header'>All Assignments ({totalResult}) <Link className='btn btn-success btn-sm float-end' to={`/add-assignment/${teacher_id}/${student_id}`}>Add Assignment</Link></h5>
         <div className='card-body'>
             <table className='table table-bordered'>
                 <thead>
@@ -42,9 +42,18 @@ function ShowAssignment(){
                     </tr>
                 </thead>
                 <tbody>
-                    {assignmentData.map((chapter,index)=>
+                    {assignmentData.map((row,index)=>
                     <tr>
-                    <td>{chapter.title}</td>
+                    <td>{row.title}</td>
+                    <td>
+                        { row.student_status === false &&
+                            <span className='badge bg-warning'> Pending </span>
+                        }
+                        { row.student_status === true &&
+                            <span className='badge bg-success'> Completed </span>
+                        }
+                    </td>
+                    
                     </tr>
                     )}
                 </tbody>

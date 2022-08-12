@@ -43,12 +43,24 @@ import TeacherChangePassword from './teacher/TeacherChangePassword';
 import UserList from './teacher/UserList';
 import AddAssignment from './teacher/AddAssignment';
 import ShowAssignment from './teacher/ShowAssignment';
+import StudentAssignments from './user/StudentAssignments';
 import PopularTeachers from "./popularteachers";
 
 
 import CategoryCourses from "./CategoryCourses";
 import TeacherSkillCourses from "./teacher/TeacherSkillCourses";
 
+import AddQuiz from "./teacher/AddQuiz";
+import AllQuiz from "./teacher/AllQuiz";
+import EditQuiz from './teacher/EditQuiz';
+
+
+import QuizQustions from "./teacher/QuizQustions";
+
+
+import AddQuizeQustion from "./teacher/AddQuizeQustion";
+
+import AssignQuiz from "./teacher/AssignQuiz";
 
 
 
@@ -96,6 +108,11 @@ function Main() {
             <Route path="/add-chapter/:course_id" element={<AddChapter/>} />
             
             <Route path="/add-assignment/:teacher_id/:student_id" element={<AddAssignment/>} />
+
+            
+            <Route path="/my-assignments/" element={<StudentAssignments/>} />
+
+
             <Route path="/show-assignment/:teacher_id/:student_id" element={<ShowAssignment/>} />
 
             <Route path="/teacher-users" element={<UserList  />} />
@@ -103,21 +120,20 @@ function Main() {
 
             <Route path="/teacher-skill-courses/:skill_name/:teacher_id" element={<TeacherSkillCourses/>} />
 
+            <Route path="/quiz" element={<AllQuiz  />} />
+            <Route path="/add-quiz" element={<AddQuiz  />} />
+            <Route path="/edit-quiz/:quiz_id" element={<EditQuiz  />} />
 
+
+            <Route path="/all-questions/:quiz_id" element={<QuizQustions  />} />
+
+            <Route path="/add-quiz-question/:quiz_id" element={<AddQuizeQustion  />} />
+
+            <Route path="/assign-quiz/:course_id" element={<AssignQuiz  />} />
             
 
 
             
-
-            
-
-            
-
-
-
-
-            
-
 
         </Switch>
          <Footer/>
