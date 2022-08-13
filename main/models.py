@@ -83,7 +83,7 @@ class Course(models.Model) :
     updated_at  = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name_plural="3. courses"
+        verbose_name_plural="Courses"
 
     def __str__(self) -> str:
         return self.title
@@ -191,7 +191,6 @@ class StudentAssignment(models.Model):
     def __str__(self) -> str:
         return f"{self.title}"
 
-
 # notification maodel
 class Notification(models.Model):
     teacher=models.ForeignKey(Teacher,on_delete=models.CASCADE,null=True)
@@ -235,5 +234,14 @@ class CourseQuiz(models.Model):
     class Meta:
         verbose_name_plural="courses Quiz"
 
-    
 
+
+class AttempQuiz(models.Model):
+    student=models.ForeignKey(Student,on_delete=models.CASCADE,null=True)
+    quiz=models.ForeignKey(Quiz,on_delete=models.CASCADE,null=True)
+    question=models.ForeignKey(QuizQuestions,on_delete=models.CASCADE,null=True)
+    right_ans=models.CharField(max_length=200,null=True)
+    add_time=models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural="Attemped Questions"
