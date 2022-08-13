@@ -100,6 +100,11 @@ urlpatterns = [
 
     # path('search-course/<str:searchstring>',views.CourseList.as_view()),
 
+    #study materials
+    path('study-materials/<int:course_id>',views.StudyMaterialList.as_view()),
+    path('study-material/<int:pk>', views.StudyMaterialDetailView.as_view()),
+
+    path('user/study-materials/<int:course_id>',views.StudyMaterialList.as_view()),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

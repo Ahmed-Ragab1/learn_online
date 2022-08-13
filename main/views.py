@@ -7,7 +7,7 @@ from main import models
 from main.models import Chapter, StudentCourseEnrollment, Teacher,CourseCategory,Course
 from main.serializers import  AttempQuizSerializer, StudentCourseEnrollSerializer, TeacherSerializer,CategorySerializer,CourseSerializer,ChapterSerializer,StudentSerializer
 from main.models import Chapter, Student, StudentCourseEnrollment, Teacher,CourseCategory,Course
-from main.serializers import  StudentCourseEnrollSerializer, TeacherSerializer,CategorySerializer,CourseSerializer,ChapterSerializer,StudentSerializer,NotificationSerializer,QuizSerializer,QuestionSerializer,CourseQuizSerializer
+from main.serializers import  StudentCourseEnrollSerializer, TeacherSerializer,CategorySerializer,CourseSerializer,ChapterSerializer,StudentSerializer,NotificationSerializer,QuizSerializer,QuestionSerializer,CourseQuizSerializer,StudyMaterialSerializer
 
 from main.models import Chapter, CourseRating, StudentCourseEnrollment, Teacher,CourseCategory,Course,StudentAssignment,Notification,Quiz
 
@@ -172,7 +172,7 @@ class CourseChapterList(generics.ListAPIView):
         course_id=self.kwargs['course_id']
         course= models.Course.objects.get(pk=course_id)
         return models.Chapter.objects.filter(course=course)  
-        return models.Chapter.objects.filter(course=course)  
+ 
 
 
 
@@ -481,3 +481,21 @@ def fetch_quiz_attempt_status(request,quiz_id,student_id):
         return JsonResponse({'bool':True})
     else:
         return JsonResponse({'bool':False})
+
+
+
+
+class StudyMaterialList(generics.ListCreateAPIView):
+    serializer_class = StudyMaterialSerializer
+
+    def get_queryset(self):
+        course_id=self.kwargs['course_id']
+        course= models.Course.objects.get(pk=course_id)
+        return models.StudyMatirial.objects.filter(course=course)  
+
+
+
+
+class StudyMaterialDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = models.StudyMatirial.objects.all()
+    serializer_class = StudyMaterialSerializer

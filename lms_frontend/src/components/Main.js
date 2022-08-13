@@ -20,7 +20,8 @@ import FavouriteCourses from "./user/FavouriteCourses";
 import RecommendedCourses from './user/RecommendedCourses';
 import ProfileSetting from './user/ProfileSetting';
 import ChangePassword from "./user/ChangePassword";
-
+// user study materials
+import UserStudyMaterials from "./user/userStudyMaterials";
 //Teacher
 
 import TeacherRegister from "./teacher/TeacherRegister";
@@ -66,6 +67,9 @@ import AddQuizeQustion from "./teacher/AddQuizeQustion";
 import AssignQuiz from "./teacher/AssignQuiz";
 import Search from "./Search";
 
+// course study matirials
+import StudyMaterials from "./teacher/StudyMaterials";
+import AddStudyMaterial from "./teacher/AddStudyMaterial";
 
 
 
@@ -139,6 +143,12 @@ function Main() {
             <Route path="/course-quiz/:course_id" element={<CourseQuizList  />} />
 
             <Route path="/take-quiz/:quiz_id" element={<TakeQuiz  />} />
+
+
+            <Route path="/study-materials/:course_id" element={<StudyMaterials/>} />
+            <Route path="/add-study/:course_id" element={<AddStudyMaterial/>} />
+
+            <Route path="/user/study-materials/:course_id" element={<UserStudyMaterials/>} />
             
 
             

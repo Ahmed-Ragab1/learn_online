@@ -131,8 +131,9 @@ class Chapter(models.Model) :
             print('number of frams  = ' + str(frame_count))
             print('duration  = ' + str(duration))
             minutes = int(duration/60)
-            second  = duration%60
+            seconds  = duration%60
             print('duration (M:S) = ' + str(minutes) + ':' + str(seconds))
+        return seconds
 
 
 
@@ -245,3 +246,17 @@ class AttempQuiz(models.Model):
 
     class Meta:
         verbose_name_plural="Attemped Questions"
+
+
+
+
+class StudyMatirial(models.Model) :
+    course       =  models.ForeignKey(Course,on_delete=models.CASCADE)   
+    title        = models.CharField(max_length=100)
+    describtion  = models.TextField()
+    upload       =  models.FileField(upload_to='study_materials/',null=True)
+    remarks      = models.TextField(null=True)
+
+
+    def __str__(self) -> str:
+        return self.title
