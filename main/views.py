@@ -416,7 +416,7 @@ class QuizDetailView(generics.RetrieveUpdateDestroyAPIView):
 
 
 
-class QuizQuestionList(generics.ListAPIView):
+class QuizQuestionList(generics.ListCreateAPIView):
     serializer_class = QuestionSerializer
 
     def get_queryset(self):
