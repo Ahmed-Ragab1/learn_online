@@ -1,5 +1,6 @@
 import imp
 from multiprocessing import context
+from turtle import title
 from unittest import result
 from django.shortcuts import render
 from main import models
@@ -123,6 +124,12 @@ class CourseList(viewsets.ModelViewSet):
             teacher=self.request.GET['teacher']
             teacher=models.Teacher.objects.filter(id=teacher).first()
             qs=models.Course.objects.filter(techs__icontains=skill_name,teacher=teacher) 
+
+        if 'searchstring' in self.kwargs:
+            search=self.kwargs['searchstring']
+            if search:
+                qs=models.Course.objects.filter(Q(title__istartwith=search)|Q(techs__istartwith=search)) 
+
         elif 'studentId' in self.kwargs:
             student_id=self.kwargs['studentId']
             student= models.Student.objects.get(pk=student_id)
@@ -464,3 +471,13 @@ def fetch_quiz_assign_status(request,quiz_id,course_id):
 class AttempQuizList(generics.ListCreateAPIView):
     queryset = models.AttempQuiz.objects.all()
     serializer_class = AttempQuizSerializer
+
+
+def fetch_quiz_attempt_status(request,quiz_id,student_id):
+    quiz = models.Quiz.objects.filter(id=quiz_id).first()
+    student = models.Student.objects.filter(id=student_id).first()
+    attemptStatus = models.AttempQuiz.objects.filter(student=student,question__quiz=quiz).count()
+    if attemptStatus > 0:
+        return JsonResponse({'bool':True})
+    else:
+        return JsonResponse({'bool':False})

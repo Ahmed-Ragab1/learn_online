@@ -64,6 +64,7 @@ import QuizQustions from "./teacher/QuizQustions";
 import AddQuizeQustion from "./teacher/AddQuizeQustion";
 
 import AssignQuiz from "./teacher/AssignQuiz";
+import Search from "./Search";
 
 
 
@@ -77,6 +78,7 @@ function Main() {
             <Route path="/" element={<Home/>} />
             <Route path="/about" element={<About/>} />
             <Route path="/detail/:course_id" element={<CourseDetail/>} />
+            <Route path="/search-courses/:searchstring" element={<Search/>} />
             <Route path="/user-login" element={<Login/>} />
             <Route path="/user-logout" element={<Logout/>} />
             <Route path="/user-register" element={<Register/>} />

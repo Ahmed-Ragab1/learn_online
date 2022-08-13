@@ -23,6 +23,7 @@ function TakeQuiz(){
        const submitAnswer = (question_id,right_ans) =>{
         const _formData=new FormData();
         _formData.append('student',studentId)
+        _formData.append('quiz',quiz_id)
         _formData.append('question',question_id)
         _formData.append('right_ans',right_ans)
 
