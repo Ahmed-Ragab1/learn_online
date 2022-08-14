@@ -1,110 +1,45 @@
 import Card from 'react-bootstrap/Card';
 import {NavLink} from 'react-router-dom';
+import {useEffect,useState} from 'react'
+import axios from 'axios';
+
+const baseUrl='http://127.0.0.1:8000/api';
 
 function PopularCourses(){
+  const [courseData,setCourseData]=useState([]);
+
+
+  useEffect(()=>{
+    try{
+      axios.get(baseUrl+'/popular-courses/?all=1')
+      .then((res)=>{
+        setCourseData(res.data);
+      });
+    }catch(error){
+      console.log(error);
+    }
+  },[]);
     return(
 <div className='container mt-3'>
         {/* latest course */}
         <h3 className='pb-1 mb-4 mt-3'>Latest Courses</h3>
         <div className="row">
+        {courseData && courseData.map((row,index)=> 
           <div className="col-md-3 mb-4">
             <Card >
-              < NavLink to='/detail/1'><Card.Img variant="top" src="python.jpg" /></NavLink>
+            <NavLink to={`/detail/${row.course.id}`}><Card.Img variant="top" src={row.course.featured_img} /></NavLink>
               <Card.Body>
-                <Card.Title><NavLink to='/detail/1'>course Title</NavLink></Card.Title>
+              <Card.Title><NavLink to={`/detail/${row.course.id}`}>{row.course.title}</NavLink></Card.Title>
               </Card.Body>
             <div className='card-footer'>
                 <div className='title'>
-                  <span>Rating: 4.5/5</span>
-                  <span className='float-end'>veiws: 200</span>
+                <span>Rating: {row.rating}</span>
+                  <span className='float-end'>veiws: 2300</span>
                 </div>
               </div>
             </Card>
           </div>
-          <div className="col-md-3 mb-4">
-            <Card >
-              <a href='#'><Card.Img variant="top" src="node.jpg"  /></a>
-              <Card.Body>
-                <Card.Title><a href='#'>course Title</a></Card.Title>
-              </Card.Body>
-            <div className='card-footer'>
-                <div className='title'>
-                  <span>Rating: 4.5/5</span>
-                  <span className='float-end'>veiws: 200</span>
-                </div>
-              </div>
-            </Card>
-          </div>
-          <div className="col-md-3 mb-4">
-            <Card >
-              <a href='#'><Card.Img variant="top" src="python.jpg"  /></a>
-              <Card.Body>
-                <Card.Title><a href='#'>course Title</a></Card.Title>
-              </Card.Body>
-            <div className='card-footer'>
-                <div className='title'>
-                  <span>Rating: 4.5/5</span>
-                  <span className='float-end'>veiws: 200</span>
-                </div>
-              </div>
-            </Card>
-          </div>
-          <div className="col-md-3 mb-4">
-            <Card >
-              <a href='#'><Card.Img variant="top" src="node.jpg"  /></a>
-              <Card.Body>
-                <Card.Title><a href='#'>course Title</a></Card.Title>
-              </Card.Body>
-            <div className='card-footer'>
-                <div className='title'>
-                  <span>Rating: 4.5/5</span>
-                  <span className='float-end'>veiws: 200</span>
-                </div>
-              </div>
-            </Card>
-          </div>
-          <div className="col-md-3 mb-4">
-            <Card >
-              < NavLink to='/detail/1'><Card.Img variant="top" src="python.jpg"  /></NavLink>
-              <Card.Body>
-                <Card.Title><NavLink to='/detail/1'>course Title</NavLink></Card.Title>
-              </Card.Body>
-            <div className='card-footer'>
-                <div className='title'>
-                  <span>Rating: 4.5/5</span>
-                  <span className='float-end'>veiws: 200</span>
-                </div>
-              </div>
-            </Card>
-          </div>
-          <div className="col-md-3 mb-4">
-            <Card >
-              < NavLink to='/detail/1'><Card.Img variant="top" src="node.jpg" /></NavLink>
-              <Card.Body>
-                <Card.Title><NavLink to='/detail/1'>course Title</NavLink></Card.Title>
-              </Card.Body>
-            <div className='card-footer'>
-                <div className='title'>
-                  <span>Rating: 4.5/5</span>
-                  <span className='float-end'>veiws: 200</span>
-                </div>
-              </div>
-            </Card>
-          </div>
-          <div className="col-md-3 mb-4">
-            <Card >
-              < NavLink to='/detail/1'><Card.Img variant="top" src="python.jpg" /></NavLink>
-              <Card.Body>
-                <Card.Title><NavLink to='/detail/1'>course Title</NavLink></Card.Title>
-              </Card.Body>
-            <div className='card-footer'>
-                <div className='title'>
-                  <span>Rating: 4.5/5</span>
-                  <span className='float-end'>veiws: 200</span>
-                </div>
-              </div>
-            </Card>
-          </div>
+        )}
         </div>
         {/*end latest course */}   
         {/* Pagination  */}

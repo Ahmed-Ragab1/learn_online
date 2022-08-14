@@ -90,7 +90,7 @@ function AddCourse(){
                         <div class="mb-3 row">
                         <label for="title" class="col-sm-2 col-form-label">Category</label>
                         <div class="col-sm-10">
-                            <select name='category' onChange={handelChange} class='formcontrol'>
+                            <select name='category' onChange={handelChange} class='form-control'>
                                 {cats.map((category,index)=>{return <option key={index} value={category.id}>{category.title}</option>})}
                             </select>
                         </div>

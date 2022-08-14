@@ -9,7 +9,7 @@ from rest_framework import serializers
 class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Teacher
-        fields = ['id','full_name','email','password','qualification','mobile_no','skills','profile_img','teacher_courses','skill_list']
+        fields = ['id','full_name','email','password','qualification','mobile_no','skills','profile_img','teacher_courses','skill_list','total_teacher_courses']
         
         def __init__(self,*args,**kwargs):
             super(TeacherSerializer,self).__init__(*args,**kwargs)
@@ -107,7 +107,7 @@ class CourseRatinSerializer(serializers.ModelSerializer):
         request = self.context.get('request')
         self.Meta.depth=0
         if request and request.method == 'GET':
-            self.Meta.depth=1
+            self.Meta.depth=2
 
 
 

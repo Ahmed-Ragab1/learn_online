@@ -67,6 +67,8 @@ import AddQuizeQustion from "./teacher/AddQuizeQustion";
 import AssignQuiz from "./teacher/AssignQuiz";
 import Search from "./Search";
 
+import AttemptedStudents from "./teacher/AttemptedStudents";
+
 // course study matirials
 import StudyMaterials from "./teacher/StudyMaterials";
 import AddStudyMaterial from "./teacher/AddStudyMaterial";
@@ -150,6 +152,9 @@ function Main() {
 
             <Route path="/user/study-materials/:course_id" element={<UserStudyMaterials/>} />
             
+
+
+            <Route path="/attempted-students/:quiz_id" element={<AttemptedStudents  />} />
 
             
             

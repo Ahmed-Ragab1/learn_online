@@ -78,6 +78,7 @@ class Course(models.Model) :
     teacher     =  models.ForeignKey(Teacher,on_delete=models.CASCADE,related_name='teacher_courses')
     featured_img= models.ImageField(upload_to='course_imgs/', null=True)
     techs = models.TextField(null=True)
+    course_views= models.BigIntegerField(default=0)
 
     created_at  = models.DateTimeField(auto_now_add=True)
     updated_at  = models.DateTimeField(auto_now=True)

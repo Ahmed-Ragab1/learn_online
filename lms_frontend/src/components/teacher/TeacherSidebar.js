@@ -12,14 +12,14 @@ import {NavLink} from 'react-router-dom';
                             <NavLink to='/teacher-users' className='list-group-item list-group-item-action'>My Users</NavLink>
                             <NavLink to='/teacher-profile-setting' className='list-group-item list-group-item-action'> Profile Setting</NavLink>
                             <NavLink to='/teacher-change-password' className='list-group-item list-group-item-action'>Change Password</NavLink>
+                            <NavLink to='/quiz' className='list-group-item list-group-item-action'>Quiz</NavLink>
+                            <NavLink to='/add-quiz' className='list-group-item list-group-item-action'>Add Quiz</NavLink>
                             <NavLink to='/teacher-logout' className='list-group-item list-group-item-action text-danger'>Logout</NavLink>
-                        <NavLink to='/quiz' className='list-group-item list-group-item-action'>Quiz</NavLink>
-                        <NavLink to='/add-quiz' className='list-group-item list-group-item-action'>Add Quiz</NavLink>
 
 
 
                         </div>
-                    </div>
+        </div>
     )
     }
     export default TeacherSidebar;
