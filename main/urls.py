@@ -39,6 +39,8 @@ urlpatterns = [
   
     path('teacher-course-detail/<int:pk>',views.TeacherCourseDetail.as_view()),
 
+    path('popular-courses/', views.CourseRatingList.as_view()),
+
     #student
     path('student/', views.StudentList.as_view()),
     path('student/<int:pk>/', views.StudentDetail.as_view()),
@@ -54,7 +56,7 @@ urlpatterns = [
     path('course-rating/<int:course_id>', views.CourseRatingList.as_view()),
     path('fetch-rating-status/<int:student_id>/<int:course_id>',views.fetch_rating_status),
     path('fetch-recommened-courses/<int:studentId>',views.CourseList.as_view({'get': 'list'})),
-    
+
     
     path('fetch-enrolled-courses/<int:student_id>',views.EnrolledStudentList.as_view()),
     # {"get": "retrieve", "post": "create", "put": "update", "patch": "partial_update", "delete": "destroy"}
@@ -105,6 +107,19 @@ urlpatterns = [
     path('study-material/<int:pk>', views.StudyMaterialDetailView.as_view()),
 
     path('user/study-materials/<int:course_id>',views.StudyMaterialList.as_view()),
+
+    path('attempted-quiz/<int:quiz_id>',views.AttempQuizList.as_view()),
+
+    path('fetch-quiz-result/<int:quiz_id>/<int:student_id>',views.fetch_quiz_result_attempt_status),
+
+
+
+
+
+
+
+
+
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

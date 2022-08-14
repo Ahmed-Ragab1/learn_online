@@ -10,6 +10,8 @@ const baseUrl='http://127.0.0.1:8000/api';
 
 function Home() {
   const [courseData,setCourseData]=useState([]);
+  const [popularcourseData,setpopularcourseData]=useState([]);
+
 
   useEffect(()=>{
     try{
@@ -20,7 +22,19 @@ function Home() {
     }catch(error){
       console.log(error);
     }
+        // popular course Data
+    try{
+      axios.get(baseUrl+'/popular-courses/?popular=1')
+      .then((res)=>{
+        setpopularcourseData(res.data);
+      });
+    }catch(error){
+      console.log(error);
+    }
   },[]);
+
+  console.log(popularcourseData);
+  
     return (
       <div className="container mt-4" >
         {/* latest course */}
@@ -51,62 +65,22 @@ function Home() {
         {/* popular course */}
         <h3 className='pb-1 mb-4 mt-5'>popular Courses <NavLink to='/popular-cources' className='float-end'>see all</NavLink></h3>
         <div className="row mb-4">
+        {popularcourseData && popularcourseData.map((row,index)=> 
           <div className="col-md-3">
             <Card >
-              <a href='#'><Card.Img variant="top" src="logo512.png" /></a>
+            < NavLink to={`/detail/${row.course.id}`}><Card.Img variant="top" src={row.course.featured_img} /></NavLink>
               <Card.Body>
-                <Card.Title><a href='#'>course Title</a></Card.Title>
+              <Card.Title><NavLink to={`/detail/${row.course.id}`}>{row.course.title}</NavLink></Card.Title>
               </Card.Body>
               <div className='card-footer'>
                 <div className='title'>
-                  <span>Rating: 4.5/5</span>
+                  <span>Rating: {row.rating}</span>
                   <span className='float-end'>veiws: 200</span>
                 </div>
               </div>
             </Card>
           </div>
-          <div className="col-md-3">
-            <Card >
-              <a href='#'><Card.Img variant="top" src="logo512.png" /></a>
-              <Card.Body>
-                <Card.Title><a href='#'>course Title</a></Card.Title>
-              </Card.Body>
-                            <div className='card-footer'>
-                <div className='title'>
-                  <span>Rating: 4.5/5</span>
-                  <span className='float-end'>veiws: 200</span>
-                </div>
-              </div>
-            </Card>
-          </div>
-          <div className="col-md-3">
-            <Card >
-              <a href='#'><Card.Img variant="top" src="logo512.png" /></a>
-              <Card.Body>
-                <Card.Title><a href='#'>course Title</a></Card.Title>
-              </Card.Body>
-                            <div className='card-footer'>
-                <div className='title'>
-                  <span>Rating: 4.5/5</span>
-                  <span className='float-end'>veiws: 200</span>
-                </div>
-              </div>
-            </Card>
-          </div>
-          <div className="col-md-3">
-            <Card >
-              <a href='#'><Card.Img variant="top" src="logo512.png" /></a>
-              <Card.Body>
-                <Card.Title><a href='#'>course Title</a></Card.Title>
-              </Card.Body>
-              <div className='card-footer'>
-                <div className='title'>
-                  <span>Rating: 4.5/5</span>
-                  <span className='float-end'>veiws: 200</span>
-                </div>
-              </div>
-            </Card>
-          </div>
+        )}
         </div>
         {/*end popular course */}     
 

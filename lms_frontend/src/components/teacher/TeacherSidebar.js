@@ -19,7 +19,7 @@ import {NavLink} from 'react-router-dom';
 
 
                         </div>
-                    </div>
+        </div>
     )
     }
     export default TeacherSidebar;
