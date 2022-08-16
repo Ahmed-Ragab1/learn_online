@@ -16,7 +16,7 @@ class Teacher(models.Model):
     password      = models.CharField(max_length=100,blank=True,null=True)
     qualification = models.CharField(max_length=200)
     mobile_no     = models.CharField(max_length=20)
-    profile_img=models.ImageField(upload_to='teacher_profile_imgs/',null=True)
+    profile_img   =models.ImageField(upload_to='teacher_profile_imgs/',null=True)
     skills        = models.TextField(null=True)
 
     def __str__(self) -> str:

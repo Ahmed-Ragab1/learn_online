@@ -71,8 +71,9 @@ const {course_id}=useParams();
 
     const formsubmit=()=>{
         const _formData=new FormData();
-        _formData.append('category',courseData.category)
-        _formData.append('teacher',2)
+        const teacherId=localStorage.getItem('teacherId');
+        _formData.append('category',courseData.category.id)
+        _formData.append('teacher',teacherId)
         _formData.append('title',courseData.title)
         _formData.append('describtion',courseData.describtion)
         if(courseData.f_img!==''){

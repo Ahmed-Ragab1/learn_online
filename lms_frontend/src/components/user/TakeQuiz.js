@@ -38,6 +38,7 @@ function TakeQuiz(){
                     try{
                         axios.get(baseUrl+'/quiz-questions/'+quiz_id+'/next-question/'+question_id).then((res)=>{
                             setquestionData(res.data);
+                            window.location.href='/my-courses'
                         })
                     }
                     catch(error){

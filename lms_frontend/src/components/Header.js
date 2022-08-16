@@ -16,19 +16,28 @@ function Header() {
   const teacherLoginStatus=localStorage.getItem('teacherLoginStatus')
   const studentLoginStatus=localStorage.getItem('studentLoginStatus')
   const handleChange=(event)=>{
-    setsearchString({
-      ...searchString,
-      [event.target.name]:event.target.value
-    })
+    // setsearchString({
+    //   ...searchString,
+    //   [event.target.name]:event.target.value
+    // })
 
-
+    setsearchString(event.target.value)
+    
+    
   }
+  
 
+  // const searchCourse =()=>{
+  //   if(searchString.search!=''){
+  //     window.location.href='/search/'+searchString.search
+  //   }
+  // }
   const searchCourse =()=>{
-    if(searchString.search!=''){
-      window.location.href='/search/'+searchString.search
+      if(searchString){
+        window.location.href='/search/'+searchString.search
+        localStorage.setItem('search',searchString)
+      }
     }
-  }
 
     return (
       <Navbar bg="dark" expand="lg" className="navbar-dark">
@@ -58,8 +67,12 @@ function Header() {
                     <NavDropdown.Item href="/teacher-register">Register</NavDropdown.Item>
                     </>
               }
+              {teacherLoginStatus =='true' &&
+              <>
               <NavDropdown.Item href="/teacher-logout">Logout</NavDropdown.Item>
               <NavDropdown.Item href="/teacher-dashboard">Dashboard</NavDropdown.Item>
+              </>
+              }
             </NavDropdown>
 
         

@@ -28,10 +28,9 @@ class TeacherList(generics.ListCreateAPIView):
     queryset = Teacher.objects.all()
     serializer_class = TeacherSerializer
     # permission_classes = [permissions.IsAuthenticated]
-    def get_queryset(self):
-        if 'popular' in self.request.GET:
-            sql="SELECT 1 as id,COUNT(c.id) as total_course FROM main_teacher as t INNER JOIN main_course as c ON c.teacher_id=t.id GROUP BY t.id ORDER BY total_course desc"
-            return models.Teacher.objects.raw(sql)
+   
+
+   
 class TeacherDashboard(generics.RetrieveAPIView):
     queryset=Teacher.objects.all()
     serializer_class =  TeacherDashboardSerializer
@@ -129,10 +128,6 @@ class CourseList(viewsets.ModelViewSet):
             teacher=models.Teacher.objects.filter(id=teacher).first()
             qs=models.Course.objects.filter(techs__icontains=skill_name,teacher=teacher) 
 
-        if 'searchstring' in self.kwargs:
-            search=self.kwargs['searchstring']
-            if search:
-                qs=models.Course.objects.filter(Q(title__istartwith=search)|Q(techs__istartwith=search)) 
 
         elif 'studentId' in self.kwargs:
             student_id=self.kwargs['studentId']
@@ -143,6 +138,22 @@ class CourseList(viewsets.ModelViewSet):
                 query |= item
             qs=models.Course.objects.filter(query)
             return qs        
+        return qs
+
+
+
+
+
+class SearchCourseList(generics.ListCreateAPIView):
+    queryset = models.Course.objects.all()
+    serializer_class = CourseSerializer
+
+    def get_queryset(self):
+        qs=super().get_queryset()
+        if 'searchstring' in self.kwargs:
+            search=self.kwargs['searchstring']
+            if search:
+                qs=models.Course.objects.filter(title=search) 
         return qs
 
 

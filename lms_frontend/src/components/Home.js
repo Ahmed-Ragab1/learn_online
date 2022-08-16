@@ -56,6 +56,9 @@ function Home() {
     }
   },[]);
 
+
+
+  console.log(courseData);
   
     return (
       <div className="container mt-4" >
@@ -68,15 +71,21 @@ function Home() {
       </h3>
 
       
-      <div className="row mb-4">
+      <div className="row mb-4 cardmain">
       {courseData && courseData.map((course,index)=>
           
-          <div className="col-md-3 mb-4">
-            <Card >
+          <div className="col-md-3 mb-4 cardcontainer">
+            <Card className='cardhome'>
               < NavLink to={`/detail/${course.id}`}><Card.Img variant="top" src={course.featured_img} /></NavLink>
-              <Card.Body>
+              <Card.Body className='cardhomebody'>
                 <p></p>
                 <Card.Title><NavLink to={`/detail/${course.id}`}>{course.title}</NavLink></Card.Title>
+              <div className='card-footer mt-1'>
+                <div className='title'>
+                  <span>Rating: {course.course_rating}</span>
+                  <span className='float-end'>techs: {course.techs}</span>
+                </div>
+              </div>
               </Card.Body>
             </Card>
           </div>
@@ -107,7 +116,7 @@ function Home() {
         {/*end popular course */}     
 
          {/* popular Teachers */}
-         <h3 className='pb-1 mb-4 mt-5'>popular Teachers<NavLink to='/popular-teachers' className='float-end'>see all</NavLink></h3>
+         <h3 className='pb-1 mb-4 mt-5'>Teachers<NavLink to='/popular-teachers' className='float-end'>see all</NavLink></h3>
         <div className="row mb-4">
         {popularteachersData && popularteachersData.map((teacher,index)=> 
           <div className="col-md-3">

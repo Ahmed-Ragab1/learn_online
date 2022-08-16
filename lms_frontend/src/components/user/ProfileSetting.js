@@ -71,7 +71,7 @@ function ProfileSetting(){
         studentFormData.append('username',studentData.username)
         studentFormData.append('interesed_categories',studentData.interesed_categories)
         if(studentData.p_img!==''){
-            studentFormData.append('profile_img',studentData.p_img.name);
+            studentFormData.append('profile_img',studentData.p_img);
         }
 
         try{

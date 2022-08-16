@@ -59,7 +59,7 @@ function TeacherLogin() {
 
 
   return (
-    <div className="container mt-4">
+    <div className="container" style={{margin:"90px"}}>
       <div className="row">
         <div className="col-6 offset-3">
           <div className="card">
@@ -92,12 +92,6 @@ function TeacherLogin() {
                   onChange={handleChange}
                 />
               </div>
-
-              {/* 
-                                <div className='mb-3 form-check'>
-                                    <label for='exampleCheck1' className='form-check-label'>Remember Me</label>
-                                    <input type='checkbox' className='form-check-input' id='exampleCheck1'/>
-                                </div> */}
               <button type="submit" className="btn btn-primary" onClick={submitForm}>
                 Login
               </button>

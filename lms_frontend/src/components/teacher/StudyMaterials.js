@@ -85,7 +85,7 @@ function StudyMaterials(){
                     <tr>
                     <td>{row.title}</td>
                     <td>
-                    <button className='btn btn-outline-primary' onClick={()=>downloadfile(row.upload)}>Download File</button>
+                    <button className='btn btn-outline-primary' onClick={()=>downloadfile(row.upload)} downloadfile>Download File</button>
                     </td>
                     <td><NavLink to='/'>{row.remarks}</NavLink></td>
                     <td>

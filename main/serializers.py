@@ -11,12 +11,12 @@ class TeacherSerializer(serializers.ModelSerializer):
         model = models.Teacher
         fields = ['id','full_name','email','password','qualification','mobile_no','skills','profile_img','teacher_courses','skill_list','total_teacher_courses']
         
-        def __init__(self,*args,**kwargs):
-            super(TeacherSerializer,self).__init__(*args,**kwargs)
-            request = self.context.get('request')
-            self.Meta.depth=0
-            if request and request.method == 'GET':
-                self.Meta.depth=1
+    def __init__(self,*args,**kwargs):
+        super(TeacherSerializer,self).__init__(*args,**kwargs)
+        request = self.context.get('request')
+        self.Meta.depth=0
+        if request and request.method == 'GET':
+            self.Meta.depth=2
                 
 class TeacherDashboardSerializer(serializers.ModelSerializer):
     class Meta:

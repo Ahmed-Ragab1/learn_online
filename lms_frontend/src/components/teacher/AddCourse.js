@@ -83,7 +83,7 @@ function AddCourse(){
                     <TeacherSidebar />
                 </aside>
                 <section className='col-md-9'>
-                    <div className='card'>
+                    <div className='card' style={{backgroundColor:' #f2f2f2'}}>
                         <h5 className='card-header'>Add Course</h5>
                         <div className='card-body'>
                         <form>

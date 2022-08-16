@@ -13,6 +13,10 @@ export default function TeacherDetail() {
   let {teacher_id}=useParams();
 
 
+  console.log(teacherData);
+  console.log(skilllist);
+
+
   useEffect(()=>{
     try{
         axios.get(baseUrl+'/teacher/'+teacher_id).then((res)=>{
@@ -53,7 +57,8 @@ export default function TeacherDetail() {
    
           </p>
           <p className="fw-bold">Recent Courses: <NavLink to="/category/php"> node js</NavLink></p>
-          <p className="fw-bold">rating: 3/5</p>
+          <p className="fw-bold">mobile:<span className="text-primary"> {teacherData.mobile_no}</span> </p>
+          <p className="fw-bold">qualification:<span className="text-primary"> {teacherData.qualification}</span> </p>
         </div>
       </div>
 

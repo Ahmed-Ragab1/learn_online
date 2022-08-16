@@ -57,6 +57,31 @@ function CourseChapters(){
     }
 
 
+    const handelDeletecourseClick = (course_id)=>{
+        Swal.fire({
+            title: 'Confirm',
+            text: 'Do you want to delete this data ?',
+            icon: 'info',
+            confirmButtonText: 'continue',
+            showCancelButton : true
+          }).then((result)=>{
+            if(result.isConfirmed){
+                try{
+                    axios.delete(baseUrl+'/course/'+course_id)
+                    .then((res)=>{
+                        Swal.fire('success','data has been deleted');
+                        window.location.href='/teacher-courses'
+                    });
+                }catch(error){
+                    Swal.fire('error','data has not been deleted');
+                }
+            }else{
+                Swal.fire('error','data has not been deleted')
+            }
+          })
+    }
+
+
     return (
         <div className='container mt-4'>
         <div className='row'>
@@ -65,7 +90,10 @@ function CourseChapters(){
             </aside>
             <section className='col-md-9'>
             <div className='card'>
-        <h5 className='card-header'>All Chapters ({totalResult}) <NavLink className='btn btn-success btn-sm float-end' to={'/add-chapter/'+course_id}>Add Chapter</NavLink></h5>
+        <h5 className='card-header'>All Chapters ({totalResult})
+         <NavLink className='btn btn-success btn-sm float-end' to={'/add-chapter/'+course_id}>Add Chapter</NavLink>
+         <button  onClick={()=>handelDeletecourseClick(course_id)} className='btn btn-sm btn-danger ms-2'><i class="bi bi-trash">delete course</i></button>
+         </h5>
         <div className='card-body'>
             <table className='table table-bordered'>
                 <thead>
@@ -89,7 +117,6 @@ function CourseChapters(){
                     </td>
                     <td><NavLink to='/'>{chapter.remarks}</NavLink></td>
                     <td><Link to={ '/edit-chapter/' + chapter.id } className='btn btn-sm btn-info'><i class="bi bi-pencil-square"></i></Link>
-                        <button  onClick={handelDeleteClick} className='btn btn-sm btn-danger ms-2'><i class="bi bi-trash"></i></button>
                         <button  onClick={()=>handelDeleteClick(chapter.id)} className='btn btn-sm btn-danger ms-2'><i class="bi bi-trash"></i></button>
                         
                     </td>

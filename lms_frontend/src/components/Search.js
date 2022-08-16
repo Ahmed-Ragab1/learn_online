@@ -4,15 +4,19 @@ import {useEffect,useState} from 'react'
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
+
 const baseUrl='http://127.0.0.1:8000/api';
 
-function Search(){
+function Search(props){
   const [courseData,setCourseData]=useState([]);
-  const [searchstring]=useParams();
+
+  // const [searchstring]=useParams();
+
+  const searchstring=localStorage.getItem('search')
 
   useEffect(()=>{
     try{
-      axios.get(baseUrl+'/search-courses/'+searchstring)
+      axios.get(baseUrl+'/search-course/'+searchstring)
       .then((res)=>{
         setCourseData(res.data);
       });
@@ -21,35 +25,26 @@ function Search(){
     }
   },[]);
 
+  
+
     return(
-<div className='container mt-3'>
+<div className='container mt-3 searchimg'>
         {/* latest course */}
         <h3 className='pb-1 mb-4 mt-3'>Searched For <span className='text-primary'>{searchstring}</span></h3>
         <div className="row mb-4">
           {courseData && courseData.map((course,index)=>
           
-          <div className="col-md-3 mb-4">
+          <div className="col-md-3 mb-4 ">
             <Card >
-              < NavLink to={`/detail/${course.id}`}><Card.Img variant="top" src={course.featured_img} /></NavLink>
+              < NavLink to={`/detail/${course.id}`}><Card.Img className="card-img" src={course.featured_img} /></NavLink>
               <Card.Body>
-                <Card.Title><NavLink to={`/detail/${course.id}`}>{course.title}</NavLink></Card.Title>
+                <Card.Title><NavLink className="btn btn-outline-primary w-100" to={`/detail/${course.id}`}><i class='fa fa-sign-in-alt'>{course.title} details</i></NavLink></Card.Title>
               </Card.Body>
             </Card>
           </div>
        )}
         </div>
-        {/*end latest course */}   
-        {/* Pagination  */}
-        <nav aria-label="Page navigation example mt-5">
-  <ul class="pagination justify-content-center">
-    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-  </ul>
-</nav>
-                {/* Pagination  */}
+        {/*end latest course */}
 
         </div>
     )
