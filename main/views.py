@@ -424,6 +424,9 @@ class NotificationList(generics.ListCreateAPIView):
         student_id=self.kwargs['student_id']
         student=models.Student.objects.get(pk=student_id)
         return models.Notification.objects.filter(student=student,notif_for='student',notif_subject='assignment',notifiread_status=False)
+
+
+
 class QuizList(generics.ListCreateAPIView):
     queryset = models.Quiz.objects.all()
     serializer_class=QuizSerializer

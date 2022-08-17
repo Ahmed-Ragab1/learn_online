@@ -275,7 +275,6 @@ function CourseDetail(){
                     </>
                     )}
                     </p>
-                    <p className='fw-bold'>duration: 30 minutes</p>
                     <p className='fw-bold'>total enroled: {courseData.total_enrolled_students} student</p>
                     <p className='fw-bold'>rating: {AvgRating}/5
                     { enrollStatus === 'success' && userLoginStatus === 'success' &&
@@ -390,8 +389,8 @@ function CourseDetail(){
                     <div className="row mb-4">
                     {realtedcourseData?.map((rcourse,index)=>
                     <div className="col-md-3">
-                    <div className='card'>
-                        <Link target="_blank" to={`/detail/${rcourse.pk}`}><img src={`${siteUrl}media/${rcourse.fields.featured_img}`} className='card-img-top' />
+                    <div className='card m-2'>
+                        <Link target="_blank" to={`/detail/${rcourse.pk}`}><img src={`${siteUrl}media/${rcourse.fields.featured_img}`} className='card-img-top '  height='200px' />
                         </Link>
                             <div className='card-body'>
                                 <h5 className='card-title'><Link to={`/detail/${rcourse.pk}`}>{rcourse.fields.title}</Link></h5>

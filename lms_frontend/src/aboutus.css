@@ -1,0 +1,137 @@
+  /* about us */
+  .figrem{
+    overflow-wrap: break-word;
+    font-family: "Mont", Sans-serif;
+    font-weight: 800px;
+    line-height: 46px;
+  }
+
+.figre{
+  margin: 0px 10%;
+}
+
+.pra{
+  margin-left: 20px;
+}
+
+.ourmission{
+  font-family: "cursive";
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1.2;
+}
+
+
+
+
+/* card about us */
+.father {
+  width:350px;
+  height:350px;
+  margin:50px auto;
+  position:relative;
+  transform-style: preserve-3d;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  transition:all .6s ease-in-out;
+  border-radius:11px; 
+}
+
+.father > div {
+  position:absolute;
+  top:0px;
+  left:0px;
+  width:100%;
+  height:100%;
+  font-size:30px;
+  line-height: 1.7;
+  text-align: center;
+  
+  
+}
+
+.father  .front {
+  background-color:#FAFAFA;
+  z-index:2;
+  backface-visibility: hidden;
+  border-radius:11px;
+  color:#fff;     
+}
+
+.father .front header {
+  border-radius:11px 11px 0px 0px;
+  height:110px;
+  background-color:rgb(63,81,181);
+  padding:40px;
+  color:#fff!important;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+  
+  
+
+}
+
+.father .front  h3 {
+  font-family: arial;
+  font-size:20px;
+  text-transform:uppercase;
+  word-spacing:.4em;
+  font-weight: 500 !important;
+  margin-top:50px;
+}
+.father .front  p {
+  font-size:15px;
+  margin:65px 15px;
+  line-height:1.8;
+  word-spacing:2px;
+  
+}
+
+
+.father .back {
+  background-color:#FAFAFA;
+  transform: rotateY(180deg);
+  z-index:1;  
+  backface-visibility: hidden;
+  border-radius:11px;
+  color:rgb(0, 0, 0);
+  text-align:center;
+  
+}
+.father .back header {
+  border-radius:11px 11px 0px 0px;
+  height:90px;
+  background-color:rgb(63,81,181);
+  padding:20px;
+  color:#fff!important;
+  margin-bottom:10px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+  
+}
+
+.father .back h2 {
+  font-size:20px;
+  font-weight: 500;
+  text-transform:uppercase;
+  word-spacing:3px;
+  letter-spacing:1.7px;
+
+}
+.father .back ul {
+  list-style:none;
+  margin:0px;
+  padding:0px;
+  margin-bottom:50px;
+}
+.father .back  p {
+  font-size:15px;
+  line-height:1.8;
+  word-spacing:2px;
+
+  
+}
+
+
+.father:hover {
+  transform: rotateY(180deg) ;
+  
+}
+

@@ -13,17 +13,17 @@ function Footer() {
           <section className="mb-4">
             <p>you can find us in :</p>
             {/* <!-- Facebook --> */}
-            <a className="btn btn-primary btn-floating m-1" style={{backgroundColor: "#3b5998"}} href="#!" role="button"><i className="fa fa-facebook-f"></i></a>
+            <a className="btn btn-primary btn-floating m-1" style={{backgroundColor: "#3b5998"}} href="https://www.facebook.com/ITI.eg" role="button"><i className="fa fa-facebook-f"></i></a>
 
             {/* <!-- Google --> */}
-            <a className="btn btn-primary btn-floating m-1" style={{backgroundColor: "#dd4b39"}} href="#!" role="button"><i className="fa fa-google"></i
+            <a className="btn btn-primary btn-floating m-1" style={{backgroundColor: "#dd4b39"}} href="https://www.iti.gov.eg" role="button"><i className="fa fa-google"></i
             ></a>
 
             {/* <!-- Linkedin --> */}
-            <a className="btn btn-primary btn-floating m-1" style={{backgroundColor: "#0082ca"}} href="#!" role="button"><i className="fa fa-linkedin"></i
+            <a className="btn btn-primary btn-floating m-1" style={{backgroundColor: "#0082ca"}} href="https://www.linkedin.com/in/abdallah-mohamed-52893322b/" role="button"><i className="fa fa-linkedin"></i
             ></a>
             {/* <!-- Github --> */}
-            <a className="btn btn-primary btn-floating m-1" style={{backgroundColor: "#333333"}} href="#!" role="button"><i className="fa fa-github"></i></a>
+            <a className="btn btn-primary btn-floating m-1" style={{backgroundColor: "#333333"}} href="https://github.com/PROFabdalla" role="button"><i className="fa fa-github"></i></a>
            {/* <!-- call --> */} 
             <a className="btn btn-primary btn-floating m-1" style={{backgroundColor: "#0082ca",fontSize:17}} href="tel:01143306714" role="button"><i className="fa fa-address-book"></i></a>
             {/* <!-- whats app --> */}       

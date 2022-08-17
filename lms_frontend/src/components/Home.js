@@ -78,9 +78,8 @@ function Home() {
             <Card className='cardhome'>
               < NavLink to={`/detail/${course.id}`}><Card.Img variant="top" src={course.featured_img} /></NavLink>
               <Card.Body className='cardhomebody'>
-                <p></p>
                 <Card.Title><NavLink to={`/detail/${course.id}`}>{course.title}</NavLink></Card.Title>
-              <div className='card-footer mt-1'>
+              <div className='card-footer mt-4'>
                 <div className='title'>
                   <span>Rating: {course.course_rating}</span>
                   <span className='float-end'>techs: {course.techs}</span>
