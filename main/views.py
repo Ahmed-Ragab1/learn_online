@@ -502,16 +502,29 @@ class AttempQuizList(generics.ListCreateAPIView):
             # return models.AttempQuiz.objects.raw(f'SELECT * FROM main_attempquiz WHERE quiz_id={int(quiz_id)} GROUP by student_id')
             return models.AttempQuiz.objects.filter(quiz=quiz)
 
+
+
 def fetch_quiz_result_attempt_status(request,quiz_id,student_id):
     quiz = models.Quiz.objects.filter(id=quiz_id).first()
     student = models.Student.objects.filter(id=student_id).first()
-    attemptStatus = models.AttempQuiz.objects.filter(student=student,question__quiz=quiz).count()
-    total_attempted_questions=models.AttempQuiz.objects.filter(quiz=quiz,student=student).count()
+    # attemptStatus = models.AttempQuiz.objects.filter(student=student,question__quiz=quiz).count()
     total_questions=models.QuizQuestions.objects.filter(quiz=quiz).count()
-    if attemptStatus > 0:
-        return JsonResponse({'total_questions':total_questions,'total_attempted_questions':total_attempted_questions}) 
-    else:
-        return JsonResponse({'bool':False})
+    total_attempted_questions=models.AttempQuiz.objects.filter(quiz=quiz,student=student).values('student').count()
+    attempted_questions=models.AttempQuiz.objects.filter(quiz=quiz,student=student)
+
+    total_correct_questions=0
+    for attempt in attempted_questions:
+        if attempt.right_ans == attempt.question.right_ans:
+            total_correct_questions +=1 
+
+    
+    
+    return JsonResponse({'total_questions':total_questions,'total_correct_questions':total_correct_questions,'total_attempted_questions':total_attempted_questions}) 
+    
+    
+    # if attemptStatus > 0:
+    # else:
+    #     return JsonResponse({'bool':False})
 
 
 

@@ -26,7 +26,7 @@ function AttemptedStudents(){
     
    },[]);
 
-
+//    console.log(studentData);
 
    
 
@@ -67,7 +67,7 @@ function AttemptedStudents(){
                                 </button>
 
                                 <div className="modal fade" id={`resultModel${row.id}`} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <QuizResult quiz={row.question.quiz.id} student={row.student.id} />
+                                    <QuizResult quiz={row.question.quiz} student={row.student.id} />
                                 </div>
                             </td>
                         </tr>
