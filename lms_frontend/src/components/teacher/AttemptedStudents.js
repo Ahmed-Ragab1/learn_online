@@ -26,7 +26,7 @@ function AttemptedStudents(){
     
    },[]);
 
-//    console.log(studentData);
+   console.log(studentData);
 
    
 

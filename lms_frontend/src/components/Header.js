@@ -58,6 +58,7 @@ function Header() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
+            <Nav.Link href="/about">About us</Nav.Link>
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/all-courses">Courses</Nav.Link>
             <NavDropdown title="Teacher" id="basic-nav-dropdown">

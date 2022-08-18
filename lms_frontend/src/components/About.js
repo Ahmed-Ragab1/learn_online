@@ -33,15 +33,18 @@ function About(){
         {/* our vission */}
         <h3 className='ourmission'><strong>Our Vision</strong></h3>
         <p className="pra">The Office of Online Learning strives to position Loyola University Chicago as a leading institution of higher education in the delivery of high-quality online degree programs that serve the evolving needs of diverse student learners. </p>
+        </div>
 
-
-
-
-
+        <div className="container">
+    {/* owners */}
+        <h3 className='ourmission'><strong>Owners</strong></h3>
+        </div>
+    <div className='row'>
+    <div className='col-md-4'>
     <div class="father">
       <div class="front">
         <header>abdalla mohamed</header>
-        <img src="#" width="100%" />
+        <img src="abdalla.jpeg" width="100%" height="69%" style={{borderRadius: "5px 10px 5px 5px"}}/>
       </div>
       <div class="back">
         <header>Find Me On</header>
@@ -56,16 +59,101 @@ function About(){
             </ul>
         </div>
       </div>
-  
     </div>
-  
+    </div>
 
-
-
-
-
-        
+        <div className='col-md-4'>
+    <div class="father">
+      <div class="front">
+        <header>abdalla mohamed</header>
+        <img src="abdalla.jpeg" width="100%" height="69%" style={{borderRadius: "5px 10px 5px 5px"}}/>
+      </div>
+      <div class="back">
+        <header>Find Me On</header>
+        <div class="container">
+            <div>
+                <p>I’m a web developer. I spend my whole day, practically every day, experimenting with coding . CODING IS LIFE</p>
+                <p>Graduated from Benha University in 2020</p>
+            </div>
+            <ul className="d-flex align-items-center flex-row">
+                <a className="btn btn-primary btn-floating m-1 mt-2 w-50" style={{backgroundColor: "#0082ca"}} href="tel:01143306714" role="button"><i className="fa fa-address-book"></i> Phone</a>
+                <a className="btn btn-primary btn-floating m-1 mt-2 w-50" style={{backgroundColor: "#00ff00"}} href=" https://wa.me/01143306714" role="button"><i className="fa fa-whatsapp"></i> Whatsapp</a>
+            </ul>
         </div>
+      </div>
+    </div>
+    </div>
+
+        <div className='col-md-4'>
+    <div class="father">
+      <div class="front">
+        <header>abdalla mohamed</header>
+        <img src="abdalla.jpeg" width="100%" height="69%" style={{borderRadius: "5px 10px 5px 5px"}}/>
+      </div>
+      <div class="back">
+        <header>Find Me On</header>
+        <div class="container">
+            <div>
+                <p>I’m a web developer. I spend my whole day, practically every day, experimenting with coding . CODING IS LIFE</p>
+                <p>Graduated from Benha University in 2020</p>
+            </div>
+            <ul className="d-flex align-items-center flex-row">
+                <a className="btn btn-primary btn-floating m-1 mt-2 w-50" style={{backgroundColor: "#0082ca"}} href="tel:01143306714" role="button"><i className="fa fa-address-book"></i> Phone</a>
+                <a className="btn btn-primary btn-floating m-1 mt-2 w-50" style={{backgroundColor: "#00ff00"}} href=" https://wa.me/01143306714" role="button"><i className="fa fa-whatsapp"></i> Whatsapp</a>
+            </ul>
+        </div>
+      </div>
+    </div>
+    </div>
+        <div className='container'>
+        <div className='row'>
+        <div className='col-md-6'>
+    <div class="father">
+      <div class="front">
+        <header>abdalla mohamed</header>
+        <img src="abdalla.jpeg" width="100%" height="69%" style={{borderRadius: "5px 10px 5px 5px"}}/>
+      </div>
+      <div class="back">
+        <header>Find Me On</header>
+        <div class="container">
+            <div>
+                <p>I’m a web developer. I spend my whole day, practically every day, experimenting with coding . CODING IS LIFE</p>
+                <p>Graduated from Benha University in 2020</p>
+            </div>
+            <ul className="d-flex align-items-center flex-row">
+                <a className="btn btn-primary btn-floating m-1 mt-2 w-50" style={{backgroundColor: "#0082ca"}} href="tel:01143306714" role="button"><i className="fa fa-address-book"></i> Phone</a>
+                <a className="btn btn-primary btn-floating m-1 mt-2 w-50" style={{backgroundColor: "#00ff00"}} href=" https://wa.me/01143306714" role="button"><i className="fa fa-whatsapp"></i> Whatsapp</a>
+            </ul>
+        </div>
+      </div>
+    </div>
+    </div>
+
+        <div className='col-md-6'>
+    <div class="father">
+      <div class="front">
+        <header>abdalla mohamed</header>
+        <img src="abdalla.jpeg" width="100%" height="69%" style={{borderRadius: "5px 10px 5px 5px"}}/>
+      </div>
+      <div class="back">
+        <header>Find Me On</header>
+        <div class="container">
+            <div>
+                <p>I’m a web developer. I spend my whole day, practically every day, experimenting with coding . CODING IS LIFE</p>
+                <p>Graduated from Benha University in 2020</p>
+            </div>
+            <ul className="d-flex align-items-center flex-row">
+                <a className="btn btn-primary btn-floating m-1 mt-2 w-50" style={{backgroundColor: "#0082ca"}} href="tel:01143306714" role="button"><i className="fa fa-address-book"></i> Phone</a>
+                <a className="btn btn-primary btn-floating m-1 mt-2 w-50" style={{backgroundColor: "#00ff00"}} href=" https://wa.me/01143306714" role="button"><i className="fa fa-whatsapp"></i> Whatsapp</a>
+            </ul>
+        </div>
+      </div>
+    </div>
+    </div>
+          
+    </div>
+    </div>
+    </div>
         </>
     )
 }

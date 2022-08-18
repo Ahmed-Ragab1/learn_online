@@ -20,7 +20,7 @@ function QuizResult(props){
     }
    },[]);
 
-   console.log(resultData);
+//    console.log(resultData);
 
     return (
         

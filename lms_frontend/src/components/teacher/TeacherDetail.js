@@ -14,7 +14,6 @@ export default function TeacherDetail() {
 
 
   console.log(teacherData);
-  console.log(skilllist);
 
 
   useEffect(()=>{
@@ -37,13 +36,14 @@ export default function TeacherDetail() {
       <div className="row">
         <div className="col-4">
           <img
-            src="/logo512.png"
+            src={teacherData.profile_img}
             className="img-thumbnail"
             alt="Teacher"
+            height="300px"
           />
         </div>
         <div className="col-8">
-          <h3>{teacherData.full_name}</h3>
+          <h3 style={{fontFamily: "cursive"}}>{teacherData.full_name}</h3>
           <p>
           {teacherData.detail}
           </p>
