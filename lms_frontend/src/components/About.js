@@ -35,16 +35,17 @@ function About(){
         <p className="pra">The Office of Online Learning strives to position Loyola University Chicago as a leading institution of higher education in the delivery of high-quality online degree programs that serve the evolving needs of diverse student learners. </p>
         </div>
 
-        <div className="container">
     {/* owners */}
+        <div className="container">
         <h3 className='ourmission'><strong>Owners</strong></h3>
         </div>
+    <div className='container'>
     <div className='row'>
     <div className='col-md-4'>
     <div class="father">
       <div class="front">
-        <header>abdalla mohamed</header>
-        <img src="abdalla.jpeg" width="100%" height="69%" style={{borderRadius: "5px 10px 5px 5px"}}/>
+        <header>Abdalla Mohamed</header>
+        <img src="abdalla.jpeg" width="100%" height="87%" style={{borderRadius: "0px 0px 5px 5px"}}/>
       </div>
       <div class="back">
         <header>Find Me On</header>
@@ -65,15 +66,15 @@ function About(){
         <div className='col-md-4'>
     <div class="father">
       <div class="front">
-        <header>abdalla mohamed</header>
-        <img src="abdalla.jpeg" width="100%" height="69%" style={{borderRadius: "5px 10px 5px 5px"}}/>
+        <header>Ahmed Badwi</header>
+        <img src="ahmed badawi.jpg" width="100%" height="87%" style={{borderRadius: "0px 0px 5px 5px"}}/>
       </div>
       <div class="back">
         <header>Find Me On</header>
         <div class="container">
             <div>
                 <p>I’m a web developer. I spend my whole day, practically every day, experimenting with coding . CODING IS LIFE</p>
-                <p>Graduated from Benha University in 2020</p>
+                <p>Graduated from MUST University in 2020</p>
             </div>
             <ul className="d-flex align-items-center flex-row">
                 <a className="btn btn-primary btn-floating m-1 mt-2 w-50" style={{backgroundColor: "#0082ca"}} href="tel:01143306714" role="button"><i className="fa fa-address-book"></i> Phone</a>
@@ -87,15 +88,15 @@ function About(){
         <div className='col-md-4'>
     <div class="father">
       <div class="front">
-        <header>abdalla mohamed</header>
-        <img src="abdalla.jpeg" width="100%" height="69%" style={{borderRadius: "5px 10px 5px 5px"}}/>
+        <header>Ahmed Ragab</header>
+        <img src="ahmed ragab.jpg" width="100%" height="87%" style={{borderRadius: "0px 0px 5px 5px"}}/>
       </div>
       <div class="back">
         <header>Find Me On</header>
         <div class="container">
             <div>
                 <p>I’m a web developer. I spend my whole day, practically every day, experimenting with coding . CODING IS LIFE</p>
-                <p>Graduated from Benha University in 2020</p>
+                <p>Graduated from Alex University in 2021</p>
             </div>
             <ul className="d-flex align-items-center flex-row">
                 <a className="btn btn-primary btn-floating m-1 mt-2 w-50" style={{backgroundColor: "#0082ca"}} href="tel:01143306714" role="button"><i className="fa fa-address-book"></i> Phone</a>
@@ -110,8 +111,8 @@ function About(){
         <div className='col-md-6'>
     <div class="father">
       <div class="front">
-        <header>abdalla mohamed</header>
-        <img src="abdalla.jpeg" width="100%" height="69%" style={{borderRadius: "5px 10px 5px 5px"}}/>
+        <header>Abdalla Isammel</header>
+        <img src="#"width="100%" height="87%" style={{borderRadius: "0px 0px 5px 5px"}}/>
       </div>
       <div class="back">
         <header>Find Me On</header>
@@ -132,8 +133,8 @@ function About(){
         <div className='col-md-6'>
     <div class="father">
       <div class="front">
-        <header>abdalla mohamed</header>
-        <img src="abdalla.jpeg" width="100%" height="69%" style={{borderRadius: "5px 10px 5px 5px"}}/>
+        <header>Abdelrahman Selim</header>
+        <img src="#" width="100%" height="87%" style={{borderRadius: "0px 0px 5px 5px"}}/>
       </div>
       <div class="back">
         <header>Find Me On</header>
@@ -151,6 +152,7 @@ function About(){
     </div>
     </div>
           
+    </div>
     </div>
     </div>
     </div>
