@@ -120,21 +120,21 @@ class Chapter(models.Model) :
         return self.title
 
 
-    def chapter_duration(self):
-        seconds=0
-        import cv2
-        cap = cv2.VideoCapture(self.video.path)
-        fps = cap.get(cv2.CAP_PROP_FPS)
-        frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-        if frame_count:
-            duration = frame_count/fps
-            print('fps = ' + str(fps))
-            print('number of frams  = ' + str(frame_count))
-            print('duration  = ' + str(duration))
-            minutes = int(duration/60)
-            seconds  = duration%60
-            print('duration (M:S) = ' + str(minutes) + ':' + str(seconds))
-        return seconds
+    # def chapter_duration(self):
+    #     seconds=0
+    #     import cv2
+    #     cap = cv2.VideoCapture(self.video.path)
+    #     fps = cap.get(cv2.CAP_PROP_FPS)
+    #     frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    #     if frame_count:
+    #         duration = frame_count/fps
+    #         print('fps = ' + str(fps))
+    #         print('number of frams  = ' + str(frame_count))
+    #         print('duration  = ' + str(duration))
+    #         minutes = int(duration/60)
+    #         seconds  = duration%60
+    #         print('duration (M:S) = ' + str(minutes) + ':' + str(seconds))
+    #     return seconds
 
 
 
@@ -150,7 +150,6 @@ class StudentCourseEnrollment(models.Model):
         verbose_name_plural= "Enrolled Courses"
     
     def __str__(self) -> str:
-        return f"{self.student}-{self.course}"
         return f"{self.student}-{self.course}"
 
 
@@ -195,19 +194,22 @@ class StudentAssignment(models.Model):
 
 # notification maodel
 class Notification(models.Model):
-    teacher=models.ForeignKey(Teacher,on_delete=models.CASCADE,null=True)
-    student=models.ForeignKey(Student,on_delete=models.CASCADE,null=True)
-    notif_subject=models.CharField(max_length=200,null=True)
-    notif_for=models.CharField(max_length=200)
+    teacher           =models.ForeignKey(Teacher,on_delete=models.CASCADE,null=True)
+    student           =models.ForeignKey(Student,on_delete=models.CASCADE,null=True)
+    notif_subject     =models.CharField(max_length=200,null=True)
+    notif_for         =models.CharField(max_length=200)
     notif_created_time=models.DateTimeField(auto_now_add=True)
-    notifiread_status=models.BooleanField(default=False)
+    notifiread_status =models.BooleanField(default=False)
 
 
 class Quiz(models.Model):
-    teacher=models.ForeignKey(Teacher,on_delete=models.CASCADE,null=True)
-    title=models.CharField(max_length=200)
-    detail=models.TextField()
+    teacher =models.ForeignKey(Teacher,on_delete=models.CASCADE,null=True)
+    title   =models.CharField(max_length=200)
+    detail  =models.TextField()
     add_time=models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return f"{self.title}"
 
     def assign_status(self):
         return CourseQuiz.objects.filter(quiz=self).count()
@@ -217,21 +219,24 @@ class Quiz(models.Model):
 
 
 class QuizQuestions(models.Model):
-    quiz=models.ForeignKey(Quiz,on_delete=models.CASCADE,null=True)
+    quiz     =models.ForeignKey(Quiz,on_delete=models.CASCADE,null=True)
     questions=models.CharField(max_length=200)
-    ans1=models.CharField(max_length=200)
-    ans2=models.CharField(max_length=200)
-    ans3=models.CharField(max_length=200)
-    ans4=models.CharField(max_length=200)
+    ans1     =models.CharField(max_length=200)
+    ans2     =models.CharField(max_length=200)
+    ans3     =models.CharField(max_length=200)
+    ans4     =models.CharField(max_length=200)
     right_ans=models.CharField(max_length=200)
-    add_time=models.DateTimeField(auto_now_add=True)
+    add_time =models.DateTimeField(auto_now_add=True)
 
 
 class CourseQuiz(models.Model):
-    teacher=models.ForeignKey(Teacher,on_delete=models.CASCADE,null=True)
-    course=models.ForeignKey(Course,on_delete=models.CASCADE,null=True)
-    quiz=models.ForeignKey(Quiz,on_delete=models.CASCADE,null=True)
+    teacher =models.ForeignKey(Teacher,on_delete=models.CASCADE,null=True)
+    course  =models.ForeignKey(Course,on_delete=models.CASCADE,null=True)
+    quiz    =models.ForeignKey(Quiz,on_delete=models.CASCADE,null=True)
     add_time=models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return f"course :{self.course},  ,quiz :{self.quiz}"
 
     class Meta:
         verbose_name_plural="courses Quiz"

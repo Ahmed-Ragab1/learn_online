@@ -49,7 +49,7 @@ code {
   position: relative;
   max-width : 300px;
   height : 230px;  
-  background-color : #fff;
+  background-color : rgb(171, 171, 171);
   margin : 30px 10px;
   padding : 20px 15px;
   
@@ -70,12 +70,11 @@ code {
   color : #111;
   text-align : center;
   
-  visibility : hidden;
-  opacity : 0;
+  visibility : visible;
+  opacity : 1;
   transition : 0.3s ease-in-out;
-    
+  
 }
-
 .container .card:hover .cardhomebody {
   margin-top : 16px;
   visibility : visible;
@@ -83,7 +82,18 @@ code {
   transition-delay: 0.2s;
  
 }
+.cardcontainer .card .cardhomebody .card-footer{
+  visibility : hidden;
+  opacity : 0;
+}
+.cardcontainer .card:hover .cardhomebody .card-footer{
+  visibility : visible;
+  opacity : 1;
+}
+
 
 .card{
   background-color :  #f2f2f2
 }
+
+

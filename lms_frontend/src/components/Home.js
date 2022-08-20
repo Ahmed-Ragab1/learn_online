@@ -68,7 +68,7 @@ function Home() {
         {/* latest course */}
       <h3 className="pb-1 mb-4 mt-5">
         Latest Courses
-        <NavLink to="/all-courses" className="float-end">
+        <NavLink to="/all-courses" className="btn btn-outline-primary float-end">
           See All
         </NavLink>
       </h3>
@@ -79,11 +79,10 @@ function Home() {
           
           <div className="col-md-3 mb-4 cardcontainer">
             <Card className='cardhome'>
-              < NavLink to={`/detail/${course.id}`}><Card.Img variant="top" src={course.featured_img} /></NavLink>
+              < NavLink to={`/detail/${course.id}`}><Card.Img variant="top" src={course.featured_img} height='150px' /></NavLink>
               <Card.Body className='cardhomebody'>
-                <p></p>
                 <Card.Title><NavLink to={`/detail/${course.id}`}>{course.title}</NavLink></Card.Title>
-              <div className='card-footer mt-1'>
+              <div className='card-footer mt-4'>
                 <div className='title'>
                   <span>Rating: {course.course_rating}</span>
                   <span className='float-end'>techs: {course.techs}</span>
@@ -97,7 +96,7 @@ function Home() {
       {/*end latest course */}    
 
         {/* popular course */}
-        <h3 className='pb-1 mb-4 mt-5'>popular Courses <NavLink to='/popular-cources' className='float-end'>see all</NavLink></h3>
+        {/* <h3 className='pb-1 mb-4 mt-5'>popular Courses <NavLink to='/popular-cources' className=' float-end'>see all</NavLink></h3>
         <div className="row mb-4">
         {popularcourseData && popularcourseData.map((row,index)=> 
           <div className="col-md-3">
@@ -115,11 +114,11 @@ function Home() {
             </Card>
           </div>
         )}
-        </div>
+        </div> */}
         {/*end popular course */}     
 
          {/* popular Teachers */}
-         <h3 className='pb-1 mb-4 mt-5'>Teachers<NavLink to='/popular-teachers' className='float-end'>see all</NavLink></h3>
+         <h3 className='pb-1 mb-4 mt-5'>Teachers</h3>
         <div className="row mb-4">
         {popularteachersData && popularteachersData.map((teacher,index)=> 
           <div className="col-md-3">

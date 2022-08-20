@@ -20,7 +20,7 @@ function QuizResult(props){
     }
    },[]);
 
-   console.log(resultData);
+//    console.log(resultData);
 
     return (
         
@@ -39,6 +39,10 @@ function QuizResult(props){
                         <tr>
                             <th>Attempted Questions</th>
                             <td>{resultData.total_attempted_questions}</td>
+                        </tr>
+                        <tr>
+                            <th>Right Answer</th>
+                            <td>{resultData.total_correct_questions}</td>
                         </tr>
                     </table>
                 </div>

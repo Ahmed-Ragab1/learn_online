@@ -29,9 +29,15 @@ function AllCourses(){
           
           <div className="col-md-3 mb-4 cardcontainer">
             <Card className='cardhome'>
-              < NavLink to={`/detail/${course.id}`}><Card.Img variant="top" src={course.featured_img} height='200px' /></NavLink>
+              < NavLink to={`/detail/${course.id}`}><Card.Img variant="top" src={course.featured_img} height='150px' /></NavLink>
               <Card.Body className='cardhomebody' >
                 <Card.Title><NavLink to={`/detail/${course.id}`}>{course.title}</NavLink></Card.Title>
+                <div className='card-footer mt-4'>
+                <div className='title'>
+                  <span>Rating: {course.course_rating}</span>
+                  <span className='float-end'>techs: {course.techs}</span>
+                </div>
+              </div>
               </Card.Body>
             </Card>
           </div>

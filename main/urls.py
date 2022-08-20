@@ -79,6 +79,7 @@ urlpatterns = [
     path('teacher-quiz-detail/<int:pk>',views.TeacherQuizDetail.as_view()),
     path('quiz/<int:pk>/', views.QuizDetailView.as_view()),
     path('quiz-questions/<int:quiz_id>',views.QuizQuestionList.as_view()),
+    path('question/<int:pk>',views.QuizQuestiondetail.as_view()),
     path('quiz-questions/<int:quiz_id>/<int:limit>',views.QuizQuestionList.as_view()),
     path('quiz-assign-course/',views.CourseQuizList.as_view()),
     path('fetch-assigned-quiz/<int:course_id>',views.CourseQuizList.as_view()),

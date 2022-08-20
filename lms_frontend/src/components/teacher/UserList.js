@@ -40,8 +40,6 @@ function UserList(){
                         <th>Email</th>
                         <th>User Name</th>
                         <th>Interesed Categories</th>
-
-                        <th>courses</th>
                         <th>Course Name</th>
                         <th className='ms-3 ps-5'>Assignment</th>
                     </tr>
@@ -56,8 +54,8 @@ function UserList(){
                     <td>{row.student.interesed_categories}</td>
                     <td>{row.course.title}</td>
                     <td>
-                        <Link to={`/show-assignment/${teacherId}/${row.student.id}`} className='btn btn-warning d-felx justify-content-center mb-2'>Assignments</Link>
-                        <Link to={`/add-assignment/${teacherId}/${row.student.id}`} className='btn btn-success d-felx justify-content-center mb-2'>Add Assignments</Link>
+                        <Link to={`/show-assignment/${teacherId}/${row.student.id}`} className='btn btn-warning d-felx justify-content-center mb-2 ms-2'>Assignments</Link>
+                        <Link to={`/add-assignment/${teacherId}/${row.student.id}`} className='btn btn-success d-felx justify-content-center mb-2 ms-2'>Add Assignments</Link>
                     </td>
                     </tr>
                     )}
