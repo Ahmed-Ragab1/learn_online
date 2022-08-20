@@ -11,9 +11,6 @@ function TeacherCourses(){
     try{
         axios.get(baseUrl+'/teacher-courses/'+teacherId).then((res)=>{
             setCourseData(res.data);
-            // {res.data.map((course,index)=>
-            //     setCourseData(course)
-            //     )}
         })
     }
     catch(error){
@@ -62,7 +59,7 @@ function TeacherCourses(){
                             {!course.course_rating && <span>Rating:0/5</span>}
                         </td>
 
-                        <td><img src={course.featured_img} width="80" className='rounded' alt={course.title}/></td>
+                        <td><img src={course.featured_img} width="150" className='rounded' alt={course.title}/></td>
                         <td><span to='/'>{course.teacher.full_name}</span></td>
                         <td><NavLink to={'/enrolled-students/'+course.id}>{course.total_enrolled_students}</NavLink></td>
 

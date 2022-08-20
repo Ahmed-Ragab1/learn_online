@@ -1,7 +1,7 @@
 
 function Footer() {
   return (
-    <footer className="text-muted py-2 border-top" style={{backgroundColor: "#262626",marginTop:10}}>
+    <footer className="text-muted py-2 border-top mt-5" style={{backgroundColor: "#262626",marginTop:10}}>
       <div className="">
           {/* <!-- Remove the container if you want to extend the Footer to full width. --> */}
         <div>

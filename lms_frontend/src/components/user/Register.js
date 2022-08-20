@@ -57,13 +57,13 @@ function Register(){
 
 
     return(
-        <div className='container mt-4'>
+        <div className='container mt-5' style={{marginBottom:"80px"}}>
             <div className='row'>
                 <div className='col-6 offset-3'>
                     {studentData.status === 'success' && <p className='text-success'>Thanks for Your Registration</p>}
                     {studentData.status === 'error' && <p className='text-danger'>Somthing Wrong Happened!</p>}
                     <div className='card'>
-                        <h5 className='card-header'>User Register</h5>
+                        <h5 className='card-header'>Student Register</h5>
                         <div className='card-body'>
                             <div className='mb-3'>
                                 <label for='exampleInputEmail' className='form-label'>Full Name</label>
