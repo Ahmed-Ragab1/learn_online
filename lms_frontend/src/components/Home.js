@@ -5,6 +5,7 @@ import {Link, NavLink} from 'react-router-dom';
 import AllCourses from "./AllCourses";
 import {useEffect,useState} from 'react'
 import axios from 'axios';
+import Slider from './Slider';
 
 const baseUrl='http://127.0.0.1:8000/api';
 
@@ -61,6 +62,8 @@ function Home() {
   console.log(courseData);
   
     return (
+      <>
+        <Slider/>
       <div className="container mt-4" >
         {/* latest course */}
       <h3 className="pb-1 mb-4 mt-5">
@@ -168,6 +171,8 @@ function Home() {
           </div>  */}
         {/* end student testimonial */}
       </div>
+      </>
+
     );
   }
   

@@ -1,5 +1,6 @@
 function StudentLogout(){
     localStorage.removeItem('studentLoginStatus')
+    localStorage.setItem('studentName','Student')
     window.location.href='/user-login'
     
 return(

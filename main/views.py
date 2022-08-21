@@ -52,7 +52,7 @@ def teacher_login(request):
     except models.Teacher.DoesNotExist:
         teacherData =None
     if teacherData:
-        return JsonResponse({'bool':True,'teacher_id':teacherData.id})
+        return JsonResponse({'bool':True,'teacher_id':teacherData.id,'full_name':teacherData.full_name})
     else:
         return JsonResponse({'bool':False})
 
@@ -230,7 +230,7 @@ def student_login(request):
     except models.Student.DoesNotExist:
         studentData =None
     if studentData:
-        return JsonResponse({'bool':True,'student_id':studentData.id})
+        return JsonResponse({'bool':True,'student_id':studentData.id,'full_name':studentData.full_name})
     else:
         return JsonResponse({'bool':False})
 

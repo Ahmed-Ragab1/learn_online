@@ -35,6 +35,7 @@ function Login(){
                 if(res.data.bool===true){
                     localStorage.setItem('studentLoginStatus',true)
                     localStorage.setItem('studentId',res.data.student_id)
+                    localStorage.setItem('studentName',res.data.full_name)
                     window.location.href='/user-dashboard'
                 }
                 else{
@@ -71,7 +72,7 @@ function Login(){
             <div className='row'>
                 <div className='col-6 offset-3'>
                     <div className='card lgcard allcards' style={{backgroundColor: "#5a5b5b88"}}>
-                        <h5 className='card-header'>User Login</h5>
+                        <h5 className='card-header'>Student Login</h5>
                         <div className='card-body' >
                             {errorMsg && <p className="text-danger">{errorMsg}</p>}
                             <div className='mb-3'>
