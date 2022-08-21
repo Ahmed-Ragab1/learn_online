@@ -1,3 +1,4 @@
+import '../login.css';
 import {NavLink} from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -57,12 +58,13 @@ function Register(){
 
 
     return(
-        <div className='container mt-4'>
+        <div className='root py-4'>
+        <div className='container'>
             <div className='row'>
                 <div className='col-6 offset-3'>
                     {studentData.status === 'success' && <p className='text-success'>Thanks for Your Registration</p>}
                     {studentData.status === 'error' && <p className='text-danger'>Somthing Wrong Happened!</p>}
-                    <div className='card'>
+                    <div className='card rgcard allcards' style={{backgroundColor: "#5a5b5b88"}}>
                         <h5 className='card-header'>User Register</h5>
                         <div className='card-body'>
                             <div className='mb-3'>
@@ -96,6 +98,7 @@ function Register(){
                     </div>
                 </div>
             </div>
+        </div>
         </div>
             
     )

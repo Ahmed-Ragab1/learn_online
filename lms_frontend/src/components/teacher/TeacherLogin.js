@@ -1,3 +1,4 @@
+import '../login.css';
 import { NavLink } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
@@ -59,10 +60,11 @@ function TeacherLogin() {
 
 
   return (
-    <div className="container" style={{margin:"90px"}}>
+    <div className='root py-4'>
+    <div className="container">
       <div className="row">
-        <div className="col-6 offset-3">
-          <div className="card">
+        <div className="col-6 offset-3 aa">
+          <div className="card lgcard allcards" style={{backgroundColor: "#5a5b5b88"}}>
             <h5 className="card-header">Teacher Login</h5>
             <div className="card-body">
               {errorMsg && <p className="text-danger">{errorMsg}</p>}
@@ -99,6 +101,7 @@ function TeacherLogin() {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }

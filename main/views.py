@@ -508,7 +508,7 @@ class AttempQuizList(generics.ListCreateAPIView):
         if 'quiz_id' in self.kwargs:
             quiz_id=self.kwargs['quiz_id']
             quiz= models.Quiz.objects.get(pk=quiz_id)
-            # return models.AttempQuiz.objects.raw(f'SELECT * FROM main_attempquiz WHERE quiz_id={int(quiz_id)} GROUP by student_id)')
+            # return models.AttempQuiz.objects.raw(f'SELECT * FROM main_attempquiz WHERE quiz_id={int(quiz_id)} GROUP by student_id')
             return models.AttempQuiz.objects.filter(quiz=quiz)
 
 

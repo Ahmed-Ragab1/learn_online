@@ -66,7 +66,7 @@ function Home() {
       <h3 className="pb-1 mb-4 mt-5">
         Latest Courses
         <NavLink to="/all-courses" className="btn btn-outline-primary float-end">
-          See All
+          See All Courses
         </NavLink>
       </h3>
 
@@ -78,7 +78,7 @@ function Home() {
             <Card className='cardhome'>
               < NavLink to={`/detail/${course.id}`}><Card.Img variant="top" src={course.featured_img} height='150px' /></NavLink>
               <Card.Body className='cardhomebody'>
-                <Card.Title><NavLink to={`/detail/${course.id}`}>{course.title}</NavLink></Card.Title>
+                <Card.Title><NavLink to={`/detail/${course.id}`} style={{textDecoration: 'none'}}>{course.title}</NavLink></Card.Title>
               <div className='card-footer mt-4'>
                 <div className='title'>
                   <span>Rating: {course.course_rating}</span>
@@ -122,7 +122,7 @@ function Home() {
             <Card >
               <Card.Img variant="top" src={teacher.profile_img} />
               <Card.Body>
-                <Card.Title><NavLink to={`/teacher-detail/${teacher.id}`}>{teacher.full_name}</NavLink></Card.Title>
+                <Card.Title><NavLink to={`/teacher-detail/${teacher.id}`} style={{textDecoration: 'none'}}>{teacher.full_name}</NavLink></Card.Title>
               </Card.Body>
               <div className='card-footer'>
                 <div className='title'>

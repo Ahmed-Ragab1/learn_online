@@ -23,7 +23,7 @@ function AllCourses(){
 
 <div className='container mt-3 allcourses'>
         {/* latest course */}
-        <h3 className='pb-1 mb-4 mt-3'>Latest Courses</h3>
+        <h3 className='pb-1 mb-4 mt-3'>All Courses</h3>
         <div className="row mb-4">
           {courseData && courseData.map((course,index)=>
           
@@ -31,7 +31,7 @@ function AllCourses(){
             <Card className='cardhome'>
               < NavLink to={`/detail/${course.id}`}><Card.Img variant="top" src={course.featured_img} height='150px' /></NavLink>
               <Card.Body className='cardhomebody' >
-                <Card.Title><NavLink to={`/detail/${course.id}`}>{course.title}</NavLink></Card.Title>
+                <Card.Title><NavLink to={`/detail/${course.id}`} style={{textDecoration: 'none'}}>{course.title}</NavLink></Card.Title>
                 <div className='card-footer mt-4'>
                 <div className='title'>
                   <span>Rating: {course.course_rating}</span>

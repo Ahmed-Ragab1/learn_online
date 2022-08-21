@@ -51,7 +51,7 @@ export default function TeacherDetail() {
             Skills:&nbsp;
              {skilllist.map((skill,index)=>
                     <>
-<NavLink to={`/teacher-skill-courses/${skill.trim()}/${teacherData.id}`} className='badge badge-pill bg-warning text-dark'> {skill.trim()}</NavLink>&nbsp;
+<NavLink to='#' className='badge badge-pill bg-warning text-dark' style={{textDecoration: 'none'}}> {skill.trim()}</NavLink>&nbsp;
 </>
                     )}
    

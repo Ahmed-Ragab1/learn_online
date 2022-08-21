@@ -267,11 +267,11 @@ function CourseDetail(){
                 <div className='col-8'>
                     <h3>{courseData.title}</h3>
                     <p>{courseData.describtion}</p>
-                    <p className='fw-bold'>course by: <Link to={`/teacher-detail/${teacherData.id}`}>{teacherData.full_name}</Link></p>
+                    <p className='fw-bold'>course by: <Link to={`/teacher-detail/${teacherData.id}`} style={{textDecoration: 'none'}}>{teacherData.full_name}</Link></p>
                     <p className='fw-bold'>Techs:&nbsp;
                     {techListData.map((tech,index)=>
                     <>
-                    <NavLink to={`/category/${tech.trim()}`} className='badge badge-pill bg-warning text-dark'> {tech.trim()}</NavLink>&nbsp;
+                    <NavLink to={`/category/${tech.trim()}`} className='badge badge-pill bg-warning text-dark' style={{textDecoration: 'none'}}> {tech.trim()}</NavLink>&nbsp;
                     </>
                     )}
                     </p>

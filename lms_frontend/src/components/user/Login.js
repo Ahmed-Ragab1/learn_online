@@ -1,3 +1,4 @@
+import '../login.css';
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 const baseUrl = "http://127.0.0.1:8000/api";
@@ -65,12 +66,13 @@ function Login(){
     
 
     return(
-        <div className='container mt-4'>
+        <div className='root py-5'>
+        <div className='container'>
             <div className='row'>
                 <div className='col-6 offset-3'>
-                    <div className='card'>
+                    <div className='card lgcard allcards' style={{backgroundColor: "#5a5b5b88"}}>
                         <h5 className='card-header'>User Login</h5>
-                        <div className='card-body'>
+                        <div className='card-body' >
                             {errorMsg && <p className="text-danger">{errorMsg}</p>}
                             <div className='mb-3'>
                                 <label for='exampleInputEmail' className='form-label'>Email</label>
@@ -91,6 +93,7 @@ function Login(){
                     </div>
                 </div>
             </div>
+        </div>
         </div>
             
     )

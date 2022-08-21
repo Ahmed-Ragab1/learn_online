@@ -1,3 +1,4 @@
+import '../login.css';
 // import {NavLink} from 'react-router-dom';
 import React, { useState } from 'react';
 import axios from 'axios';
@@ -63,12 +64,13 @@ function TeacherRegister(){
     }
   
     return(
-        <div className='container mt-4'>
+        <div className='root py-4'>
+        <div className='container'>
             <div className='row'>
                 <div className='col-6 offset-3'>
                     {teacherData.status === 'success' && <p className='text-success'>Thanks for Your Registration</p>}
                     {teacherData.status === 'error' && <p className='text-danger'>Somthing Wrong Happened!</p>}
-                    <div className='card'>
+                    <div className='card rgscard allcards' style={{backgroundColor: "#5a5b5b88"}}>
                         <h5 className='card-header'>Teacher Register</h5>
                         <div className='card-body'>
                                 <div className='mb-3'>
@@ -78,7 +80,7 @@ function TeacherRegister(){
 
                                 <div className='mb-3'>
                                     <label for='exampleInputEmail' className='form-label'>Email</label>
-                                    <input onChange={handleChange} value={teacherData.email} name='email' type='email' className='form-control'/>
+                                    <input onChange={handleChange} value={teacherData.email} name='email' type='email' className='form-control' placeholder="name@example.com"/>
                                 </div>
 
                                 <div className='mb-3'>
@@ -108,6 +110,7 @@ function TeacherRegister(){
                     </div>
                 </div>
             </div>
+        </div>
         </div>
             
     )
