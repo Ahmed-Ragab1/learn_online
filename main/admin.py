@@ -30,3 +30,10 @@ admin.site.register(QuizQuestions)
 admin.site.register(CourseQuiz)
 admin.site.register(AttempQuiz)
 admin.site.register(StudyMatirial)
+
+
+admin.site.site_header='WELCOME to LMS'
+admin.site.site_title='iti'
+admin.site.index_title = 'WELCOME ADMIN USER TO Information Technology Institute'
+
+

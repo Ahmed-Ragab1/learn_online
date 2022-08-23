@@ -66,7 +66,7 @@ function TeacherLogin() {
 
       <div className="row">
         <div className="col-6 offset-3 aa">
-          <div className="card lgcard allcards" style={{backgroundColor: "#5a5b5b88"}}>
+          <div className="card lgcard allcards" style={{backgroundColor: "rgb(219, 219, 219)"}}>
             <h5 className="card-header">Teacher Login</h5>
             <div className="card-body">
               {errorMsg && <p className="text-danger">{errorMsg}</p>}

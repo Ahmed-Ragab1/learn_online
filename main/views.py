@@ -483,6 +483,7 @@ class CourseQuizList(generics.ListCreateAPIView):
             course_id=self.kwargs['course_id']
             course= models.Course.objects.get(pk=course_id)
             return models.CourseQuiz.objects.filter(course=course)
+            
 
 
 
@@ -510,6 +511,8 @@ class AttempQuizList(generics.ListCreateAPIView):
             quiz= models.Quiz.objects.get(pk=quiz_id)
             # return models.AttempQuiz.objects.raw(f'SELECT * FROM main_attempquiz WHERE quiz_id={int(quiz_id)} GROUP by student_id')
             return models.AttempQuiz.objects.filter(quiz=quiz)
+        else:
+            return models.AttempQuiz.objects.all()
 
 
 

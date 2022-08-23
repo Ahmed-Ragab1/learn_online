@@ -13,6 +13,7 @@ function Register(){
         'interesed_categories':'',
         'status':'',
     });
+    const [errorData,seterrorData]=useState()
 
     //   when the element has value
     const handleChange=(event)=>{
@@ -21,15 +22,26 @@ function Register(){
             [event.target.name]:event.target.value
         });
     }
-
-
-
+   
+    
 
     const submitForm=()=>{
         const studentFormData=new FormData();
-        studentFormData.append('full_name',studentData.full_name)
-        studentFormData.append('email',studentData.email)
-        studentFormData.append('password',studentData.password)
+        if(studentData.full_name.length >= 5){
+            studentFormData.append('full_name',studentData.full_name)
+        }else{
+            seterrorData("name must be greater than 5");
+        }
+        if(studentData.email.includes("@")){
+            studentFormData.append('email',studentData.email)
+        }else{
+            seterrorData("invalid email");
+        }
+        if(studentData.password.length >= 5){
+            studentFormData.append('password',studentData.password)
+        }else{
+            seterrorData("password must be greater than 5");
+        }
         studentFormData.append('username',studentData.username)
         studentFormData.append('interesed_categories',studentData.interesed_categories)
 
@@ -47,7 +59,7 @@ function Register(){
                 });
             });
         }catch(error){
-            setstudentData({'status':'error'})
+            setstudentData({'status':''})
         }
     };
 
@@ -56,6 +68,8 @@ function Register(){
         document.title = "student register"
     })
 
+    console.log(studentData.status);
+    console.log(errorData);
 
     return(
         <div className='root py-4'>
@@ -64,8 +78,8 @@ function Register(){
             <div className='row'>
                 <div className='col-6 offset-3'>
                     {studentData.status === 'success' && <p className='text-success'>Thanks for Your Registration</p>}
-                    {studentData.status === 'error' && <p className='text-danger'>Somthing Wrong Happened!</p>}
-                    <div className='card rgcard allcards' style={{backgroundColor: "#5a5b5b88"}}>
+                    {studentData.status === '' && <p className='text-danger'>{errorData}</p>}
+                    <div className='card rgcard allcards'  style={{backgroundColor: "rgb(219, 219, 219)"}}>
                         <h5 className='card-header'>Student Register</h5>
 
                         <div className='card-body'>

@@ -334,7 +334,7 @@ function CourseDetail(){
                     }
 
                     { userLoginStatus === 'success' && favoriteStatus === 'success' &&
-                        <p><button type='button' className='btn btn-outline-danger' onClick={removefavorite} title='remove from favorate courses' ><i className="bi bi-heart-fill"></i></button></p>
+                        <p><button type='button' className='btn btn-outline-primary' onClick={removefavorite} title='remove from favorate courses' ><i className="bi bi-heart-fill"></i></button></p>
                     }
 
 
@@ -355,7 +355,7 @@ function CourseDetail(){
                 {chapterData.map((chapter,index)=>
                     <li className='list-group-item'>{chapter.title}
                         <span className='float-end'>
-                            <span className='me-5'> 1 Hour 30 Minutes</span>
+                            <span className='me-5'></span>
                             { enrollStatus === 'success' && userLoginStatus === 'success' &&
                                 <button className="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#videoModal1"><i className="bi-youtube"></i></button>
                             }
@@ -370,7 +370,11 @@ function CourseDetail(){
                             </div>
                             <div className="modal-body">
                                 <div className="ratio ratio-16x9">
-                        <iframe src={chapter.video} title={chapter.title} allowFullScreen></iframe>
+                                <video width="250" controls>
+                                    <source src={chapter.video} type="video/mp4" />
+                                    <source src={chapter.video} type="video/ogg" />
+                                    Your browser does not support the video tag.
+                                </video>
                         </div>
                             </div>
                         

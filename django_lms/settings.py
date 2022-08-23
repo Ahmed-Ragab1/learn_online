@@ -36,12 +36,14 @@ INSTALLED_APPS = [
     "corsheaders",
     'rest_framework',
     'rest_framework.authtoken',
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
 ]
 
 MIDDLEWARE = [
@@ -156,3 +158,16 @@ CORS_ALLOW_ALL_ORIGINS = True
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # 'data' is my media folder
 
+
+
+JAZZMIN_SETTINGS = {
+    "site_title": "learning management system",
+    "site_header": "LMS",
+    "login_logo": None,
+    "login_logo_dark": None,
+    "site_icon": None,
+    "welcome_sign": "Welcome to LMS",
+    "site_brand": "LMS",
+    "site_logo_classes": None,
+    "welcome_sign": "Welcome to LMS",
+}
