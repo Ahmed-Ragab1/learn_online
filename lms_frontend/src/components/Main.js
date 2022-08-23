@@ -20,7 +20,8 @@ import FavouriteCourses from "./user/FavouriteCourses";
 import RecommendedCourses from './user/RecommendedCourses';
 import ProfileSetting from './user/ProfileSetting';
 import ChangePassword from "./user/ChangePassword";
-
+// user study materials
+import UserStudyMaterials from "./user/userStudyMaterials";
 //Teacher
 
 import TeacherRegister from "./teacher/TeacherRegister";
@@ -66,6 +67,11 @@ import AddQuizeQustion from "./teacher/AddQuizeQustion";
 import AssignQuiz from "./teacher/AssignQuiz";
 import Search from "./Search";
 
+import AttemptedStudents from "./teacher/AttemptedStudents";
+
+// course study matirials
+import StudyMaterials from "./teacher/StudyMaterials";
+import AddStudyMaterial from "./teacher/AddStudyMaterial";
 
 
 
@@ -78,7 +84,7 @@ function Main() {
             <Route path="/" element={<Home/>} />
             <Route path="/about" element={<About/>} />
             <Route path="/detail/:course_id" element={<CourseDetail/>} />
-            <Route path="/search-courses/:searchstring" element={<Search/>} />
+            <Route path="/search/:searchstring" element={<Search/>} />
             <Route path="/user-login" element={<Login/>} />
             <Route path="/user-logout" element={<Logout/>} />
             <Route path="/user-register" element={<Register/>} />
@@ -139,7 +145,16 @@ function Main() {
             <Route path="/course-quiz/:course_id" element={<CourseQuizList  />} />
 
             <Route path="/take-quiz/:quiz_id" element={<TakeQuiz  />} />
+
+
+            <Route path="/study-materials/:course_id" element={<StudyMaterials/>} />
+            <Route path="/add-study/:course_id" element={<AddStudyMaterial/>} />
+
+            <Route path="/user/study-materials/:course_id" element={<UserStudyMaterials/>} />
             
+
+
+            <Route path="/attempted-students/:quiz_id" element={<AttemptedStudents  />} />
 
             
             

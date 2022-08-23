@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 const baseUrl='http://localhost:8000/api';
 function AddAssignment(){
     const [assignmentData,setassignmentData] = useState({
-        title       :'',
+        title  :'',
         detail :'',
     });
     

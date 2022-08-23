@@ -18,13 +18,14 @@ function CourseDetail(){
     const[ratingStatus,setratingStatus]=useState();
     const[AvgRating,setAvgRating]=useState(0);
     const[favoriteStatus,setfavoriteStatus]=useState();
+    const[courseViews,setcourseViews]=useState(0);
     
     let {course_id}=useParams();
     
     
     
     
-
+    
     
 
     useEffect(()=>{
@@ -38,7 +39,10 @@ function CourseDetail(){
                 if(res.data.course_rating!='' && res.data.course_rating !=null){
                     setAvgRating(res.data.course_rating)
                 }
-            })
+            });
+            axios.get(baseUrl+'/update-view/'+course_id).then((res)=>{
+                setcourseViews(res.data.views)
+            });
         }
         catch(error){
             console.log(error)
@@ -170,13 +174,6 @@ function CourseDetail(){
         }
        }
 
-
-
-
-
-
-
-
        const removefavorite = (pk) =>{
         const _formData=new FormData();
         _formData.append('course',course_id)
@@ -255,6 +252,12 @@ function CourseDetail(){
             console.log(error);
         }
     }
+
+
+    console.log(chapterData);
+
+
+
     return(
         <div className='container mt-3'>
             <div className='row'>
@@ -264,15 +267,14 @@ function CourseDetail(){
                 <div className='col-8'>
                     <h3>{courseData.title}</h3>
                     <p>{courseData.describtion}</p>
-                    <p className='fw-bold'>course by: <Link to={`/teacher-detail/${teacherData.id}`}>{teacherData.full_name}</Link></p>
+                    <p className='fw-bold'>course by: <Link to={`/teacher-detail/${teacherData.id}`} style={{textDecoration: 'none'}}>{teacherData.full_name}</Link></p>
                     <p className='fw-bold'>Techs:&nbsp;
                     {techListData.map((tech,index)=>
                     <>
-                    <NavLink to={`/category/${tech.trim()}`} className='badge badge-pill bg-warning text-dark'> {tech.trim()}</NavLink>&nbsp;
+                    <NavLink to={`/category/${tech.trim()}`} className='badge badge-pill bg-warning text-dark' style={{textDecoration: 'none'}}> {tech.trim()}</NavLink>&nbsp;
                     </>
                     )}
                     </p>
-                    <p className='fw-bold'>duration: 30 minutes</p>
                     <p className='fw-bold'>total enroled: {courseData.total_enrolled_students} student</p>
                     <p className='fw-bold'>rating: {AvgRating}/5
                     { enrollStatus === 'success' && userLoginStatus === 'success' &&
@@ -318,7 +320,7 @@ function CourseDetail(){
                     }
                     
                     </p>
-
+                    <p className='fw-bold'>views: {courseViews}</p>
                     { enrollStatus === 'success' && userLoginStatus === 'success' &&
                         <p><span>You are already enrolled in this course</span></p>
                     }
@@ -332,7 +334,7 @@ function CourseDetail(){
                     }
 
                     { userLoginStatus === 'success' && favoriteStatus === 'success' &&
-                        <p><button type='button' className='btn btn-outline-danger' onClick={removefavorite} title='remove from favorate courses' ><i className="bi bi-heart-fill"></i></button></p>
+                        <p><button type='button' className='btn btn-outline-primary' onClick={removefavorite} title='remove from favorate courses' ><i className="bi bi-heart-fill"></i></button></p>
                     }
 
 
@@ -353,7 +355,7 @@ function CourseDetail(){
                 {chapterData.map((chapter,index)=>
                     <li className='list-group-item'>{chapter.title}
                         <span className='float-end'>
-                            <span className='me-5'> 1 Hour 30 Minutes</span>
+                            <span className='me-5'></span>
                             { enrollStatus === 'success' && userLoginStatus === 'success' &&
                                 <button className="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#videoModal1"><i className="bi-youtube"></i></button>
                             }
@@ -363,12 +365,16 @@ function CourseDetail(){
                         <div className="modal-dialog modal-lg">
                             <div className="modal-content">
                             <div className="modal-header">
-                                <h5 className="modal-title" id="exampleModalLabel">Video 1</h5>
+                                <h5 className="modal-title" id="exampleModalLabel">Video</h5>
                                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div className="modal-body">
                                 <div className="ratio ratio-16x9">
-                        <iframe src={chapter.video} title={chapter.title} allowFullScreen></iframe>
+                                <video width="250" controls>
+                                    <source src={chapter.video} type="video/mp4" />
+                                    <source src={chapter.video} type="video/ogg" />
+                                    Your browser does not support the video tag.
+                                </video>
                         </div>
                             </div>
                         
@@ -387,8 +393,8 @@ function CourseDetail(){
                     <div className="row mb-4">
                     {realtedcourseData?.map((rcourse,index)=>
                     <div className="col-md-3">
-                    <div className='card'>
-                        <Link target="_blank" to={`/detail/${rcourse.pk}`}><img src={`${siteUrl}media/${rcourse.fields.featured_img}`} className='card-img-top' />
+                    <div className='card m-2'>
+                        <Link target="_blank" to={`/detail/${rcourse.pk}`}><img src={`${siteUrl}media/${rcourse.fields.featured_img}`} className='card-img-top '  height='200px' />
                         </Link>
                             <div className='card-body'>
                                 <h5 className='card-title'><Link to={`/detail/${rcourse.pk}`}>{rcourse.fields.title}</Link></h5>

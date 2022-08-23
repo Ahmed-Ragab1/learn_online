@@ -1,3 +1,4 @@
+import '../login.css';
 import { NavLink } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
@@ -20,16 +21,17 @@ function TeacherLogin() {
 
   const submitForm = () => {
     console.log(teacherLoginData)
-    const teacherFormData=new FormData;
+    const teacherFormData=new FormData();
     teacherFormData.append('email',teacherLoginData.email)
     teacherFormData.append('password',teacherLoginData.password)
     try{
         axios.post(baseUrl+'/teacher-login',teacherFormData)
         .then((res)=>{
             console.log(res.data)
-            if(res.data.bool==true){
+            if(res.data.bool===true){
                 localStorage.setItem('teacherLoginStatus',true)
                 localStorage.setItem('teacherId',res.data.teacher_id)
+                localStorage.setItem('teacherName',res.data.full_name)
                 window.location.href='/teacher-dashboard'
             }
             else{
@@ -46,7 +48,7 @@ function TeacherLogin() {
   };
   
   const teacherLoginStatus=localStorage.getItem('teacherLoginStatus');
-  if(teacherLoginStatus=='true')
+  if(teacherLoginStatus==='true')
   {
     window.location.href='/teacher-dashboard'
   }
@@ -59,10 +61,12 @@ function TeacherLogin() {
 
 
   return (
-    <div className="container mt-4">
+    <div className='root py-4'>
+    <div className="container">
+
       <div className="row">
-        <div className="col-6 offset-3">
-          <div className="card">
+        <div className="col-6 offset-3 aa">
+          <div className="card lgcard allcards" style={{backgroundColor: "rgb(219, 219, 219)"}}>
             <h5 className="card-header">Teacher Login</h5>
             <div className="card-body">
               {errorMsg && <p className="text-danger">{errorMsg}</p>}
@@ -92,12 +96,6 @@ function TeacherLogin() {
                   onChange={handleChange}
                 />
               </div>
-
-              {/* 
-                                <div className='mb-3 form-check'>
-                                    <label for='exampleCheck1' className='form-check-label'>Remember Me</label>
-                                    <input type='checkbox' className='form-check-input' id='exampleCheck1'/>
-                                </div> */}
               <button type="submit" className="btn btn-primary" onClick={submitForm}>
                 Login
               </button>
@@ -105,6 +103,7 @@ function TeacherLogin() {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }

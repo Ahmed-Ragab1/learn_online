@@ -1,3 +1,4 @@
+import '../login.css';
 // import {NavLink} from 'react-router-dom';
 import React, { useState } from 'react';
 import axios from 'axios';
@@ -13,6 +14,7 @@ function TeacherRegister(){
         'skills':'',
         'status':'',
     });
+    const [errorData,seterrorData]=useState()
 
 
     //   when the element has value and put it in teacherData
@@ -26,10 +28,26 @@ function TeacherRegister(){
     
     const submitForm=()=>{
         const teacherFormData=new FormData();
-        teacherFormData.append('full_name',teacherData.full_name)
+        if(teacherData.full_name.length >= 5){
+            teacherFormData.append('full_name',teacherData.full_name)
+        }else{
+            seterrorData("name must be greater than 5");
+        }
+        if(teacherData.email.includes("@")){
         teacherFormData.append('email',teacherData.email)
-        teacherFormData.append('password',teacherData.password)
-        teacherFormData.append('mobile_no',teacherData.mobile_no)
+        }else{
+            seterrorData("invalid email");
+        }
+        if(teacherData.password.length >= 5){
+            teacherFormData.append('password',teacherData.password)
+        }else{
+        seterrorData("password must be greater than 5");
+        }
+        if(teacherData.mobile_no.length >= 12){
+            teacherFormData.append('mobile_no',teacherData.mobile_no)
+        }else{
+            seterrorData("mobile number must be greater 12 number");
+        }
         teacherFormData.append('qualification',teacherData.qualification)
         teacherFormData.append('skills',teacherData.skills)
 
@@ -49,7 +67,7 @@ function TeacherRegister(){
                 });
             });
         }catch(error){
-            setteacherData({'status':'error'})
+            setteacherData({'status':''})
         }
     };
 
@@ -63,12 +81,13 @@ function TeacherRegister(){
     }
   
     return(
-        <div className='container mt-4'>
+        <div className='root py-4'>
+        <div className='container'>
             <div className='row'>
                 <div className='col-6 offset-3'>
                     {teacherData.status === 'success' && <p className='text-success'>Thanks for Your Registration</p>}
-                    {teacherData.status === 'error' && <p className='text-danger'>Somthing Wrong Happened!</p>}
-                    <div className='card'>
+                    {teacherData.status === '' && <p className='text-danger'>{errorData}</p>}
+                    <div className='card rgscard allcards'  style={{backgroundColor: "rgb(219, 219, 219)"}}>
                         <h5 className='card-header'>Teacher Register</h5>
                         <div className='card-body'>
                                 <div className='mb-3'>
@@ -78,7 +97,7 @@ function TeacherRegister(){
 
                                 <div className='mb-3'>
                                     <label for='exampleInputEmail' className='form-label'>Email</label>
-                                    <input onChange={handleChange} value={teacherData.email} name='email' type='email' className='form-control'/>
+                                    <input onChange={handleChange} value={teacherData.email} name='email' type='email' className='form-control' placeholder="name@example.com"/>
                                 </div>
 
                                 <div className='mb-3'>
@@ -108,6 +127,7 @@ function TeacherRegister(){
                     </div>
                 </div>
             </div>
+        </div>
         </div>
             
     )

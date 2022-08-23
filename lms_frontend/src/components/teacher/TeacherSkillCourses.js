@@ -17,6 +17,7 @@ function TeacherSkillCourses(){
       console.log(error);
     }
   },[]);
+
     return(
 <div className='container mt-3'>
         {/* latest course */}

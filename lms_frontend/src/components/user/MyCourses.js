@@ -44,7 +44,10 @@ function MyCourses(){
 
                     <td><NavLink to={`/detail/`+row.course.id}>{row.course.title}</NavLink></td>
                     <td><NavLink to={`/teacher-detail/`+row.course.teacher.id}>{row.course.teacher.full_name}</NavLink></td>
-                    <td><NavLink className='btn btn-sm btn-warning' to={`/course-quiz/`+row.course.id}>Quiz List</NavLink></td>
+                    <td>
+                        <NavLink className='btn btn-sm btn-warning' to={`/course-quiz/`+row.course.id}>Quiz List</NavLink>
+                        <NavLink className='btn btn-primary btn-sm active ms-2' to={'/user/study-materials/'+row.course.id} >study material</NavLink>
+                    </td>
                     </tr>)}
 
                 </tbody>

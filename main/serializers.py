@@ -9,14 +9,14 @@ from rest_framework import serializers
 class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Teacher
-        fields = ['id','full_name','email','password','qualification','mobile_no','skills','profile_img','teacher_courses','skill_list']
+        fields = ['id','full_name','email','password','qualification','mobile_no','skills','profile_img','teacher_courses','skill_list','total_teacher_courses']
         
-        def __init__(self,*args,**kwargs):
-            super(TeacherSerializer,self).__init__(*args,**kwargs)
-            request = self.context.get('request')
-            self.Meta.depth=0
-            if request and request.method == 'GET':
-                self.Meta.depth=1
+    def __init__(self,*args,**kwargs):
+        super(TeacherSerializer,self).__init__(*args,**kwargs)
+        request = self.context.get('request')
+        self.Meta.depth=0
+        if request and request.method == 'GET':
+            self.Meta.depth=2
                 
 class TeacherDashboardSerializer(serializers.ModelSerializer):
     class Meta:
@@ -109,7 +109,7 @@ class CourseRatinSerializer(serializers.ModelSerializer):
         request = self.context.get('request')
         self.Meta.depth=0
         if request and request.method == 'GET':
-            self.Meta.depth=1
+            self.Meta.depth=2
 
 
 
@@ -205,10 +205,24 @@ class CourseQuizSerializer(serializers.ModelSerializer):
 class AttempQuizSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.AttempQuiz
-        fields  = ['id','student','question','right_ans','add_time']
+        fields  = ['id','student','quiz','question','right_ans','add_time']
     def __init__(self,*args,**kwargs):
         super(AttempQuizSerializer,self).__init__(*args,**kwargs)
         request = self.context.get('request')
         self.Meta.depth=0
         if request and request.method == 'GET':
-            self.Meta.depth=2
+            self.Meta.depth=1
+
+
+
+class StudyMaterialSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.StudyMatirial
+        # fields = "__all__"
+        fields  = ['id','course','title','describtion','upload','remarks']
+        def __init__(self,*args,**kwargs):
+            super(StudyMaterialSerializer,self).__init__(*args,**kwargs)
+            request = self.context.get('request')
+            self.Meta.depth=0
+            if request and request.method == 'GET':
+                self.Meta.depth=1

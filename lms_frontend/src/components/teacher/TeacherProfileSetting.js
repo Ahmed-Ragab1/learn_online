@@ -66,7 +66,7 @@ function ProfileSetting(){
         });
     }
 
-
+    console.log(teacherData);
 
     const submitForm=()=>{
         const teacherFormData=new FormData();
@@ -77,7 +77,7 @@ function ProfileSetting(){
         teacherFormData.append('skills',teacherData.skills)
 
         if(teacherData.p_img!==''){
-            teacherFormData.append('profile_img',teacherData.p_img.name);
+            teacherFormData.append('profile_img',teacherData.p_img);
         }
 
         try{

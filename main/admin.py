@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from main.models import AttempQuiz, Course, CourseCategory, Student, StudentCourseEnrollment, Teacher,Chapter
+from main.models import AttempQuiz, Course, CourseCategory, Student, StudentCourseEnrollment, Teacher,Chapter,StudyMatirial
 from main.models import Course, CourseCategory, CourseQuiz, Notification, Quiz, QuizQuestions, Student, StudentCourseEnrollment, Teacher,Chapter
 from main.models import Course, CourseCategory, Student, StudentCourseEnrollment, Teacher,Chapter,CourseRating,StudentFavoriteCourse,StudentAssignment
 
@@ -29,3 +29,11 @@ admin.site.register(Quiz)
 admin.site.register(QuizQuestions)
 admin.site.register(CourseQuiz)
 admin.site.register(AttempQuiz)
+admin.site.register(StudyMatirial)
+
+
+admin.site.site_header='WELCOME to LMS'
+admin.site.site_title='iti'
+admin.site.index_title = 'WELCOME ADMIN USER TO Information Technology Institute'
+
+

@@ -24,8 +24,7 @@ function Sidebar(){
                             <NavLink to='/user-dashboard' className='list-group-item list-group-item-action'>Dashboard</NavLink>           
                             <NavLink to='/my-courses' className='list-group-item list-group-item-action'>My Courses</NavLink>
                             <NavLink to='/favorite-courses' className='list-group-item list-group-item-action'>Favorite Courses</NavLink>
-                            <NavLink to='/recommended-courses' className='list-group-item list-group-item-action'>Recommended Courses</NavLink>
-                            <NavLink to='/my-assignments' className='list-group-item list-group-item-action'>Assignments</NavLink>
+                            {/* <NavLink to='/recommended-courses' className='list-group-item list-group-item-action'>Recommended Courses</NavLink> */}
                             <NavLink to='/my-assignments' className='list-group-item list-group-item-action'>Assignments <span className='float-end badge bg-danger mt-1'>{notifData.length}</span></NavLink>
                             <NavLink to='/profile-setting' className='list-group-item list-group-item-action'> Profile Setting</NavLink>
                             <NavLink to='/change-password' className='list-group-item list-group-item-action'>Change Password</NavLink>

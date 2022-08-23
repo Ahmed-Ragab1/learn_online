@@ -77,11 +77,9 @@ function QuizQustions(){
                 <tbody>
                     {questionData.map((row,index)=>
                     <tr>
-                    <td><Link to={ '/edit-question/' + row.id } >{row.questions}</Link></td>
+                    <td><Link to='#' >{row.questions}</Link></td>
                     <td>
-                        <Link to={ '/edit-question/' + row.id } className='btn btn-sm btn-info'><i class="bi bi-pencil-square"></i></Link>
                         <button  onClick={()=>handelDeleteClick(row.id)} className='btn btn-sm btn-danger ms-2'><i class="bi bi-trash"></i></button>
-                        
                     </td>
                     </tr>
                     )}

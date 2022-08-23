@@ -7,7 +7,7 @@ from main import models
 from main.models import Chapter, StudentCourseEnrollment, Teacher,CourseCategory,Course
 from main.serializers import  AttempQuizSerializer, StudentCourseEnrollSerializer, TeacherSerializer,CategorySerializer,CourseSerializer,ChapterSerializer,StudentSerializer
 from main.models import Chapter, Student, StudentCourseEnrollment, Teacher,CourseCategory,Course
-from main.serializers import  StudentCourseEnrollSerializer, TeacherSerializer,CategorySerializer,CourseSerializer,ChapterSerializer,StudentSerializer,NotificationSerializer,QuizSerializer,QuestionSerializer,CourseQuizSerializer
+from main.serializers import  StudentCourseEnrollSerializer, TeacherSerializer,CategorySerializer,CourseSerializer,ChapterSerializer,StudentSerializer,NotificationSerializer,QuizSerializer,QuestionSerializer,CourseQuizSerializer,StudyMaterialSerializer
 
 from main.models import Chapter, CourseRating, StudentCourseEnrollment, Teacher,CourseCategory,Course,StudentAssignment,Notification,Quiz
 
@@ -28,6 +28,9 @@ class TeacherList(generics.ListCreateAPIView):
     queryset = Teacher.objects.all()
     serializer_class = TeacherSerializer
     # permission_classes = [permissions.IsAuthenticated]
+   
+
+   
 class TeacherDashboard(generics.RetrieveAPIView):
     queryset=Teacher.objects.all()
     serializer_class =  TeacherDashboardSerializer
@@ -49,7 +52,7 @@ def teacher_login(request):
     except models.Teacher.DoesNotExist:
         teacherData =None
     if teacherData:
-        return JsonResponse({'bool':True,'teacher_id':teacherData.id})
+        return JsonResponse({'bool':True,'teacher_id':teacherData.id,'full_name':teacherData.full_name})
     else:
         return JsonResponse({'bool':False})
 
@@ -125,10 +128,6 @@ class CourseList(viewsets.ModelViewSet):
             teacher=models.Teacher.objects.filter(id=teacher).first()
             qs=models.Course.objects.filter(techs__icontains=skill_name,teacher=teacher) 
 
-        if 'searchstring' in self.kwargs:
-            search=self.kwargs['searchstring']
-            if search:
-                qs=models.Course.objects.filter(Q(title__istartwith=search)|Q(techs__istartwith=search)) 
 
         elif 'studentId' in self.kwargs:
             student_id=self.kwargs['studentId']
@@ -140,6 +139,24 @@ class CourseList(viewsets.ModelViewSet):
             qs=models.Course.objects.filter(query)
             return qs        
         return qs
+
+
+
+
+
+
+class SearchCourseList(generics.ListCreateAPIView):
+    queryset = models.Course.objects.all()
+    serializer_class = CourseSerializer
+
+    def get_queryset(self):
+        qs=super().get_queryset()
+        if 'searchstring' in self.kwargs:
+            search=self.kwargs['searchstring']
+            if search:
+                qs=models.Course.objects.filter(title=search) 
+        return qs
+
 
 
 
@@ -171,7 +188,7 @@ class CourseChapterList(generics.ListAPIView):
         course_id=self.kwargs['course_id']
         course= models.Course.objects.get(pk=course_id)
         return models.Chapter.objects.filter(course=course)  
-        return models.Chapter.objects.filter(course=course)  
+ 
 
 
 
@@ -214,7 +231,7 @@ def student_login(request):
     except models.Student.DoesNotExist:
         studentData =None
     if studentData:
-        return JsonResponse({'bool':True,'student_id':studentData.id})
+        return JsonResponse({'bool':True,'student_id':studentData.id,'full_name':studentData.full_name})
     else:
         return JsonResponse({'bool':False})
 
@@ -260,8 +277,18 @@ class EnrolledStudentList(generics.ListAPIView):
 
 
 class CourseRatingList(generics.ListCreateAPIView):
+    queryset =  models.CourseRating.objects.all()
     serializer_class = CourseRatinSerializer
+
     def get_queryset(self):
+        # if 'popular' in self.request.GET:
+        #     sql = "SELECT 1 as id,AVG(cr.rating) as avg_rating FROM main_courserating as cr INNER JOIN main_course as c ON cr.course_id=c.id GROUP BY c.id ORDER BY avg_rating desc LIMIT 4"
+        #     return models.CourseRating.objects.raw(sql)
+        # if 'all' in self.request.GET:
+        #     sql = "SELECT 1 as id,AVG(cr.rating) as avg_rating FROM main_courserating as cr INNER JOIN main_course as c ON cr.course_id=c.id GROUP BY c.id ORDER BY avg_rating desc"
+        #     return models.CourseRating.objects.raw(sql)
+
+        
         course_id=self.kwargs['course_id']
         course= models.Course.objects.get(pk=course_id)
         return models.CourseRating.objects.filter(course=course)
@@ -400,6 +427,9 @@ class NotificationList(generics.ListCreateAPIView):
         student_id=self.kwargs['student_id']
         student=models.Student.objects.get(pk=student_id)
         return models.Notification.objects.filter(student=student,notif_for='student',notif_subject='assignment',notifiread_status=False)
+
+
+
 class QuizList(generics.ListCreateAPIView):
     queryset = models.Quiz.objects.all()
     serializer_class=QuizSerializer
@@ -439,6 +469,10 @@ class QuizQuestionList(generics.ListCreateAPIView):
             return models.QuizQuestions.objects.filter(quiz=quiz)  
 
 
+class QuizQuestiondetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = models.QuizQuestions.objects.all()
+    serializer_class = QuestionSerializer
+
 
 
 class CourseQuizList(generics.ListCreateAPIView):
@@ -450,6 +484,7 @@ class CourseQuizList(generics.ListCreateAPIView):
             course_id=self.kwargs['course_id']
             course= models.Course.objects.get(pk=course_id)
             return models.CourseQuiz.objects.filter(course=course)
+            
 
 
 
@@ -471,6 +506,44 @@ class AttempQuizList(generics.ListCreateAPIView):
     queryset = models.AttempQuiz.objects.all()
     serializer_class = AttempQuizSerializer
 
+    def get_queryset(self):
+        if 'quiz_id' in self.kwargs:
+            quiz_id=self.kwargs['quiz_id']
+            quiz= models.Quiz.objects.get(pk=quiz_id)
+            # return models.AttempQuiz.objects.raw(f'SELECT * FROM main_attempquiz WHERE quiz_id={int(quiz_id)} GROUP by student_id')
+            return models.AttempQuiz.objects.filter(quiz=quiz)
+        else:
+            return models.AttempQuiz.objects.all()
+
+
+
+def fetch_quiz_result_attempt_status(request,quiz_id,student_id):
+    quiz = models.Quiz.objects.filter(id=quiz_id).first()
+    student = models.Student.objects.filter(id=student_id).first()
+    # attemptStatus = models.AttempQuiz.objects.filter(student=student,question__quiz=quiz).count()
+    total_questions=models.QuizQuestions.objects.filter(quiz=quiz).count()
+    total_attempted_questions=models.AttempQuiz.objects.filter(quiz=quiz,student=student).values('student').count()
+    attempted_questions=models.AttempQuiz.objects.filter(quiz=quiz,student=student)
+
+    total_correct_questions=0
+    for attempt in attempted_questions:
+        if attempt.right_ans == attempt.question.right_ans:
+            total_correct_questions +=1 
+
+    
+    
+    return JsonResponse({'total_questions':total_questions,'total_correct_questions':total_correct_questions,'total_attempted_questions':total_attempted_questions}) 
+    
+    
+    # if attemptStatus > 0:
+    # else:
+    #     return JsonResponse({'bool':False})
+
+
+
+
+
+
 
 def fetch_quiz_attempt_status(request,quiz_id,student_id):
     quiz = models.Quiz.objects.filter(id=quiz_id).first()
@@ -480,3 +553,28 @@ def fetch_quiz_attempt_status(request,quiz_id,student_id):
         return JsonResponse({'bool':True})
     else:
         return JsonResponse({'bool':False})
+
+
+
+
+class StudyMaterialList(generics.ListCreateAPIView):
+    serializer_class = StudyMaterialSerializer
+
+    def get_queryset(self):
+        course_id=self.kwargs['course_id']
+        course= models.Course.objects.get(pk=course_id)
+        return models.StudyMatirial.objects.filter(course=course)  
+
+
+
+
+class StudyMaterialDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = models.StudyMatirial.objects.all()
+    serializer_class = StudyMaterialSerializer
+
+
+def update_view(request,course_id):
+    queryset = models.Course.objects.filter(pk=course_id).first()
+    queryset.course_views+=1
+    queryset.save()
+    return JsonResponse({'views':queryset.course_views})

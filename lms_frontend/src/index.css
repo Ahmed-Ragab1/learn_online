@@ -5,9 +5,95 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.searchimg{
+  height: 100%;
+}
+
+.searchimg NavLink{
+  text-decoration: none;
+}
+
+#root{
+  background-color: rgba(184, 183, 183, 0.737);
+}
+
+
+
+  /* --------- card -------- */
+.cardmain{
+  display : flex;
+  align-items : center;
+  justify-content : center;  
+}
+
+.cardcontainer{
+  position : relative;
+  width : 1100px;
+  display : flex;
+  align-items : center;
+  justify-content : center;
+  flex-wrap : wrap;
+  padding : 30px; 
+}
+
+.container .cardhome {
+  position: relative;
+  max-width : 300px;
+  height : 230px;  
+  background-color : rgb(171, 171, 171);
+  margin : 30px 10px;
+  padding : 20px 15px;
+  
+  display : flex;
+  flex-direction : column;
+  box-shadow : 0 5px 20px rgba(0,0,0,0.5);
+  transition : 0.3s ease-in-out;
+  border-radius : 15px;
+}
+
+
+.container .cardhome:hover {
+  height : 320px;    
+}
+
+.cardcontainer .card .cardhomebody {
+  padding : 10px 0px;
+  color : #111;
+  text-align : center;
+  
+  visibility : visible;
+  opacity : 1;
+  transition : 0.3s ease-in-out;
+  
+}
+.container .card:hover .cardhomebody {
+  margin-top : 16px;
+  visibility : visible;
+  opacity : 1;
+  transition-delay: 0.2s;
+ 
+}
+.cardcontainer .card .cardhomebody .card-footer{
+  visibility : hidden;
+  opacity : 0;
+}
+.cardcontainer .card:hover .cardhomebody .card-footer{
+  visibility : visible;
+  opacity : 1;
+}
+
+
+.card{
+  background-color :  #f2f2f2
+}
+
+

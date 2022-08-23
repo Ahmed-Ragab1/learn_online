@@ -28,6 +28,8 @@ function AddQuizeQustion(){
     }
 
 
+    
+
     // get id
     const {quiz_id}=useParams();
     const formsubmit=()=>{
@@ -64,6 +66,10 @@ function AddQuizeQustion(){
             console.log(error);
         }
     }
+
+
+
+    console.log(QuestionData.questions);
     return(
         <div className='container mt-4'>
             <div className='row'>

@@ -13,6 +13,9 @@ export default function TeacherDetail() {
   let {teacher_id}=useParams();
 
 
+  console.log(teacherData);
+
+
   useEffect(()=>{
     try{
         axios.get(baseUrl+'/teacher/'+teacher_id).then((res)=>{
@@ -33,13 +36,14 @@ export default function TeacherDetail() {
       <div className="row">
         <div className="col-4">
           <img
-            src="/logo512.png"
+            src={teacherData.profile_img}
             className="img-thumbnail"
             alt="Teacher"
+            height="300px"
           />
         </div>
         <div className="col-8">
-          <h3>{teacherData.full_name}</h3>
+          <h3 style={{fontFamily: "cursive"}}>{teacherData.full_name}</h3>
           <p>
           {teacherData.detail}
           </p>
@@ -47,13 +51,14 @@ export default function TeacherDetail() {
             Skills:&nbsp;
              {skilllist.map((skill,index)=>
                     <>
-<NavLink to={`/teacher-skill-courses/${skill.trim()}/${teacherData.id}`} className='badge badge-pill bg-warning text-dark'> {skill.trim()}</NavLink>&nbsp;
+<NavLink to='#' className='badge badge-pill bg-warning text-dark' style={{textDecoration: 'none'}}> {skill.trim()}</NavLink>&nbsp;
 </>
                     )}
    
           </p>
           <p className="fw-bold">Recent Courses: <NavLink to="/category/php"> node js</NavLink></p>
-          <p className="fw-bold">rating: 3/5</p>
+          <p className="fw-bold">mobile:<span className="text-primary"> {teacherData.mobile_no}</span> </p>
+          <p className="fw-bold">qualification:<span className="text-primary"> {teacherData.qualification}</span> </p>
         </div>
       </div>
 

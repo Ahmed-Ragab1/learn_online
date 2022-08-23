@@ -14,8 +14,10 @@ urlpatterns = [
     path('teacher/<int:pk>/', views.TeacherDetail.as_view()),
     path('teacher/change-password/<int:teacher_id>/', views.teacher_change_password),
     path('teacher-login',views.teacher_login),
-    path('teacher/dashboard/<int:pk>/',views.TeacherDashboard.as_view())
-    ,
+    path('teacher/dashboard/<int:pk>/',views.TeacherDashboard.as_view()),
+    path('popular-teachers/', views.TeacherList.as_view()),
+
+    
 
 
 
@@ -39,9 +41,12 @@ urlpatterns = [
   
     path('teacher-course-detail/<int:pk>',views.TeacherCourseDetail.as_view()),
 
+    path('popular-courses/', views.CourseRatingList.as_view()),
+
     #student
     path('student/', views.StudentList.as_view()),
     path('student/<int:pk>/', views.StudentDetail.as_view()),
+    path('student-testimonial/', views.CourseRatingList.as_view()),
     path('student-login',views.student_login),
     path('student/dashboard/<int:pk>/',views.StudentDashboard.as_view()),
     path('student-enroll-course/',views.StudentEnrollCourse.as_view()),
@@ -54,7 +59,7 @@ urlpatterns = [
     path('course-rating/<int:course_id>', views.CourseRatingList.as_view()),
     path('fetch-rating-status/<int:student_id>/<int:course_id>',views.fetch_rating_status),
     path('fetch-recommened-courses/<int:studentId>',views.CourseList.as_view({'get': 'list'})),
-    
+
     
     path('fetch-enrolled-courses/<int:student_id>',views.EnrolledStudentList.as_view()),
     # {"get": "retrieve", "post": "create", "put": "update", "patch": "partial_update", "delete": "destroy"}
@@ -63,42 +68,39 @@ urlpatterns = [
     path('student-remove-favorite-course/<int:course_id>/<int:student_id>',views.remove_favorite_course),
     path('fetch-favorite-status/<int:student_id>/<int:course_id>',views.fetch_favorite_status),
     path('fetch-favorite-courses/<int:student_id>',views.StudentFavoriteCourseList.as_view()),
-
-
     path('student-assignment/<int:teacher_id>/<int:student_id>', views.AssignmentList.as_view()),
-
     path('my-assignments/<int:student_id>', views.MyAssignmentList.as_view()),
-
     path('update-assignment/<int:pk>', views.UpdateAssignment.as_view()),
-
+    path('update-view/<int:course_id>', views.update_view),
     path('student/fetch-all-notifications/<int:student_id>/',views.NotificationList.as_view()),
     path('save-notification/',views.NotificationList.as_view()),
-    
     path('quiz/', views.QuizList.as_view()),
     path('teacher-quiz/<int:teacher_id>',views.TeacherQuizList.as_view()),
-
     path('teacher-quiz-detail/<int:pk>',views.TeacherQuizDetail.as_view()),
-    
     path('quiz/<int:pk>/', views.QuizDetailView.as_view()),
-
-
     path('quiz-questions/<int:quiz_id>',views.QuizQuestionList.as_view()),
-
+    path('question/<int:pk>',views.QuizQuestiondetail.as_view()),
     path('quiz-questions/<int:quiz_id>/<int:limit>',views.QuizQuestionList.as_view()),
-
     path('quiz-assign-course/',views.CourseQuizList.as_view()),
-    
     path('fetch-assigned-quiz/<int:course_id>',views.CourseQuizList.as_view()),
-
-     path('fetch-quiz-assign-status/<int:quiz_id>/<int:course_id>',views.fetch_quiz_assign_status),
-
+    path('fetch-quiz-assign-status/<int:quiz_id>/<int:course_id>',views.fetch_quiz_assign_status),
     path('attempt-quiz/', views.AttempQuizList.as_view()),
-    
     path('quiz-questions/<int:quiz_id>/next-question/<int:question_id>',views.QuizQuestionList.as_view()),
-
     path('fetch-quiz-attempt-status/<int:quiz_id>/<int:student_id>',views.fetch_quiz_attempt_status),
 
-    # path('search-course/<str:searchstring>',views.SCourseList.as_view()),
+
+    path('search-course/<str:searchstring>',views.SearchCourseList.as_view()),
+
+    #study materials
+    path('study-materials/<int:course_id>',views.StudyMaterialList.as_view()),
+    path('study-material/<int:pk>', views.StudyMaterialDetailView.as_view()),
+
+    path('user/study-materials/<int:course_id>',views.StudyMaterialList.as_view()),
+
+    path('attempted-quiz/<int:quiz_id>',views.AttempQuizList.as_view()),
+
+    path('fetch-quiz-result/<int:quiz_id>/<int:student_id>',views.fetch_quiz_result_attempt_status),
+
 
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -66,9 +66,9 @@ function TeacherDashboard() {
               </h5>
               <div className="card-body">
                 <h3>
-                  <NavLink to="/teacher-users">
+                  <span to="#" className="text-primary">
                     {dashboardData.total_teacher_chapters}
-                  </NavLink>
+                  </span>
                 </h3>
               </div>
             </div>
