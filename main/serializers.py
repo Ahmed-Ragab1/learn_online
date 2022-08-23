@@ -46,6 +46,8 @@ class CourseSerializer(serializers.ModelSerializer):
             self.Meta.depth = 2
 
 
+
+
 class CreateCourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Course

@@ -98,7 +98,7 @@ urlpatterns = [
 
     path('fetch-quiz-attempt-status/<int:quiz_id>/<int:student_id>',views.fetch_quiz_attempt_status),
 
-    # path('search-course/<str:searchstring>',views.CourseList.as_view()),
+    # path('search-course/<str:searchstring>',views.SCourseList.as_view()),
 
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

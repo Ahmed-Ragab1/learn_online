@@ -143,7 +143,6 @@ class CourseList(viewsets.ModelViewSet):
 
 
 
-
 # chapter Data
 class ChapterList(generics.ListCreateAPIView):
     queryset = Chapter.objects.all()
