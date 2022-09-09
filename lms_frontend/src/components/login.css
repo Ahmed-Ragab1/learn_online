@@ -2,7 +2,6 @@
     background-image: linear-gradient(to right,rgba(218, 216, 216, 0.818), rgba(197, 197, 197, 0.744),rgba(218, 218, 218, 0.744), rgba(197, 197, 197, 0.744));
 }
 .lgcard {
-    position: relative;
     border-radius: 20px;
     padding: 10px;
     box-sizing: border-box;
@@ -12,7 +11,6 @@
   }
 
 .rgscard {
-    position: relative;
     border-radius: 20px;
     padding: 10px;
     box-sizing: border-box;
@@ -38,6 +36,10 @@
 
 .allcards .card-body input:focus{
   background:#fbffffc7;
+}
+
+.allcards .card-body input:invalid{
+  background: red;
 }
   
 .allcards .card-body button {

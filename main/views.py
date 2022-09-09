@@ -144,6 +144,7 @@ class CourseList(viewsets.ModelViewSet):
 
 
 
+
 class SearchCourseList(generics.ListCreateAPIView):
     queryset = models.Course.objects.all()
     serializer_class = CourseSerializer

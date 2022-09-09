@@ -22,6 +22,10 @@ function TeacherDashboard() {
   }, []);
 
 
+  useEffect(()=>{
+    document.title='teacher dashboard'
+  });
+
   return (
     <div className="container mt-4">
       <div className="row">

@@ -60,6 +60,10 @@ function Home() {
 
 
   console.log(courseData);
+
+  useEffect(()=>{
+    document.title='LMS'
+  });
   
     return (
       <>

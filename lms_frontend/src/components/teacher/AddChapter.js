@@ -2,7 +2,7 @@
 // import { Card } from 'react-bootstrap/Card';
 import TeacherSidebar from './TeacherSidebar';
 import axios from 'axios';
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 import Swal from 'sweetalert2'
 
 import { useParams } from 'react-router-dom';
@@ -73,6 +73,10 @@ function AddChapter(){
             console.log(error);
         }
     }
+
+    useEffect(()=>{
+        document.title='ADD chapter'
+    });
     return(
         <div className='container mt-4'>
             <div className='row'>

@@ -67,6 +67,7 @@ const {course_id}=useParams();
         });
     }
 
+    console.log(courseData.category);
 
 
     const formsubmit=()=>{

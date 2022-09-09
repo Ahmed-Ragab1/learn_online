@@ -25,6 +25,8 @@ function ShowAssignment(){
      }
     },[]);
 
+
+        console.log(assignmentData);
     return (
         <div className='container mt-4'>
         <div className='row'>
@@ -39,12 +41,14 @@ function ShowAssignment(){
                 <thead>
                     <tr>
                         <th>Title</th>
+                        <th>detail</th>
                     </tr>
                 </thead>
                 <tbody>
                     {assignmentData.map((row,index)=>
                     <tr>
                     <td>{row.title}</td>
+                    <td>{row.detail}</td>
                     <td>
                         { row.student_status === false &&
                             <span className='badge bg-warning'> Pending </span>

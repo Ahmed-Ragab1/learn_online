@@ -71,7 +71,7 @@ function Login(){
         <div className='container'>
             <div className='row'>
                 <div className='col-6 offset-3'>
-                    <div className='card lgcard allcards'  style={{backgroundColor: "rgb(219, 219, 219)"}}>
+                    <div className='card lgcard allcards'  style={{backgroundColor: "rgb(219, 219, 219)",border:"0px solid white"}}>
                         <h5 className='card-header'>Student Login</h5>
                         <div className='card-body' >
                             {errorMsg && <p className="text-danger">{errorMsg}</p>}

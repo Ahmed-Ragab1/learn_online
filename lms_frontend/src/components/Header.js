@@ -32,12 +32,12 @@ function Header() {
     return (
       <Navbar bg="dark" expand="lg" className="navbar-dark">
       <Container>
-        <Navbar.Brand href="/">Learn Online</Navbar.Brand>
+        <Navbar.Brand href="/">Learn <span style={{color: "red"}}> Online</span></Navbar.Brand>
         <Form className="d-flex">
             <Form.Control
               type="search"
               placeholder="Search by course Title"
-              className="me-2"
+              className="me-2 msearch"
               aria-label="Search"
               name='search'
               onChange={handleChange}

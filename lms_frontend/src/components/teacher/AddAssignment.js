@@ -1,7 +1,7 @@
 // import { Card } from 'react-bootstrap/Card';
 import TeacherSidebar from './TeacherSidebar';
 import axios from 'axios';
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 import Swal from 'sweetalert2'
 
 import { useParams } from 'react-router-dom';
@@ -69,6 +69,11 @@ function AddAssignment(){
             console.log(error);
         }
     };
+
+
+    useEffect(()=>{
+        document.title='ADD assignment'
+    });
     return(
         <div className='container mt-4'>
             <div className='row'>

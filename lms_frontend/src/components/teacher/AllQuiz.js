@@ -58,6 +58,9 @@ function AllQuiz(){
       })
 }
 
+    useEffect(()=>{
+        document.title='all quizes'
+    });
 
     return (
         <div className='container mt-4'>
@@ -73,7 +76,6 @@ function AllQuiz(){
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Total Questions</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -91,7 +93,6 @@ function AllQuiz(){
             
                     </td>
 
-                    <td><NavLink to='#'>123</NavLink></td>
 
                     <td>
                         <NavLink className='btn btn-info btn-sm' to={`/edit-quiz/`+row.id} >

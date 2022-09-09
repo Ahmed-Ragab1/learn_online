@@ -74,12 +74,11 @@ function Register(){
     return(
         <div className='root py-4'>
         <div className='container'>
-        <div className='container mt-5' style={{marginBottom:"80px"}}>
             <div className='row'>
                 <div className='col-6 offset-3'>
                     {studentData.status === 'success' && <p className='text-success'>Thanks for Your Registration</p>}
                     {studentData.status === '' && <p className='text-danger'>{errorData}</p>}
-                    <div className='card rgcard allcards'  style={{backgroundColor: "rgb(219, 219, 219)"}}>
+                    <div className='card rgscard allcards'  style={{backgroundColor: "rgb(219, 219, 219)",border:"0px solid white"}}>
                         <h5 className='card-header'>Student Register</h5>
 
                         <div className='card-body'>
@@ -114,7 +113,6 @@ function Register(){
                     </div>
                 </div>
             </div>
-        </div>
         </div>
         </div>
             

@@ -25,6 +25,12 @@ function Search(props){
     }
   },[]);
 
+
+
+  useEffect(()=>{
+    document.title=`course ${searchstring}`
+  });
+
   
 
     return(

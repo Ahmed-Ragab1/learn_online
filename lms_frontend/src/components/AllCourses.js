@@ -19,6 +19,10 @@ function AllCourses(){
     }
   },[]);
 
+  useEffect(()=>{
+    document.title='all courses'
+  });
+
     return(
 
 <div className='container mt-3 allcourses'>

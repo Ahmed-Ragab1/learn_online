@@ -41,7 +41,7 @@ class Student(models.Model):
     password             = models.CharField(max_length=100,blank=True,null=True)
     username             = models.CharField(max_length=200)
     interesed_categories = models.TextField()
-    profile_img=models.ImageField(upload_to='student_profile_imgs/',null=True)
+    profile_img          =models.ImageField(upload_to='student_profile_imgs/',null=True)
 
 
     def __str__(self) -> str:

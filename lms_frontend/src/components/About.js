@@ -1,10 +1,16 @@
 import '../aboutus.css';
+import { useEffect } from "react";
 
 
 function About(){
+  useEffect(()=>{
+    document.title='About US'
+  });
+
+
     return(
         <>
-        <img src="about_us.jpg" width="100%" />
+        <img src="about_us.jpg" width="100%" className='aboutusimgg'/>
 
         <div className="container mt-4">
         <h3 id="h-you-should-take-e-learning-seriously"><strong>You should&nbsp;take e-learning seriously&nbsp;</strong></h3>
@@ -39,7 +45,7 @@ function About(){
         <div className="container">
         <h3 className='ourmission'><strong>Owners</strong></h3>
         </div>
-    <div className='container'>
+    <div className='container owners'>
     <div className='row'>
     <div className='col-md-4'>
     <div class="father">
@@ -73,7 +79,7 @@ function About(){
         <header>Find Me On</header>
         <div class="container">
             <div>
-                <p>I’m a web developer. I spend my whole day, practically every day, experimenting with coding . CODING IS LIFE</p>
+                <p>I’m ahmed badawi.I'm a web developer with in-depth experience in cloud.</p>
                 <p>Graduated from MUST University in 2020</p>
             </div>
             <ul className="d-flex align-items-center flex-row">
@@ -95,7 +101,7 @@ function About(){
         <header>Find Me On</header>
         <div class="container">
             <div>
-                <p>I’m a web developer. I spend my whole day, practically every day, experimenting with coding . CODING IS LIFE</p>
+                <p> My expertise lies within front-end web apps, and the main languages in my tech stack are JavaScript, React, and of course HTML/CSS.</p>
                 <p>Graduated from Alex University in 2021</p>
             </div>
             <ul className="d-flex align-items-center flex-row">
@@ -112,13 +118,13 @@ function About(){
     <div class="father">
       <div class="front">
         <header>Abdalla Isammel</header>
-        <img src="#"width="100%" height="87%" style={{borderRadius: "0px 0px 5px 5px"}}/>
+        <img src="abdallaismail.jpeg"width="100%" height="87%" style={{borderRadius: "0px 0px 5px 5px"}}/>
       </div>
       <div class="back">
         <header>Find Me On</header>
         <div class="container">
             <div>
-                <p>I’m a web developer. I spend my whole day, practically every day, experimenting with coding . CODING IS LIFE</p>
+                <p>I create websites that help organizations address business challenges and meet their needs.</p>
                 <p>Graduated from Benha University in 2020</p>
             </div>
             <ul className="d-flex align-items-center flex-row">
@@ -134,14 +140,14 @@ function About(){
     <div class="father">
       <div class="front">
         <header>Abdelrahman Selim</header>
-        <img src="#" width="100%" height="87%" style={{borderRadius: "0px 0px 5px 5px"}}/>
+        <img src="abdoselim.jpeg" width="100%" height="87%" style={{borderRadius: "0px 0px 5px 5px"}}/>
       </div>
       <div class="back">
         <header>Find Me On</header>
         <div class="container">
             <div>
-                <p>I’m a web developer. I spend my whole day, practically every day, experimenting with coding . CODING IS LIFE</p>
-                <p>Graduated from Benha University in 2020</p>
+                <p>I’m a web developer. I create websites that help organizations address business challenges and meet their needs.</p>
+                <p>Graduated from sohag University in 2020</p>
             </div>
             <ul className="d-flex align-items-center flex-row">
                 <a className="btn btn-primary btn-floating m-1 mt-2 w-50" style={{backgroundColor: "#0082ca"}} href="tel:01143306714" role="button"><i className="fa fa-address-book"></i> Phone</a>

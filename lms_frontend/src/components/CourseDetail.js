@@ -256,6 +256,10 @@ function CourseDetail(){
 
     console.log(chapterData);
 
+    useEffect(()=>{
+        document.title=`course ${courseData.title}`
+      });
+
 
 
     return(

@@ -87,7 +87,7 @@ function TeacherRegister(){
                 <div className='col-6 offset-3'>
                     {teacherData.status === 'success' && <p className='text-success'>Thanks for Your Registration</p>}
                     {teacherData.status === '' && <p className='text-danger'>{errorData}</p>}
-                    <div className='card rgscard allcards'  style={{backgroundColor: "rgb(219, 219, 219)"}}>
+                    <div className='card rgscard allcards'  style={{backgroundColor: "rgb(219, 219, 219)",border:"0px solid white"}}>
                         <h5 className='card-header'>Teacher Register</h5>
                         <div className='card-body'>
                                 <div className='mb-3'>
